@@ -8,6 +8,7 @@ import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.dtos.BorrowerRequest;
 import com.api.v1.borrower.dtos.BorrowerResponse;
+import com.api.v1.borrower.exceptions.DuplicatedSsnException;
 import com.api.v1.borrower.mapper.BorrowerMapper;
 
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
     
     @Override
     public Mono<BorrowerResponse> sefRegister(@Valid BorrowerRequest request) {
+        checkIfBorrowerExists(request.ssn());
         Borrower borrower = new BorrowerBuilder()
             .withFirstName(request.firstName())
             .withMiddleName(request.middleName()) 
@@ -33,6 +35,12 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
         return BorrowerMapper.mapFromBorrower(savedBorrower);
+    }
+
+    private void checkIfBorrowerExists(String ssn) {
+        Mono<Boolean> exists = repository.findBySsn(ssn).hasElement();
+        Mono<Boolean> trueStatement = Mono.just(true);
+        if (exists.equals(trueStatement)) throw new DuplicatedSsnException();
     }
     
 }
