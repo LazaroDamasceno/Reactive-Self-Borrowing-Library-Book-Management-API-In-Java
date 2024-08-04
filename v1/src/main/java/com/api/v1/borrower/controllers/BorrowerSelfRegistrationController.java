@@ -1,4 +1,4 @@
-package com.api.v1.borrower.controller;
+package com.api.v1.borrower.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
