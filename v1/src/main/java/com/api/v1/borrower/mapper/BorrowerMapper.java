@@ -4,23 +4,25 @@ import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.dtos.BorrowerResponse;
 
 import jakarta.validation.constraints.NotNull;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-public static final class BorrowerMapper {
+public final class BorrowerMapper {
     
-    public Mono<BorrowerResponse> mapFromBorrower(@NotNull Borrower borrower) {
-        BorrowerResponse response = new BorrowerResponse(
-            borrower.getFullName(), 
-            borrower.getSsn(), 
-            borrower.getEmail(),
-            borrower.getAddress(), 
-            borrower.getPhoneNumber(), 
-            borrower.getGender()
-        );
-        return Mono.just(response);
+    public static Mono<BorrowerResponse> mapFromBorrower(@NotNull Mono<Borrower> borrower) {
+        return borrower.map(b ->
+            new BorrowerResponse(
+                b.getFullName(), 
+                b.getSsn(), 
+                b.getEmail(),
+                b.getAddress(), 
+                b.getPhoneNumber(), 
+                b.getGender()
+        ));
     }
 
-    public Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
-        Flux<BorrowerResponse> response = borrowers
+    public static Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
+        return borrowers
             .map(borrower -> new BorrowerResponse(
                 borrower.getFullName(), 
                 borrower.getSsn(), 
@@ -29,7 +31,6 @@ public static final class BorrowerMapper {
                 borrower.getPhoneNumber(), 
                 borrower.getGender()
         ));
-        return response;
     }
 
 }
