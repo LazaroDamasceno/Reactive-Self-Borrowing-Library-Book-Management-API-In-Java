@@ -1,7 +1,6 @@
 package com.api.v1.borrower.domain;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
@@ -9,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "v1_borrowers")
-public class Borrower implements Serializable {
+public class Borrower {
     
     @Id
     private final UUID id = UUID.randomUUID();
@@ -39,7 +38,7 @@ public class Borrower implements Serializable {
     private String gender;
 
     @Field
-    private final LocalDateTime createdAt = LocalDateTime.now();
+    private final String createdAt = ZonedDateTime.now().toString();
 
     protected Borrower() {}
 
@@ -99,12 +98,12 @@ public class Borrower implements Serializable {
         return gender;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
     public String getSsn() {
         return ssn;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
     }
 
 }
