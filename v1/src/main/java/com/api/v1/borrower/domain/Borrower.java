@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Borrower {
     
     @Id
-    private final UUID id = UUID.randomUUID();
+    private UUID id;
 
     @Field
     private String firstName;
@@ -38,7 +38,7 @@ public class Borrower {
     private String gender;
 
     @Field
-    private final String createdAt = ZonedDateTime.now().toString();
+    private String createdAt;
 
     protected Borrower() {}
 
@@ -60,6 +60,8 @@ public class Borrower {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.id = UUID.randomUUID();
+        this.createdAt = ZonedDateTime.now().toString();
     }
 
     public String getFullName() {
