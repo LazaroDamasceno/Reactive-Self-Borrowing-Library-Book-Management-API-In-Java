@@ -7,18 +7,20 @@ import com.api.v1.borrower.builder.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.dtos.BorrowerRequest;
+import com.api.v1.borrower.dtos.BorrowerResponse;
+import com.api.v1.borrower.mapper.BorrowerMapper;
 
 import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;
 
 @Service
-public class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationService {
+class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationService {
 
     @Autowired
     private BorrowerRepository repository;
     
     @Override
-    public Mono<Void> sefRegister(@Valid BorrowerRequest request) {
+    public Mono<BorrowerResponse> sefRegister(@Valid BorrowerRequest request) {
         Borrower borrower = new BorrowerBuilder()
             .withFirstName(request.firstName())
             .withMiddleName(request.middleName()) 
@@ -30,7 +32,7 @@ public class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistra
             .withGender(request.gender())   
             .build();
         repository.save(borrower);
-        return Mono.empty();
+        return BorrowerMapper.mapFromBorrower(borrower);
     }
     
 }
