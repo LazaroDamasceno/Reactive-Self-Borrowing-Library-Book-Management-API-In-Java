@@ -32,7 +32,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
             .withGender(request.gender())   
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
-        return savedBorrower.map(b -> BorrowerMapper.mapFromBorrower(b));
+        return BorrowerMapper.mapFromBorrower(savedBorrower);
     }
     
 }
