@@ -5,9 +5,9 @@ import com.api.v1.borrower.dtos.BorrowerResponse;
 
 import jakarta.validation.constraints.NotNull;
 
-public class BorrowerMapper {
+public static final class BorrowerMapper {
     
-    public static Mono<BorrowerResponse> mapFromBorrower(@NotNull Borrower borrower) {
+    public Mono<BorrowerResponse> mapFromBorrower(@NotNull Borrower borrower) {
         BorrowerResponse response = new BorrowerResponse(
             borrower.getFullName(), 
             borrower.getSsn(), 
@@ -19,7 +19,7 @@ public class BorrowerMapper {
         return Mono.just(response);
     }
 
-    public static Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
+    public Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
         Flux<BorrowerResponse> response = borrowers
             .map(borrower -> new BorrowerResponse(
                 borrower.getFullName(), 
