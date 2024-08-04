@@ -9,6 +9,7 @@ class FindAllBorrowersController {
     @Autowired
     private FindAllBorrowersService service;
 
+    @GetMapping
     @ResponseStatus(status = HttpStatus.OK)
     public Flux<BorrowerResponse> findAll() {
         return service.findAll();
