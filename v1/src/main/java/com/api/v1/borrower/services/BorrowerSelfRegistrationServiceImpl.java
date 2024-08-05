@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.api.v1.borrower.builder.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
-import com.api.v1.borrower.dtos.NewBorrowerRequest;
+import com.api.v1.borrower.dtos.BorrowerRequest;
 import com.api.v1.borrower.dtos.BorrowerResponse;
 import com.api.v1.borrower.mapper.BorrowerMapper;
 
@@ -20,7 +20,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
     private BorrowerRepository repository;
     
     @Override
-    public Mono<BorrowerResponse> sefRegister(@Valid NewBorrowerRequest request) {
+    public Mono<BorrowerResponse> sefRegister(@Valid BorrowerRequest request) {
         Borrower borrower = new BorrowerBuilder()
             .withFirstName(request.firstName())
             .withMiddleName(request.middleName()) 

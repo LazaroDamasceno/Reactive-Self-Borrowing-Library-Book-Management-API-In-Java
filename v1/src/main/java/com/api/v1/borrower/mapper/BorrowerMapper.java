@@ -19,7 +19,7 @@ public final class BorrowerMapper {
                 b.getPhoneNumber(), 
                 b.getGender(),
                 b.getCreatedAt(),
-                b.getUpdatedAt()
+                b.getAIsActive()
         ));
     }
 
@@ -34,7 +34,7 @@ public final class BorrowerMapper {
                     borrower.getPhoneNumber(), 
                     borrower.getGender(),
                     borrower.getCreatedAt(),
-                    borrower.getUpdatedAt()
+                    borrower.getAIsActive()
         ));
     }
 

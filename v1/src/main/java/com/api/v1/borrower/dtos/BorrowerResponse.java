@@ -13,6 +13,6 @@ public record BorrowerResponse(
         @NotNull @Size(min=10, max=10) String phoneNumber,
         @NotNull @Size(min=1) String gender,
         String createdAt,
-        String updatedAt
+        Boolean activeStatus
 ) {
 }
