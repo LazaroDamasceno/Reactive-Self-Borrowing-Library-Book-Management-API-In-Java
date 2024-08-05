@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "v1_borrowers")
-public class Borrower {
+public final class Borrower {
     
     @Id
     private UUID id;
@@ -41,9 +41,9 @@ public class Borrower {
     private String createdAt;
 
     @Field
-    private String updatedAt;
+    private Boolean isActive;
 
-    protected Borrower() {}
+    public Borrower() {}
 
     public Borrower(
             String firstName, 
@@ -55,6 +55,7 @@ public class Borrower {
             String phoneNumber, 
             String gender
     ) {
+        this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -63,33 +64,20 @@ public class Borrower {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
-        this.id = UUID.randomUUID();
         this.createdAt = ZonedDateTime.now().toString();
+        this.isActive = true;
     }
 
     public String getFullName() {
+        if (middleName.isBlank()) {
+            return "%s %s".formatted(firstName, lastName);
+        }
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public void update(
-            String firstName,
-            String middleName,
-            String lastName,
-            String email,
-            String address,
-            String phoneNumber,
-            String gender
-    ) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.email = email;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.gender = gender;
-        this.id = UUID.randomUUID();
-        this.updatedAt = ZonedDateTime.now().toString();
-    }
+    public void deactive() { 
+        this.isActive = false;
+    };
 
     public UUID getId() {
         return id;
@@ -131,8 +119,8 @@ public class Borrower {
         return createdAt;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public Boolean getAIsActive() {
+        return isActive;
     }
 
 }
