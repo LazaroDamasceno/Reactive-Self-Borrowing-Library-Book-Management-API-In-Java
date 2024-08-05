@@ -1,6 +1,6 @@
 package com.api.v1.borrower.helpers.retrievers;
 
-import com.api.v1.borrower.customizedexceptions.BorrowerNotFoundException;
+import com.api.v1.borrower.exceptions.BorrowerNotFoundException;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import jakarta.validation.constraints.NotNull;

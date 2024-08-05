@@ -1,4 +1,4 @@
-package com.api.v1.borrower.customizedexceptions;
+package com.api.v1.borrower.exceptions;
 
 public class BorrowerNotFoundException extends RuntimeException {
 

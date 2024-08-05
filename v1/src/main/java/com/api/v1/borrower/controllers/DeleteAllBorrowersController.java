@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-public class DeleteAllBorrowersController {
+final class DeleteAllBorrowersController {
 
     @Autowired
     private DeleteAllBorrowersService service;

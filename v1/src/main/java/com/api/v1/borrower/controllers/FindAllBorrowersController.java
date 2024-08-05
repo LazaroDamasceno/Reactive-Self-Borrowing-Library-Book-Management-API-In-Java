@@ -14,7 +14,7 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-class FindAllBorrowersController {
+final class FindAllBorrowersController {
 
     @Autowired
     private FindAllBorrowersService service;
