@@ -17,19 +17,24 @@ public final class BorrowerMapper {
                 b.getEmail(),
                 b.getAddress(), 
                 b.getPhoneNumber(), 
-                b.getGender()
+                b.getGender(),
+                b.getCreatedAt(),
+                b.getUpdatedAt()
         ));
     }
 
     public static Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
         return borrowers
-            .map(borrower -> new BorrowerResponse(
-                borrower.getFullName(), 
-                borrower.getSsn(), 
-                borrower.getEmail(),
-                borrower.getAddress(), 
-                borrower.getPhoneNumber(), 
-                borrower.getGender()
+            .map(borrower -> 
+                new BorrowerResponse(
+                    borrower.getFullName(), 
+                    borrower.getSsn(), 
+                    borrower.getEmail(),
+                    borrower.getAddress(), 
+                    borrower.getPhoneNumber(), 
+                    borrower.getGender(),
+                    borrower.getCreatedAt(),
+                    borrower.getUpdatedAt()
         ));
     }
 
