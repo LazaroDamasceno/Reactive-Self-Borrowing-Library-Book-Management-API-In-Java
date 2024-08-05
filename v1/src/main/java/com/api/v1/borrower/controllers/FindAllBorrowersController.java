@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.borrower.dtos.BorrowerResponse;
+import com.api.v1.borrower.helpers.BorrowerResponse;
 import com.api.v1.borrower.services.FindAllBorrowersService;
 
 import reactor.core.publisher.Flux;

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.borrower.dtos.BorrowerRequest;
-import com.api.v1.borrower.dtos.BorrowerResponse;
+import com.api.v1.borrower.helpers.BorrowerRequest;
+import com.api.v1.borrower.helpers.BorrowerResponse;
 import com.api.v1.borrower.services.BorrowerSelfRegistrationService;
 
 import jakarta.validation.Valid;

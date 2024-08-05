@@ -1,4 +1,4 @@
-package com.api.v1.borrower.dtos;
+package com.api.v1.borrower.helpers;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

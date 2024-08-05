@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
-import com.api.v1.borrower.dtos.BorrowerResponse;
-import com.api.v1.borrower.mapper.BorrowerMapper;
+import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.BorrowerMapper;
 
 import reactor.core.publisher.Flux;
 
