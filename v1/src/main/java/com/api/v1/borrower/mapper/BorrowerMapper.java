@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 public final class BorrowerMapper {
     
     public static Mono<BorrowerResponse> mapFromBorrower(@NotNull Mono<Borrower> borrower) {
-        return borrower.flatMap(b ->
+        return borrower.map(b ->
             new BorrowerResponse(
                 b.getFullName(), 
                 b.getSsn(), 
@@ -23,7 +23,7 @@ public final class BorrowerMapper {
 
     public static Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
         return borrowers
-            .flatMap(borrower -> new BorrowerResponse(
+            .map(borrower -> new BorrowerResponse(
                 borrower.getFullName(), 
                 borrower.getSsn(), 
                 borrower.getEmail(),
