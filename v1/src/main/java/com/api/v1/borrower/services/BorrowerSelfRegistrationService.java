@@ -1,7 +1,7 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.BorrowerRequest;
-import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.dtos.BorrowerRequest;
+import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
 
 import reactor.core.publisher.Mono;
 

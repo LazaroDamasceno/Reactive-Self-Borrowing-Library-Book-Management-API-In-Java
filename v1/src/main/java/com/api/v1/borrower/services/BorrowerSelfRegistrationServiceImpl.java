@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import com.api.v1.borrower.builder.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
-import com.api.v1.borrower.helpers.BorrowerRequest;
-import com.api.v1.borrower.helpers.BorrowerResponse;
-import com.api.v1.borrower.helpers.BorrowerMapper;
+import com.api.v1.borrower.helpers.dtos.BorrowerRequest;
+import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
+import com.api.v1.borrower.helpers.mappers.MonoMapper;
 
 import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;
@@ -18,6 +18,9 @@ final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrat
 
     @Autowired
     private BorrowerRepository repository;
+
+    @Autowired
+    private MonoMapper mapper;
     
     @Override
     public Mono<BorrowerResponse> sefRegister(@Valid BorrowerRequest request) {
@@ -32,7 +35,7 @@ final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrat
             .withGender(request.gender())
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
-        return BorrowerMapper.mapFromMono(savedBorrower);
+        return mapper.mapFromMono(savedBorrower);
     }
     
 }
