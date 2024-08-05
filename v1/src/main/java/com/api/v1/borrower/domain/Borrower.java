@@ -40,6 +40,9 @@ public class Borrower {
     @Field
     private String createdAt;
 
+    @Field
+    private String updateAt;
+
     protected Borrower() {}
 
     public Borrower(
@@ -66,6 +69,26 @@ public class Borrower {
 
     public String getFullName() {
         return "%s %s %s".formatted(firstName, middleName, lastName);
+    }
+
+    public void update(
+            String firstName,
+            String middleName,
+            String lastName,
+            String email,
+            String address,
+            String phoneNumber,
+            String gender
+    ) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.id = UUID.randomUUID();
+        this.updateAt = ZonedDateTime.now().toString();
     }
 
     public UUID getId() {
