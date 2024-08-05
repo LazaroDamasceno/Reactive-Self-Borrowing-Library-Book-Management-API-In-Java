@@ -26,7 +26,7 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
         Mono<Borrower> monoBorrower = repository
                 .getBySsn(ssn)
                 .switchIfEmpty(Mono.defer(
-                        () -> Mono.error(new IllegalArgumentException("Borrower")
+                        () -> Mono.error(new IllegalArgumentException("Borrower was not found.")
                 )));
         Mono<Borrower> savedBorrower = monoBorrower
                 .flatMap(borrower -> {
