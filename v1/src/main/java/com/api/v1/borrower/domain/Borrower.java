@@ -41,7 +41,7 @@ public class Borrower {
     private String createdAt;
 
     @Field
-    private String updateAt;
+    private String updatedAt;
 
     protected Borrower() {}
 
@@ -88,7 +88,7 @@ public class Borrower {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.id = UUID.randomUUID();
-        this.updateAt = ZonedDateTime.now().toString();
+        this.updatedAt = ZonedDateTime.now().toString();
     }
 
     public UUID getId() {
@@ -129,6 +129,10 @@ public class Borrower {
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
 }
