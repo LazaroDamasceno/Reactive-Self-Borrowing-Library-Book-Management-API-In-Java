@@ -14,25 +14,28 @@ import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;
 
 @Service
-class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationService {
+final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationService {
 
     @Autowired
     private BorrowerRepository repository;
+
+    @Autowired
+    private BorrowerMapper mapper;
     
     @Override
     public Mono<BorrowerResponse> sefRegister(@Valid BorrowerRequest request) {
         Borrower borrower = new BorrowerBuilder()
             .withFirstName(request.firstName())
-            .withMiddleName(request.middleName()) 
+            .withMiddleName(request.middleName())
             .withLastName(request.lastName())
             .withSsn(request.ssn())
             .withEmail(request.email())
             .withPhoneNumber(request.phoneNumber())
             .withAddress(request.address())
-            .withGender(request.gender())   
+            .withGender(request.gender())
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
-        return BorrowerMapper.mapFromBorrower(savedBorrower);
+        return mapper.mapFromMono(savedBorrower);
     }
     
 }
