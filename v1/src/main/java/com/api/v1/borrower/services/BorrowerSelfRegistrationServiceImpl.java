@@ -18,9 +18,6 @@ final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrat
 
     @Autowired
     private BorrowerRepository repository;
-
-    @Autowired
-    private BorrowerMapper mapper;
     
     @Override
     public Mono<BorrowerResponse> sefRegister(@Valid BorrowerRequest request) {
@@ -35,7 +32,7 @@ final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrat
             .withGender(request.gender())
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
-        return mapper.mapFromMono(savedBorrower);
+        return BorrowerMapper.mapFromMono(savedBorrower);
     }
     
 }

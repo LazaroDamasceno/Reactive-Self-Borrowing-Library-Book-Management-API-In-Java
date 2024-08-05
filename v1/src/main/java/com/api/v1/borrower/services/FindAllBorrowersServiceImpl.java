@@ -16,13 +16,10 @@ final class FindAllBorrowersServiceImpl implements FindAllBorrowersService {
     @Autowired
     private BorrowerRepository repository;
 
-    @Autowired
-    private BorrowerMapper mapper;
-
     @Override
     public Flux<BorrowerResponse> findAll() {
         Flux<Borrower> borrowers = repository.findAll();
-        return mapper.mapFromFlux(borrowers);
+        return BorrowerMapper.mapFromFlux(borrowers);
     }
     
 }

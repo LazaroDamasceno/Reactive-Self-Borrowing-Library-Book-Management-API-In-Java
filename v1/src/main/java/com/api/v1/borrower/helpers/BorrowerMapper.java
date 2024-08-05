@@ -1,12 +1,39 @@
 package com.api.v1.borrower.helpers;
 
 import com.api.v1.borrower.domain.Borrower;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface BorrowerMapper {
+public final class BorrowerMapper {
 
-    Mono<BorrowerResponse> mapFromMono(Mono<Borrower> borrower);
-    Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers);
+    public static Mono<BorrowerResponse> mapFromMono(Mono<Borrower> borrower) {
+        return borrower.map(b ->
+            new BorrowerResponse(
+                b.getFullName(), 
+                b.getSsn(), 
+                b.getEmail(),
+                b.getAddress(), 
+                b.getPhoneNumber(), 
+                b.getGender(),
+                b.getCreatedAt(),
+                b.getAIsActive()
+        ));
+    }
+
+    public static Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> borrowers) {
+        return borrowers
+            .map(borrower -> 
+                new BorrowerResponse(
+                    borrower.getFullName(), 
+                    borrower.getSsn(), 
+                    borrower.getEmail(),
+                    borrower.getAddress(), 
+                    borrower.getPhoneNumber(), 
+                    borrower.getGender(),
+                    borrower.getCreatedAt(),
+                    borrower.getAIsActive()
+        ));
+    }
 
 }
