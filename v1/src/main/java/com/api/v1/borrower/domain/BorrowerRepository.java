@@ -8,8 +8,8 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
 public interface BorrowerRepository extends ReactiveCrudRepository<Borrower, UUID> {
-    
-    @Query("{ 'ssn' : { $eq : ?0 } }")
+
+    @Query("{ 'ssn' : { $eq : ?0 }, 'isActive': true }")
     Mono<Borrower> getBySsn(String ssn);
 
 }
