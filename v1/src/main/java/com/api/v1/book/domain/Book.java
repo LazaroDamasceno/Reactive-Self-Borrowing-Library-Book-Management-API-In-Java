@@ -47,24 +47,27 @@ public final class Book {
     public Book() {}
 
     public Book(
+            UUID id,
             String title,
             String subtitle,
+            String isbn,
             String author,
             String field,
             int numberOfPages,
             int version,
-            String description
+            String description,
+            String addedAt
     ) {
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.title = title;
         this.subtitle = subtitle;
-        this.isbn = IsbnGenerator.generateIsbn();
+        this.isbn = isbn;
         this.author = author;
         this.field = field;
         this.numberOfPages = numberOfPages;
         this.version = version;
         this.description = description;
-        this.addedAt = ZonedDateTime.now().toString();
+        this.addedAt = addedAt;
     }
 
     public UUID getId() {

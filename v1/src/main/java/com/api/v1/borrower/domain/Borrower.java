@@ -47,16 +47,18 @@ public final class Borrower {
     public Borrower() {}
 
     public Borrower(
-            String firstName, 
-            String middleName, 
-            String lastName, 
-            String ssn, 
-            String email, 
+            UUID id,
+            String firstName,
+            String middleName,
+            String lastName,
+            String ssn,
+            String email,
             String address,
-            String phoneNumber, 
-            String gender
+            String phoneNumber,
+            String gender,
+            String createdAt
     ) {
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -65,7 +67,7 @@ public final class Borrower {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
-        this.createdAt = ZonedDateTime.now().toString();
+        this.createdAt = createdAt;
     }
 
     public String getFullName() {
