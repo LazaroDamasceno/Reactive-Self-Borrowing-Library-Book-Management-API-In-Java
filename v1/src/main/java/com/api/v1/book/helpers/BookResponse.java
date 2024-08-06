@@ -6,6 +6,7 @@ public record BookResponse(
         String title,
         String subtitle,
         String author,
+        String isbn,
         String field,
         int numberOfPages,
         int version,
