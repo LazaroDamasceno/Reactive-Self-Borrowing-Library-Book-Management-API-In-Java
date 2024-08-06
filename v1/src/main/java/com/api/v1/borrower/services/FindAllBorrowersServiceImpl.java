@@ -1,12 +1,12 @@
 package com.api.v1.borrower.services;
 
+import com.api.v1.borrower.helpers.mappers.FluxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
-import com.api.v1.borrower.helpers.mappers.FluxMapper;
 
 import reactor.core.publisher.Flux;
 
