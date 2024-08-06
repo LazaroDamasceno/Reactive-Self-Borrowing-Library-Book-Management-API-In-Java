@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.borrower.helpers.dtos.BorrowerRequest;
+import com.api.v1.borrower.helpers.dtos.NewBorrowerRequest;
 import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
 import com.api.v1.borrower.services.BorrowerSelfRegistrationService;
 
@@ -24,7 +24,7 @@ final class BorrowerSelfRegistrationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<BorrowerResponse> selfRegister(@Valid @RequestBody BorrowerRequest request) {
+    public Mono<BorrowerResponse> selfRegister(@Valid @RequestBody NewBorrowerRequest request) {
         return service.sefRegister(request);
     }
 
