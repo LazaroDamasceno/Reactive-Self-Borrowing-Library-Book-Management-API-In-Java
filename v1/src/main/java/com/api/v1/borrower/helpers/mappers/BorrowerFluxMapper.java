@@ -9,7 +9,7 @@ import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
 import reactor.core.publisher.Flux;
 
 @Component
-public final class FluxMapper {
+public final class BorrowerFluxMapper {
 
     @Autowired
     private BorrowerResponseMapper mapper;

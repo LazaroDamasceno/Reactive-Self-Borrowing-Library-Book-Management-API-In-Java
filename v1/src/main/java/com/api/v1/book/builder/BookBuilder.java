@@ -1,7 +1,7 @@
 package com.api.v1.book.builder;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.helpers.IsbnGenerator;
+import com.api.v1.book.helpers.generators.IsbnGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,6 @@ public final class BookBuilder {
     private String field;
     private int numberOfPages;
     private int version;
-    private String description;
     private final String addedAt = ZonedDateTime.now().toString();
 
     public BookBuilder withTitle(String title) {
@@ -55,11 +54,6 @@ public final class BookBuilder {
         this.version = version;
         return this;
     }
-
-    public BookBuilder withDescription(String description) {
-        this.description = Objects.requireNonNull(description);
-        return this;
-    }
     
     public Book build() {
         return new Book(
@@ -71,7 +65,6 @@ public final class BookBuilder {
                 this.field,
                 this.numberOfPages,
                 this.version,
-                this.description,
                 this.addedAt
         );
     }

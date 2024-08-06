@@ -1,6 +1,6 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.mappers.FluxMapper;
+import com.api.v1.borrower.helpers.mappers.BorrowerFluxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ final class FindAllBorrowersServiceImpl implements FindAllBorrowersService {
     private BorrowerRepository repository;
 
     @Autowired
-    private FluxMapper mapper;
+    private BorrowerFluxMapper mapper;
 
     @Override
     public Flux<BorrowerResponse> findAll() {

@@ -1,11 +1,9 @@
 package com.api.v1.book.domain;
 
-import com.api.v1.book.helpers.IsbnGenerator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Document(collection = "v1_books")
@@ -36,9 +34,6 @@ public final class Book {
     private int version;
 
     @Field
-    private String description;
-
-    @Field
     private String addedAt;
 
     @Field
@@ -55,7 +50,6 @@ public final class Book {
             String field,
             int numberOfPages,
             int version,
-            String description,
             String addedAt
     ) {
         this.id = id;
@@ -66,8 +60,12 @@ public final class Book {
         this.field = field;
         this.numberOfPages = numberOfPages;
         this.version = version;
-        this.description = description;
         this.addedAt = addedAt;
+    }
+
+    public String getFullTitle() {
+        if (subtitle.isEmpty()) return title;
+        return "%s: %s".formatted(title, subtitle);
     }
 
     public UUID getId() {
@@ -86,11 +84,11 @@ public final class Book {
         return isbn;
     }
 
-    public String getAuthors() {
+    public String getAuthor() {
         return author;
     }
 
-    public String getFields() {
+    public String getField() {
         return field;
     }
 
@@ -100,10 +98,6 @@ public final class Book {
 
     public int getVersion() {
         return version;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getAddedAt() {

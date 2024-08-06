@@ -1,6 +1,6 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.mappers.MonoMapper;
+import com.api.v1.borrower.helpers.mappers.BorrowerMonoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrat
     private BorrowerBuilder builder;
 
     @Autowired
-    private MonoMapper mapper;
+    private BorrowerMonoMapper mapper;
     
     @Override
     public Mono<BorrowerResponse> sefRegister(@Valid NewBorrowerRequest request) {

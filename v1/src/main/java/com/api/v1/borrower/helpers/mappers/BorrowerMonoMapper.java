@@ -9,7 +9,7 @@ import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public final class MonoMapper {
+public final class BorrowerMonoMapper {
 
     @Autowired
     private BorrowerResponseMapper mapper;
