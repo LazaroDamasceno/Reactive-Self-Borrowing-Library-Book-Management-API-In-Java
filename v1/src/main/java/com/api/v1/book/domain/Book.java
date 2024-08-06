@@ -3,7 +3,6 @@ package com.api.v1.book.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import reactor.core.publisher.Flux;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -24,10 +23,10 @@ public final class Book {
     private String isbn;
 
     @Field
-    private Flux<String> authors;
+    private String author;
 
     @Field
-    private Flux<String> fields;
+    private String field;
 
     @Field
     private int numberOfPages;
@@ -50,8 +49,8 @@ public final class Book {
             String title,
             String subtitle,
             String isbn,
-            Flux<String> authors,
-            Flux<String> fields,
+            String author,
+            String field,
             int numberOfPages,
             int version,
             String description
@@ -60,8 +59,8 @@ public final class Book {
         this.title = title;
         this.subtitle = subtitle;
         this.isbn = isbn;
-        this.authors = authors;
-        this.fields = fields;
+        this.author = author;
+        this.field = field;
         this.numberOfPages = numberOfPages;
         this.version = version;
         this.description = description;
@@ -84,12 +83,12 @@ public final class Book {
         return isbn;
     }
 
-    public Flux<String> getAuthors() {
-        return authors;
+    public String getAuthors() {
+        return author;
     }
 
-    public Flux<String> getFields() {
-        return fields;
+    public String getFields() {
+        return field;
     }
 
     public int getNumberOfPages() {
