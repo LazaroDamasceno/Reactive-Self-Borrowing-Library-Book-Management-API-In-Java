@@ -69,7 +69,7 @@ public final class Borrower {
     }
 
     public String getFullName() {
-        if (middleName.isBlank()) {
+        if (middleName.isEmpty()) {
             return "%s %s".formatted(firstName, lastName);
         }
         return "%s %s %s".formatted(firstName, middleName, lastName);

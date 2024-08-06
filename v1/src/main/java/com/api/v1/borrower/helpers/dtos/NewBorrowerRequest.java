@@ -1,13 +1,10 @@
 package com.api.v1.borrower.helpers.dtos;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public record NewBorrowerRequest(
     @NotBlank String firstName,
-    @NotBlank String middleName,
+    String middleName,
     @NotBlank String lastName,
     @NotNull @Size(min=9, max=9) String ssn,
     @NotNull @Email String email,

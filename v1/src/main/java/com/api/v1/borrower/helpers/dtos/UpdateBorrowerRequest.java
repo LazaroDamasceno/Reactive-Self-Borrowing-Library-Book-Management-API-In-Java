@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public record UpdateBorrowerRequest(
         @NotBlank String firstName,
-        @NotBlank String middleName,
+        String middleName,
         @NotBlank String lastName,
         @NotNull @Email String email,
         @NotBlank String address,
