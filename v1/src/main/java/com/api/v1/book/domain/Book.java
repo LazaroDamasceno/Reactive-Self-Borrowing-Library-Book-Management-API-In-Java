@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Document(collection = "v1_books")
-public class Book {
+public final class Book {
 
     @Id
     private UUID id;
