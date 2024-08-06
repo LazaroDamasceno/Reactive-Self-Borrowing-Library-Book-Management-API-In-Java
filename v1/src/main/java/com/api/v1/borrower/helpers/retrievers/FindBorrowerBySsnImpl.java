@@ -23,7 +23,7 @@ final class FindBorrowerBySsnImpl implements FindBorrowerBySsn {
     public Mono<Borrower> findBySsn(@NotNull @Size(min=9, max=9) String ssn) {
         return repository
                 .getBySsn(ssn)
-                .switchIfEmpty(Mono.error(new BorrowerNotFoundException()));
+                .switchIfEmpty(Mono.error(BorrowerNotFoundException::new));
     }
 
 }
