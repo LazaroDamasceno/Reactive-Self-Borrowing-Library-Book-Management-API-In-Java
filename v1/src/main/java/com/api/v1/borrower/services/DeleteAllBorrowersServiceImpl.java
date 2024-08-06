@@ -8,7 +8,7 @@ import com.api.v1.borrower.domain.BorrowerRepository;
 import reactor.core.publisher.Mono;
 
 @Service
-final class DeleteAllBorrowersServiceImpl implements DeleteAllBorrowersService {
+class DeleteAllBorrowersServiceImpl implements DeleteAllBorrowersService {
 
     @Autowired
     private BorrowerRepository repository;

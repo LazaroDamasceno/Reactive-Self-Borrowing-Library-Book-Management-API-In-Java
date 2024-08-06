@@ -1,12 +1,15 @@
 package com.api.v1.book.controllers;
 
-import com.api.v1.book.helpers.dtos.BookRequest;
-import com.api.v1.book.helpers.dtos.BookResponse;
+import com.api.v1.book.helpers.BookRequest;
+import com.api.v1.book.helpers.BookResponse;
 import com.api.v1.book.services.RegisterBookService;
+
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -17,7 +20,7 @@ public class RegisterBookController {
     private RegisterBookService service;
 
     @PostMapping
-    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public Mono<BookResponse> register(@Valid @RequestBody BookRequest request) {
         return service.register(request);
     }

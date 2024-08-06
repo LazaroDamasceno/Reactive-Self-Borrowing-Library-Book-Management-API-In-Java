@@ -1,29 +1,29 @@
 package com.api.v1.book.builder;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.helpers.generators.IsbnGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.api.v1.book.helpers.IsbnGenerator;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-@Component
-public final class BookBuilder {
-
-    @Autowired
-    private IsbnGenerator isbnGenerator;
+public class BookBuilder {
 
     private final UUID id = UUID.randomUUID();
     private String title;
     private String subtitle;
-    private final String isbn = isbnGenerator.generateIsbn();
+    private final String isbn = IsbnGenerator.generateIsbn();
     private String author;
     private String field;
     private int numberOfPages;
     private int version;
     private final String addedAt = ZonedDateTime.now().toString();
+
+    protected BookBuilder() {}
+
+    public static BookBuilder create() {
+        return new BookBuilder();
+    }
 
     public BookBuilder withTitle(String title) {
         this.title = Objects.requireNonNull(title);

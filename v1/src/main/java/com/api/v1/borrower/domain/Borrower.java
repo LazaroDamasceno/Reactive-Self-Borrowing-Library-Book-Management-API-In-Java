@@ -3,13 +3,13 @@ package com.api.v1.borrower.domain;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import com.api.v1.borrower.helpers.dtos.UpdateBorrowerRequest;
+import com.api.v1.borrower.helpers.UpdateBorrowerRequest;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "v1_borrowers")
-public final class Borrower {
+public class Borrower {
     
     @Id
     private UUID id;

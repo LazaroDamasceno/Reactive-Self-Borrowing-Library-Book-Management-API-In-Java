@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.borrower.helpers.dtos.NewBorrowerRequest;
-import com.api.v1.borrower.helpers.dtos.BorrowerResponse;
+import com.api.v1.borrower.helpers.NewBorrowerRequest;
+import com.api.v1.borrower.helpers.BorrowerResponse;
 import com.api.v1.borrower.services.BorrowerSelfRegistrationService;
 
 import jakarta.validation.Valid;
@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-final class BorrowerSelfRegistrationController {
+class BorrowerSelfRegistrationController {
 
     @Autowired
     private BorrowerSelfRegistrationService service;

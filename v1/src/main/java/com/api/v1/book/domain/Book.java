@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.UUID;
 
 @Document(collection = "v1_books")
-public final class Book {
+public class Book {
 
     @Id
     private UUID id;

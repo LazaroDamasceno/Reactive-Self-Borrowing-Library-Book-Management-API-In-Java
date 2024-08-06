@@ -1,14 +1,12 @@
 package com.api.v1.borrower.builder;
 
 import com.api.v1.borrower.domain.Borrower;
-import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-@Component
-public final class BorrowerBuilder {
+public class BorrowerBuilder {
 
     private final UUID id = UUID.randomUUID();
     private String firstName;
@@ -20,6 +18,12 @@ public final class BorrowerBuilder {
     private String phoneNumber;
     private String gender;
     private final String createdAt = ZonedDateTime.now().toString();
+
+    protected BorrowerBuilder() {}
+
+    public static BorrowerBuilder create() {
+        return new BorrowerBuilder();
+    } 
 
     public BorrowerBuilder withFirstName(String firstName) {
         this.firstName = Objects.requireNonNull(firstName);

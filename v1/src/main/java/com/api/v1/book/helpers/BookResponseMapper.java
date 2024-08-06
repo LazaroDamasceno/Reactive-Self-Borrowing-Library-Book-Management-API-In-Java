@@ -1,13 +1,10 @@
-package com.api.v1.book.helpers.mappers;
+package com.api.v1.book.helpers;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.helpers.dtos.BookResponse;
-import org.springframework.stereotype.Component;
 
-@Component
-public final class BookResponseMapper {
+public interface BookResponseMapper {
 
-    public BookResponse map(Book book) {
+    public static BookResponse map(Book book) {
         return new BookResponse(
                 book.getFullTitle(),
                 book.getIsbn(),

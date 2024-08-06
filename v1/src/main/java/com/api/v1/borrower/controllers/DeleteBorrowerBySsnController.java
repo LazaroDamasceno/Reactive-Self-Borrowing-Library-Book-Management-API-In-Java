@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-final class DeleteBorrowerBySsnController {
+class DeleteBorrowerBySsnController {
 
     @Autowired
     private DeleteBorrowerBySsnService service;

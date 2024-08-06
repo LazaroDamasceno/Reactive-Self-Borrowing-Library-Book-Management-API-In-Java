@@ -1,7 +1,7 @@
 package com.api.v1.borrower.controllers;
 
 import com.api.v1.borrower.domain.Borrower;
-import com.api.v1.borrower.helpers.dtos.UpdateBorrowerRequest;
+import com.api.v1.borrower.helpers.UpdateBorrowerRequest;
 import com.api.v1.borrower.services.UpdateBorrowerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-final class UpdateBorrowerController {
+class UpdateBorrowerController {
 
     @Autowired
     private UpdateBorrowerService service;
