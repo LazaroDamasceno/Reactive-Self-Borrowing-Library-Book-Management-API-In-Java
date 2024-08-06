@@ -16,7 +16,7 @@ final class FluxMapperImpl implements FluxMapper {
 
     @Override
     public Flux<BorrowerResponse> mapFromFlux(Flux<Borrower> flux) {
-        return flux.map(mapper::mapFromBorrower);
+        return flux.flatMap(b -> Flux.just(mapper.mapFromBorrower(b)));
     }
     
 }

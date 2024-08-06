@@ -16,7 +16,7 @@ final class MonoMapperImpl implements MonoMapper {
 
     @Override
     public Mono<BorrowerResponse> mapFromMono(Mono<Borrower> mono) {
-        return mono.map(mapper::mapFromBorrower);
+        return mono.flatMap(b -> Mono.just(mapper.mapFromBorrower(b)));
     }
     
 }
