@@ -44,6 +44,8 @@ public final class Book {
     @Field
     private String updatedAt;
 
+    public Book() {}
+
     public Book(
             String title,
             String subtitle,
@@ -52,9 +54,9 @@ public final class Book {
             Flux<String> fields,
             int numberOfPages,
             int version,
-            String description,
-            String addedAt
+            String description
     ) {
+        this.id = UUID.randomUUID();
         this.title = title;
         this.subtitle = subtitle;
         this.isbn = isbn;
