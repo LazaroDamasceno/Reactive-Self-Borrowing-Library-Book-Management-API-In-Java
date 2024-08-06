@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
+final class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
 
     @Autowired
     private BorrowerRepository repository;
