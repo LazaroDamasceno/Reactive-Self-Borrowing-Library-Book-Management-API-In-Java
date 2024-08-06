@@ -1,5 +1,6 @@
 package com.api.v1.book.domain;
 
+import com.api.v1.book.helpers.IsbnGenerator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -48,7 +49,6 @@ public final class Book {
     public Book(
             String title,
             String subtitle,
-            String isbn,
             String author,
             String field,
             int numberOfPages,
@@ -58,7 +58,7 @@ public final class Book {
         this.id = UUID.randomUUID();
         this.title = title;
         this.subtitle = subtitle;
-        this.isbn = isbn;
+        this.isbn = IsbnGenerator.generateIsbn();
         this.author = author;
         this.field = field;
         this.numberOfPages = numberOfPages;
