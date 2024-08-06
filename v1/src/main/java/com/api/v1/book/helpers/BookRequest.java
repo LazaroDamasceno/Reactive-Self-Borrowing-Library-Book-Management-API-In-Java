@@ -1,6 +1,7 @@
 package com.api.v1.book.helpers;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Min;
 
 public record BookRequest(
         @NotBlank String title,
@@ -8,6 +9,6 @@ public record BookRequest(
         @NotBlank String author,
         @NotBlank String field,
         @NotBlank int numberOfPages,
-        @NotBlank int version
+        @NotBlank @Min(1) int version
 ) {
 }
