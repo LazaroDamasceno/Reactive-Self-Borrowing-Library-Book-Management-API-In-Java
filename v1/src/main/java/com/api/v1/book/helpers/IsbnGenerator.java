@@ -4,9 +4,10 @@ import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
 
+@Component
 public final class IsbnGenerator {
 
-    public static String generateIsbn() {
+    public String generateIsbn() {
         long min = 1000000000000L;
         long max = 9999999999999L;
         long isbn = new SecureRandom().nextLong(min, max+1);
