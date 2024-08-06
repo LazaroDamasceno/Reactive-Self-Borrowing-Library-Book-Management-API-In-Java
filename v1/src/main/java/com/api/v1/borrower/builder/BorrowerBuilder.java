@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Component
-public class BorrowerBuilder {
+public final class BorrowerBuilder {
 
     private final UUID id = UUID.randomUUID();
     private String firstName;
@@ -22,42 +22,42 @@ public class BorrowerBuilder {
     private final String createdAt = ZonedDateTime.now().toString();
 
     public BorrowerBuilder withFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = Objects.requireNonNull(firstName);
         return this;
     }
 
     public BorrowerBuilder withMiddleName(String middleName) {
-        this.middleName = Objects.requireNonNull(middleName);
+        this.middleName = middleName;
         return this;
     }
 
     public BorrowerBuilder withLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = Objects.requireNonNull(lastName);
         return this;
     }
 
     public BorrowerBuilder withSsn(String ssn) {
-        this.ssn = ssn;
+        this.ssn = Objects.requireNonNull(ssn);
         return this;
     }
 
     public BorrowerBuilder withEmail(String email) {
-        this.email = email;
+        this.email = Objects.requireNonNull(email);
         return this;
     }
 
     public BorrowerBuilder withAddress(String address) {
-        this.address = address;
+        this.address = Objects.requireNonNull(address);
         return this;
     }
 
     public BorrowerBuilder withPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = Objects.requireNonNull(phoneNumber);
         return this;
     }
 
     public BorrowerBuilder withGender(String gender) {
-        this.gender = gender;
+        this.gender = Objects.requireNonNull(gender);
         return this;
     }
 

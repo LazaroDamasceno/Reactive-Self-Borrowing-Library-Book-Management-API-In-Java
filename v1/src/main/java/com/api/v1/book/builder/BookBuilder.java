@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
-public class BookBuilder {
+public final class BookBuilder {
 
     @Autowired
     private IsbnGenerator isbnGenerator;
@@ -26,22 +27,22 @@ public class BookBuilder {
     private final String addedAt = ZonedDateTime.now().toString();
 
     public BookBuilder withTitle(String title) {
-        this.title = title;
+        this.title = Objects.requireNonNull(title);
         return this;
     }
 
     public BookBuilder withSubtitle(String subtitle) {
-        this.subtitle = subtitle;
+        this.subtitle = Objects.requireNonNull(subtitle);
         return this;
     }
 
     public BookBuilder withAuthor(String author) {
-        this.author = author;
+        this.author = Objects.requireNonNull(author);
         return this;
     }
 
     public BookBuilder withField(String field) {
-        this.field = field;
+        this.field = Objects.requireNonNull(field);
         return this;
     }
 
@@ -56,7 +57,7 @@ public class BookBuilder {
     }
 
     public BookBuilder withDescription(String description) {
-        this.description = description;
+        this.description = Objects.requireNonNull(description);
         return this;
     }
     
