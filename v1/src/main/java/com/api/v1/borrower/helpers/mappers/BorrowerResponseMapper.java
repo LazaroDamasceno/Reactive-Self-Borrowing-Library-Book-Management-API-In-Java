@@ -16,7 +16,7 @@ final class BorrowerResponseMapper {
             borrower.getPhoneNumber(), 
             borrower.getGender(),
             borrower.getCreatedAt(),
-            borrower.getAIsActive()
+            borrower.getUpdatedAt()
         );
     }
     

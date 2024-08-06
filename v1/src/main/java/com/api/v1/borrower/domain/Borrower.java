@@ -3,6 +3,7 @@ package com.api.v1.borrower.domain;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+import com.api.v1.borrower.helpers.dtos.UpdateBorrowerRequest;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -41,7 +42,7 @@ public final class Borrower {
     private String createdAt;
 
     @Field
-    private Boolean isActive;
+    private String updatedAt;
 
     public Borrower() {}
 
@@ -65,7 +66,6 @@ public final class Borrower {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.createdAt = ZonedDateTime.now().toString();
-        this.isActive = true;
     }
 
     public String getFullName() {
@@ -75,9 +75,16 @@ public final class Borrower {
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public void deactive() { 
-        this.isActive = false;
-    };
+    public void update(UpdateBorrowerRequest request) {
+        this.firstName = request.firstName();
+        this.middleName = request.middleName();
+        this.lastName = request.lastName();
+        this.email = request.email();
+        this.address = request.address();
+        this.phoneNumber = request.phoneNumber();
+        this.gender = request.gender();
+        this.updatedAt = ZonedDateTime.now().toString();
+    }
 
     public UUID getId() {
         return id;
@@ -93,6 +100,10 @@ public final class Borrower {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getSsn() {
+        return ssn;
     }
 
     public String getEmail() {
@@ -111,16 +122,12 @@ public final class Borrower {
         return gender;
     }
 
-    public String getSsn() {
-        return ssn;
-    }
-
     public String getCreatedAt() {
         return createdAt;
     }
 
-    public Boolean getAIsActive() {
-        return isActive;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
 }

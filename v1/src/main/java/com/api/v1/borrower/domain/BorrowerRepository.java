@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 public interface BorrowerRepository extends ReactiveCrudRepository<Borrower, UUID> {
 
-    @Query("{ 'ssn' : { $eq : ?0 }, 'isActive': true }")
+    @Query("{ 'ssn' : { $eq : ?0 }")
     Mono<Borrower> getBySsn(String ssn);
 
 }
