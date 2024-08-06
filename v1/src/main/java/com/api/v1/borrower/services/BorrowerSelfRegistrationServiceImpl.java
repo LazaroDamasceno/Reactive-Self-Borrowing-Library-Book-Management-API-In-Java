@@ -20,11 +20,14 @@ final class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrat
     private BorrowerRepository repository;
 
     @Autowired
+    private BorrowerBuilder builder;
+
+    @Autowired
     private MonoMapper mapper;
     
     @Override
     public Mono<BorrowerResponse> sefRegister(@Valid NewBorrowerRequest request) {
-        Borrower borrower = new BorrowerBuilder()
+        Borrower borrower = builder
             .withFirstName(request.firstName())
             .withMiddleName(request.middleName())
             .withLastName(request.lastName())

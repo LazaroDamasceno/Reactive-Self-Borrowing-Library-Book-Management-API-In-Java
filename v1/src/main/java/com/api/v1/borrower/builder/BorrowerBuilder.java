@@ -1,7 +1,9 @@
 package com.api.v1.borrower.builder;
 
 import com.api.v1.borrower.domain.Borrower;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BorrowerBuilder {
 
     private String firstName;
