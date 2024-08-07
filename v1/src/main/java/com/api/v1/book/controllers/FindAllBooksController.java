@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("api/v1/books")
-public class FindAllBooksController {
+class FindAllBooksController {
 
     @Autowired
     private FindAllBooksService service;

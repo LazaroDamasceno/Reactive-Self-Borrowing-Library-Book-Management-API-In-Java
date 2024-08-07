@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 @Service
-public class FindAllBooksServiceImpl implements FindAllBooksService {
+class FindAllBooksServiceImpl implements FindAllBooksService {
 
     @Autowired
     private BookRepository repository;
