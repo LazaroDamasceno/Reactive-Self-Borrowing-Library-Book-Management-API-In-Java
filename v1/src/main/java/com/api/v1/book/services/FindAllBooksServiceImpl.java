@@ -4,7 +4,6 @@ import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.helpers.BookResponseDto;
 import com.api.v1.book.helpers.BookDtoResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -15,9 +14,11 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
     private BookRepository repository;
 
     @Override
-    @Cacheable(value = "books")
     public Flux<BookResponseDto> findAll() {
-        return repository.findAll().flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+        return repository
+            .findAll()
+            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)))
+            .cache();
     }
 
 }
