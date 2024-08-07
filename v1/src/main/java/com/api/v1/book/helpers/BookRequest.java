@@ -8,7 +8,7 @@ public record BookRequest(
         String subtitle,
         @NotBlank String author,
         @NotBlank String field,
-        @NotBlank int numberOfPages,
-        @NotBlank @Min(1) int version
+        @Min(1) int numberOfPages,
+        @Min(1) int version
 ) {
 }
