@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
-public class FindBorrowerBySsnUtil {
+public class BorrowerFinderUtil {
 
     @Autowired
     private BorrowerRepository repository;

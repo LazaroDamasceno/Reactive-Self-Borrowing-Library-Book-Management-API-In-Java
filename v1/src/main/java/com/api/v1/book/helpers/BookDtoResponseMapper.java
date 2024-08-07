@@ -2,9 +2,9 @@ package com.api.v1.book.helpers;
 
 import com.api.v1.book.domain.Book;
 
-public interface BookResponseMapper {
+public class BookDtoResponseMapper {
 
-    public static BookResponseDto map(Book book) {
+    public static BookResponseDto mapToDtoResponse(Book book) {
         return new BookResponseDto(
                 book.getFullTitle(),
                 book.getIsbn(),

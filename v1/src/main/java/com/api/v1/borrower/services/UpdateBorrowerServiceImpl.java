@@ -2,7 +2,7 @@ package com.api.v1.borrower.services;
 
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
-import com.api.v1.borrower.helpers.FindBorrowerBySsnUtil;
+import com.api.v1.borrower.helpers.BorrowerFinderUtil;
 import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto;
 
 import jakarta.validation.Valid;
@@ -21,7 +21,7 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
     private BorrowerRepository repository;
 
     @Autowired
-    private FindBorrowerBySsnUtil finder;
+    private BorrowerFinderUtil finder;
 
     @Override
     public Mono<Borrower> update(@NotNull @Size(min=9, max=9) String ssn, @Valid UpdateBorrowerRequestDto request) {

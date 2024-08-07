@@ -1,11 +1,10 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.BorrowerFluxMapperUtil;
+import com.api.v1.borrower.helpers.BorrowerDtoResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.helpers.BorrowerResponseDto;
 
@@ -20,8 +19,9 @@ class FindAllBorrowersServiceImpl implements FindAllBorrowersService {
     @Override
     @Cacheable(value = "borrowers")
     public Flux<BorrowerResponseDto> findAll() {
-        Flux<Borrower> borrowers = repository.findAll();
-        return BorrowerFluxMapperUtil.mapFromFlux(borrowers);
+        return repository
+                .findAll()
+                .flatMap(b -> Flux.just(BorrowerDtoResponseMapper.mapToDtoResponse(b)));
     }
     
 }

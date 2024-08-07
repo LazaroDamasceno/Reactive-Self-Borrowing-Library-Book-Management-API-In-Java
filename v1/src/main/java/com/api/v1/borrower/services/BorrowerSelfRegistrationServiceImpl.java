@@ -1,6 +1,6 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.BorrowerMonoMapperUtil;
+import com.api.v1.borrower.helpers.BorrowerDtoResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
             .withGender(request.gender())
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
-        return BorrowerMonoMapperUtil.mapFromMono(savedBorrower);
+        return savedBorrower.flatMap(b -> Mono.just(BorrowerDtoResponseMapper.mapToDtoResponse(b)));
     }
     
 }
