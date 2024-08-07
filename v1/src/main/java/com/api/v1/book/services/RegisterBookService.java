@@ -1,11 +1,11 @@
 package com.api.v1.book.services;
 
-import com.api.v1.book.helpers.BookRequest;
-import com.api.v1.book.helpers.BookResponse;
+import com.api.v1.book.helpers.BookRequestDto;
+import com.api.v1.book.helpers.BookResponseDto;
 import reactor.core.publisher.Mono;
 
 public interface RegisterBookService {
 
-    Mono<BookResponse> register(BookRequest request);
+    Mono<BookResponseDto> register(BookRequestDto request);
 
 }

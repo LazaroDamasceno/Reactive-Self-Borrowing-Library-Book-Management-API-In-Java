@@ -1,12 +1,12 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.NewBorrowerRequest;
-import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.NewBorrowerRequestDto;
+import com.api.v1.borrower.helpers.BorrowerResponseDto;
 
 import reactor.core.publisher.Mono;
 
 public interface BorrowerSelfRegistrationService {
 
-    Mono<BorrowerResponse> sefRegister(NewBorrowerRequest request);
+    Mono<BorrowerResponseDto> sefRegister(NewBorrowerRequestDto request);
 
 }

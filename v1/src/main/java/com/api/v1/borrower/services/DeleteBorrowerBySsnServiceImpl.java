@@ -2,7 +2,7 @@ package com.api.v1.borrower.services;
 
 import com.api.v1.borrower.domain.BorrowerRepository;
 
-import com.api.v1.borrower.helpers.FindBorrowerBySsn;
+import com.api.v1.borrower.helpers.FindBorrowerBySsnUtil;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -18,11 +18,11 @@ class DeleteBorrowerBySsnServiceImpl implements DeleteBorrowerBySsnService {
     private BorrowerRepository repository;
 
     @Autowired
-    private FindBorrowerBySsn findBorrowerBySsn;
+    private FindBorrowerBySsnUtil finder;
 
     @Override
     public Mono<Void> deleteBySsn(@NotNull @Size(min=9, max=9) String ssn) {
-        return findBorrowerBySsn.find(ssn).flatMap(repository::delete);
+        return finder.find(ssn).flatMap(repository::delete);
     }
 
 }

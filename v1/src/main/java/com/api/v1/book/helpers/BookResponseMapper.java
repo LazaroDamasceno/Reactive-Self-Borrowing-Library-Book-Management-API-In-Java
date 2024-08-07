@@ -4,8 +4,8 @@ import com.api.v1.book.domain.Book;
 
 public interface BookResponseMapper {
 
-    public static BookResponse map(Book book) {
-        return new BookResponse(
+    public static BookResponseDto map(Book book) {
+        return new BookResponseDto(
                 book.getFullTitle(),
                 book.getIsbn(),
                 book.getAuthor(),

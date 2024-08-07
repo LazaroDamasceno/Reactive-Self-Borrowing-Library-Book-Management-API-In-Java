@@ -1,7 +1,7 @@
 package com.api.v1.book.controllers;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.helpers.BookRequest;
+import com.api.v1.book.helpers.BookRequestDto;
 import com.api.v1.book.services.UpdateBookService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -22,7 +22,7 @@ class UpdateBookController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Book> update(
             @NotNull @Size(min=13, max=13) @PathVariable String isbn,
-            @Valid @RequestBody BookRequest request
+            @Valid @RequestBody BookRequestDto request
     ) {
         return service.update(isbn, request);
     }

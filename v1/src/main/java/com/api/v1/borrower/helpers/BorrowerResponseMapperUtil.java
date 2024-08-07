@@ -2,10 +2,10 @@ package com.api.v1.borrower.helpers;
 
 import com.api.v1.borrower.domain.Borrower;
 
-class BorrowerResponseMapper {
+interface BorrowerResponseMapperUtil {
 
-    public static BorrowerResponse mapFromBorrower(Borrower borrower) {
-        return new BorrowerResponse(
+    static BorrowerResponseDto mapFromBorrower(Borrower borrower) {
+        return new BorrowerResponseDto(
             borrower.getFullName(), 
             borrower.getSsn(), 
             borrower.getEmail(),

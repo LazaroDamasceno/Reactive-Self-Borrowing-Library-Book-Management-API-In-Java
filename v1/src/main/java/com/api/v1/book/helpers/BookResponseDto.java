@@ -1,6 +1,6 @@
 package com.api.v1.book.helpers;
 
-public record BookResponse(
+public record BookResponseDto(
         String fullTitle,
         String isbn,
         String author,

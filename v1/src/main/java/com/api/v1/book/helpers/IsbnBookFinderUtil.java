@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
-public class FindBookByIsbn {
+public class IsbnBookFinderUtil {
 
     @Autowired
     private BookRepository repository;

@@ -1,7 +1,7 @@
 package com.api.v1.borrower.controllers;
 
 import com.api.v1.borrower.domain.Borrower;
-import com.api.v1.borrower.helpers.UpdateBorrowerRequest;
+import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto;
 import com.api.v1.borrower.services.UpdateBorrowerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +21,7 @@ class UpdateBorrowerController {
     @PutMapping("{ssn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Borrower> update(@NotNull @Size(min=9, max=9) @PathVariable String ssn,
-                             @Valid @RequestBody UpdateBorrowerRequest request
+                             @Valid @RequestBody UpdateBorrowerRequestDto request
     ) {
         return service.update(ssn, request);
     }

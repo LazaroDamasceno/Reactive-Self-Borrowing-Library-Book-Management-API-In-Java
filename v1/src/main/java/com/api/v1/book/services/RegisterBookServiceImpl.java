@@ -3,8 +3,8 @@ package com.api.v1.book.services;
 import com.api.v1.book.builder.BookBuilder;
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
-import com.api.v1.book.helpers.BookRequest;
-import com.api.v1.book.helpers.BookResponse;
+import com.api.v1.book.helpers.BookRequestDto;
+import com.api.v1.book.helpers.BookResponseDto;
 import com.api.v1.book.helpers.BookMonoMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
     private BookRepository repository;
 
     @Override
-    public Mono<BookResponse> register(@Valid BookRequest request) {
+    public Mono<BookResponseDto> register(@Valid BookRequestDto request) {
         Book book = BookBuilder
                 .create()
                 .withTitle(request.title())

@@ -3,7 +3,7 @@ package com.api.v1.borrower.domain;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import com.api.v1.borrower.helpers.UpdateBorrowerRequest;
+import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -77,7 +77,7 @@ public class Borrower {
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public void update(UpdateBorrowerRequest request) {
+    public void update(UpdateBorrowerRequestDto request) {
         this.firstName = request.firstName();
         this.middleName = request.middleName();
         this.lastName = request.lastName();

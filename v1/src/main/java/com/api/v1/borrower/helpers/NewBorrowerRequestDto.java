@@ -2,7 +2,7 @@ package com.api.v1.borrower.helpers;
 
 import jakarta.validation.constraints.*;
 
-public record NewBorrowerRequest(
+public record NewBorrowerRequestDto(
     @NotBlank String firstName,
     String middleName,
     @NotBlank String lastName,

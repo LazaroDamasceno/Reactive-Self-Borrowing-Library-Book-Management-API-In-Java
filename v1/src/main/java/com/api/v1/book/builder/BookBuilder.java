@@ -1,7 +1,7 @@
 package com.api.v1.book.builder;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.helpers.IsbnGenerator;
+import com.api.v1.book.helpers.IsbnGeneratorUtil;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -12,7 +12,7 @@ public class BookBuilder {
     private final UUID id = UUID.randomUUID();
     private String title;
     private String subtitle;
-    private final String isbn = IsbnGenerator.generateIsbn();
+    private final String isbn = IsbnGeneratorUtil.generateIsbn();
     private String author;
     private String field;
     private int numberOfPages;

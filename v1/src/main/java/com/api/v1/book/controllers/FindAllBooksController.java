@@ -1,6 +1,6 @@
 package com.api.v1.book.controllers;
 
-import com.api.v1.book.helpers.BookResponse;
+import com.api.v1.book.helpers.BookResponseDto;
 import com.api.v1.book.services.FindAllBooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ class FindAllBooksController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public Flux<BookResponse> findAll() {
+    public Flux<BookResponseDto> findAll() {
         return service.findAll();
     }
 

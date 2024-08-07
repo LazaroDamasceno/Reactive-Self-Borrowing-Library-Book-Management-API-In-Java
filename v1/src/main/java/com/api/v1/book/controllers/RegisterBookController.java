@@ -1,7 +1,7 @@
 package com.api.v1.book.controllers;
 
-import com.api.v1.book.helpers.BookRequest;
-import com.api.v1.book.helpers.BookResponse;
+import com.api.v1.book.helpers.BookRequestDto;
+import com.api.v1.book.helpers.BookResponseDto;
 import com.api.v1.book.services.RegisterBookService;
 
 import jakarta.validation.Valid;
@@ -21,7 +21,7 @@ class RegisterBookController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Mono<BookResponse> register(@Valid @RequestBody BookRequest request) {
+    public Mono<BookResponseDto> register(@Valid @RequestBody BookRequestDto request) {
         return service.register(request);
     }
 

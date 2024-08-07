@@ -1,11 +1,11 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.BorrowerResponseDto;
 
 import reactor.core.publisher.Flux;
 
 public interface FindAllBorrowersService {
 
-    Flux<BorrowerResponse> findAll();
+    Flux<BorrowerResponseDto> findAll();
 
 }

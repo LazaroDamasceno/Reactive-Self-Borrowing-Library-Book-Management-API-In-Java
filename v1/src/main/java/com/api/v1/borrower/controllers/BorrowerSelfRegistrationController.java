@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.borrower.helpers.NewBorrowerRequest;
-import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.NewBorrowerRequestDto;
+import com.api.v1.borrower.helpers.BorrowerResponseDto;
 import com.api.v1.borrower.services.BorrowerSelfRegistrationService;
 
 import jakarta.validation.Valid;
@@ -24,7 +24,7 @@ class BorrowerSelfRegistrationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<BorrowerResponse> selfRegister(@Valid @RequestBody NewBorrowerRequest request) {
+    public Mono<BorrowerResponseDto> selfRegister(@Valid @RequestBody NewBorrowerRequestDto request) {
         return service.sefRegister(request);
     }
 

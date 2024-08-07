@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.BorrowerResponseDto;
 import com.api.v1.borrower.services.FindAllBorrowersService;
 
 import reactor.core.publisher.Flux;
@@ -21,7 +21,7 @@ class FindAllBorrowersController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public Flux<BorrowerResponse> findAll() {
+    public Flux<BorrowerResponseDto> findAll() {
         return service.findAll();
     }
 

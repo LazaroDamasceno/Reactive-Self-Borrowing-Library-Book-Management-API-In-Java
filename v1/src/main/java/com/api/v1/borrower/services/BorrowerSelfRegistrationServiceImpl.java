@@ -1,14 +1,14 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.helpers.BorrowerMonoMapper;
+import com.api.v1.borrower.helpers.BorrowerMonoMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.borrower.builder.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
-import com.api.v1.borrower.helpers.NewBorrowerRequest;
-import com.api.v1.borrower.helpers.BorrowerResponse;
+import com.api.v1.borrower.helpers.NewBorrowerRequestDto;
+import com.api.v1.borrower.helpers.BorrowerResponseDto;
 
 import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;
@@ -20,7 +20,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
     private BorrowerRepository repository;
     
     @Override
-    public Mono<BorrowerResponse> sefRegister(@Valid NewBorrowerRequest request) {
+    public Mono<BorrowerResponseDto> sefRegister(@Valid NewBorrowerRequestDto request) {
         Borrower borrower = BorrowerBuilder
             .create()
             .withFirstName(request.firstName())
@@ -33,7 +33,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
             .withGender(request.gender())
             .build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
-        return BorrowerMonoMapper.mapFromMono(savedBorrower);
+        return BorrowerMonoMapperUtil.mapFromMono(savedBorrower);
     }
     
 }
