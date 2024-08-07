@@ -4,7 +4,7 @@ import com.api.v1.borrower.domain.Borrower;
 
 public class BorrowerDtoResponseMapper {
 
-    public static BorrowerResponseDto mapToDtoResponse(Borrower borrower) {
+    public static BorrowerResponseDto map(Borrower borrower) {
         return new BorrowerResponseDto(
                 borrower.getFullName(),
                 borrower.getSsn(),

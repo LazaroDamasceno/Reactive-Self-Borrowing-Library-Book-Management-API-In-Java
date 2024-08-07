@@ -29,7 +29,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
                 .withVersion(request.version())
                 .build();
         Mono<Book> savedBook = repository.save(book);
-        return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.mapToDtoResponse(b)));
+        return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
     }
 
 }

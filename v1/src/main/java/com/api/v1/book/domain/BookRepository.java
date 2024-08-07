@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface BookRepository extends ReactiveCrudRepository<Book, UUID> {
 
-    @Query("{ isbn: { $eq: ?0  } }")
+    @Query("{ 'isbn' : { $eq : ?0 } }")
     Mono<Book> getByIsbn(String isbn);
 
 }

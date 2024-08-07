@@ -4,7 +4,7 @@ import com.api.v1.book.domain.Book;
 
 public class BookDtoResponseMapper {
 
-    public static BookResponseDto mapToDtoResponse(Book book) {
+    public static BookResponseDto map(Book book) {
         return new BookResponseDto(
                 book.getFullTitle(),
                 book.getIsbn(),

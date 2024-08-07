@@ -19,9 +19,7 @@ class FindAllBorrowersServiceImpl implements FindAllBorrowersService {
     @Override
     @Cacheable(value = "borrowers")
     public Flux<BorrowerResponseDto> findAll() {
-        return repository
-                .findAll()
-                .flatMap(b -> Flux.just(BorrowerDtoResponseMapper.mapToDtoResponse(b)));
+        return repository.findAll().flatMap(b -> Flux.just(BorrowerDtoResponseMapper.map(b)));
     }
     
 }

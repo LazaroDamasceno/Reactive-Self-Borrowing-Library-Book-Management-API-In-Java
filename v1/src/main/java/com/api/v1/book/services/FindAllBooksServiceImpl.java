@@ -15,7 +15,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
 
     @Override
     public Flux<BookResponseDto> findAll() {
-        return repository.findAll().flatMap(b -> Flux.just(BookDtoResponseMapper.mapToDtoResponse(b)));
+        return repository.findAll().flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
     }
 
 }
