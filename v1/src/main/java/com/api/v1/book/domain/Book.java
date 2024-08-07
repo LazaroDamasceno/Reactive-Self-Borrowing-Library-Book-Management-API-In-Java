@@ -1,9 +1,11 @@
 package com.api.v1.book.domain;
 
+import com.api.v1.book.helpers.BookRequest;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Document(collection = "v1_books")
@@ -66,6 +68,16 @@ public class Book {
     public String getFullTitle() {
         if (subtitle.isEmpty()) return title;
         return "%s: %s".formatted(title, subtitle);
+    }
+
+    public void update(BookRequest request) {
+        this.title = request.title();
+        this.subtitle = request.subtitle();
+        this.author = request.author();
+        this.field = request.field();
+        this.numberOfPages = request.numberOfPages();
+        this.version = request.version();
+        this.updatedAt = ZonedDateTime.now().toString();
     }
 
     public UUID getId() {
