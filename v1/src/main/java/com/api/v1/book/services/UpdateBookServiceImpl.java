@@ -3,7 +3,7 @@ package com.api.v1.book.services;
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.helpers.BookRequestDto;
-import com.api.v1.book.helpers.IsbnBookFinderUtil;
+import com.api.v1.book.helpers.BookFinderUtil;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,7 +18,7 @@ class UpdateBookServiceImpl implements UpdateBookService {
     private BookRepository repository;
 
     @Autowired
-    private IsbnBookFinderUtil finder;
+    private BookFinderUtil finder;
 
     @Override
     public Mono<Book> update(@NotNull @Size(min=13, max=13) String isbn, @Valid BookRequestDto request) {
