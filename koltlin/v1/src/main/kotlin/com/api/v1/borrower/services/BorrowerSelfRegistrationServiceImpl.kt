@@ -18,18 +18,7 @@ class BorrowerSelfRegistrationServiceImpl: BorrowerSelfRegistrationService {
     private lateinit var repository: BorrowerRepository
 
     override fun selfRegister(@Valid request: NewBorrowerRequestDto): Mono<BorrowerResponseDto> {
-        val borrower: Borrower = BorrowerBuilder
-            .create()
-            .withFirstName(request.firstName)
-            .withMiddleName(request.middleName)
-            .withLastName(request.lastName)
-            .withSsn(request.ssn)
-            .withBirthDate(request.birthDate)
-            .withEmail(request.email)
-            .withAddress(request.address)
-            .withGender(request.gender)
-            .withPhoneNumber(request.phoneNumber)
-            .build();
+        val borrower: Borrower = BorrowerBuilder.fromDto(request).build();
         val savedBorrower: Mono<Borrower> = repository.save(borrower)
         return savedBorrower.flatMap { b -> Mono.just(BorrowerResponseMapper.map(b)) }
     }
