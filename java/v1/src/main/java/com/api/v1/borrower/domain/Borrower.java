@@ -1,9 +1,11 @@
 package com.api.v1.borrower.domain;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -22,6 +24,9 @@ public class Borrower {
 
     @Field
     private String lastName;
+
+    @Field
+    private LocalDate birthDate;
 
     @Field
     private String ssn;
@@ -51,6 +56,7 @@ public class Borrower {
             String firstName,
             String middleName,
             String lastName,
+            LocalDate birthDate,
             String ssn,
             String email,
             String address,
@@ -62,6 +68,7 @@ public class Borrower {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
         this.ssn = ssn;
         this.email = email;
         this.address = address;
@@ -132,4 +139,7 @@ public class Borrower {
         return updatedAt;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
 }

@@ -2,6 +2,7 @@ package com.api.v1.borrower.builder;
 
 import com.api.v1.borrower.domain.Borrower;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -12,6 +13,7 @@ public class BorrowerBuilder {
     private String firstName;
     private String middleName;
     private String lastName;
+    private LocalDate birthDate;
     private String ssn;
     private String email;
     private String address;
@@ -37,6 +39,11 @@ public class BorrowerBuilder {
 
     public BorrowerBuilder withLastName(String lastName) {
         this.lastName = Objects.requireNonNull(lastName);
+        return this;
+    }
+
+    public BorrowerBuilder withBirthDate(LocalDate birthDate) {
+        this.birthDate = Objects.requireNonNull(birthDate);
         return this;
     }
 
@@ -71,6 +78,7 @@ public class BorrowerBuilder {
             this.firstName,
             this.middleName,
             this.lastName,
+            this.birthDate,
             this.ssn,
             this.email,
             this.address,
