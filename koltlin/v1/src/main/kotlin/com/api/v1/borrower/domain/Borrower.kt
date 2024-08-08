@@ -1,5 +1,6 @@
 package com.api.v1.borrower.domain
 
+import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto
 import lombok.Getter
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -55,7 +56,15 @@ class Borrower {
         return "$firstName $middleName $lastName"
     }
 
-    fun update() {
+    fun update(request: UpdateBorrowerRequestDto) {
+        this.firstName = request.firstName
+        this.middleName = request.middleName
+        this.lastName = request.lastName
+        this.birthDate = request.birthDate
+        this.email = request.email
+        this.address = request.address
+        this.gender = request.gender
+        this.phoneNumber = request.phoneNumber
         this.updatedAt = ZonedDateTime.now().toString()
     }
 
