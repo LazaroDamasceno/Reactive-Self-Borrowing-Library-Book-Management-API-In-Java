@@ -12,7 +12,8 @@ class BorrowerFinderUtil(private val repository: BorrowerRepository) {
      fun find(ssn: String): Mono<Borrower> {
          return repository
              .getBySsn(ssn)
-             .switchIfEmpty(Mono.error(BorrowerNotFoundException()));
+             .switchIfEmpty(Mono.error(BorrowerNotFoundException()))
+             .cache()
      }
 
 }
