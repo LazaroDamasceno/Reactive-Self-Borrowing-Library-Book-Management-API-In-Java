@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-class FindAllBorrowersControllers {
+class FindAllBorrowersController {
 
     private val service: FindAllBorrowersService
 
