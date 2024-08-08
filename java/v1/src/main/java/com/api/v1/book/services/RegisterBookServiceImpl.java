@@ -19,15 +19,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
 
     @Override
     public Mono<BookResponseDto> register(@Valid BookRequestDto request) {
-        Book book = BookBuilder
-                .create()
-                .withTitle(request.title())
-                .withSubtitle(request.subtitle())
-                .withAuthor(request.author())
-                .withField(request.field())
-                .withNumberOfPages(request.numberOfPages())
-                .withVersion(request.version())
-                .build();
+        Book book = BookBuilder.fromDto(request).build();
         Mono<Book> savedBook = repository.save(book);
         return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
     }

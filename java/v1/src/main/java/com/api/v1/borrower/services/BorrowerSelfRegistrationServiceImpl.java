@@ -21,17 +21,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
     
     @Override
     public Mono<BorrowerResponseDto> sefRegister(@Valid NewBorrowerRequestDto request) {
-        Borrower borrower = BorrowerBuilder
-            .create()
-            .withFirstName(request.firstName())
-            .withMiddleName(request.middleName())
-            .withLastName(request.lastName())
-            .withSsn(request.ssn())
-            .withEmail(request.email())
-            .withPhoneNumber(request.phoneNumber())
-            .withAddress(request.address())
-            .withGender(request.gender())
-            .build();
+        Borrower borrower = BorrowerBuilder.fromDto(request).build();
         Mono<Borrower> savedBorrower = repository.save(borrower);
         return savedBorrower.flatMap(b -> Mono.just(BorrowerDtoResponseMapper.map(b)));
     }

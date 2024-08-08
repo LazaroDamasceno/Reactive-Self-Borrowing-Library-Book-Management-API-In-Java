@@ -1,6 +1,7 @@
 package com.api.v1.book.builder;
 
 import com.api.v1.book.domain.Book;
+import com.api.v1.book.helpers.BookRequestDto;
 import com.api.v1.book.helpers.IsbnGeneratorUtil;
 
 import java.time.ZonedDateTime;
@@ -21,38 +22,15 @@ public class BookBuilder {
 
     protected BookBuilder() {}
 
-    public static BookBuilder create() {
-        return new BookBuilder();
-    }
-
-    public BookBuilder withTitle(String title) {
-        this.title = Objects.requireNonNull(title);
-        return this;
-    }
-
-    public BookBuilder withSubtitle(String subtitle) {
-        this.subtitle = Objects.requireNonNull(subtitle);
-        return this;
-    }
-
-    public BookBuilder withAuthor(String author) {
-        this.author = Objects.requireNonNull(author);
-        return this;
-    }
-
-    public BookBuilder withField(String field) {
-        this.field = Objects.requireNonNull(field);
-        return this;
-    }
-
-    public BookBuilder withNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
-        return this;
-    }
-
-    public BookBuilder withVersion(int version) {
-        this.version = version;
-        return this;
+    public static BookBuilder fromDto(BookRequestDto dto) {
+        BookBuilder builder = new BookBuilder();
+        builder.title = dto.title();
+        builder.subtitle = dto.subtitle();
+        builder.author = dto.author();
+        builder.field = dto.field();
+        builder.numberOfPages = dto.numberOfPages();
+        builder.version = dto.version();
+        return builder;
     }
     
     public Book build() {
