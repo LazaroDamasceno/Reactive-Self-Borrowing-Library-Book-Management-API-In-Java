@@ -17,7 +17,6 @@ class FindAllBorrowersServiceImpl: FindAllBorrowersService {
         return repository
             .findAll()
             .flatMap { b -> Flux.just(BorrowerResponseMapper.map(b)) }
-            .cache()
     }
 
 }
