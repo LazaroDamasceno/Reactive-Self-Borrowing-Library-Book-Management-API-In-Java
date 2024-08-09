@@ -9,27 +9,27 @@ import java.util.UUID;
 public class BookBuilder {
 
     private final UUID id = UUID.randomUUID();
-    private String title;
-    private String subtitle;
-    private String isbn;
-    private String author;
-    private String field;
-    private int numberOfPages;
-    private int version;
+    private final String title;
+    private final String subtitle;
+    private final String isbn;
+    private final String author;
+    private final String field;
+    private final int numberOfPages;
+    private final int version;
     private final String addedAt = ZonedDateTime.now().toString();
 
-    protected BookBuilder() {}
+    private BookBuilder(BookRequestDto dto) {
+        this.title = dto.title();
+        this.subtitle = dto.subtitle();
+        this.isbn = dto.isbn();
+        this.author = dto.author();
+        this.field = dto.field();
+        this.numberOfPages = dto.numberOfPages();
+        this.version = dto.version();
+    }
 
     public static BookBuilder fromDto(BookRequestDto dto) {
-        BookBuilder builder = new BookBuilder();
-        builder.title = dto.title();
-        builder.subtitle = dto.subtitle();
-        builder.isbn = dto.isbn();
-        builder.author = dto.author();
-        builder.field = dto.field();
-        builder.numberOfPages = dto.numberOfPages();
-        builder.version = dto.version();
-        return builder;
+        return new BookBuilder(dto);
     }
     
     public Book build() {
