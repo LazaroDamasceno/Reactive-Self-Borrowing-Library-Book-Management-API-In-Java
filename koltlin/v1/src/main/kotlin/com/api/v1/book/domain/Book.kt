@@ -1,8 +1,10 @@
 package com.api.v1.book.domain
 
+import com.api.v1.book.dtos.UpdateBookRequestDto
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
+import java.time.ZonedDateTime
 
 import java.util.UUID;
 
@@ -69,6 +71,17 @@ class Book {
     fun getFullTitle(): String {
         if (subtitle.isEmpty()) return title
         return "$title $subtitle"
+    }
+
+    fun update(request: UpdateBookRequestDto) {
+        this.title = request.title
+        this.subtitle = request.subtitle
+        this.publisher = request.publisher
+        this.version = request.version
+        this.numberOfPages = request.numberOfPages
+        this.author = request.author
+        this.field = request.field
+        this.updatedAt = ZonedDateTime.now().toString()
     }
 
 }
