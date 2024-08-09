@@ -5,6 +5,7 @@ public record BookResponseDto(
         String isbn,
         String author,
         String field,
+        int publishingYear,
         int numberOfPages,
         int version,
         String addedAt,

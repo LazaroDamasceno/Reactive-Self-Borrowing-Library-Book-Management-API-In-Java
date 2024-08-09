@@ -10,6 +10,7 @@ public record BookRequestDto(
         String subtitle,
         @NotNull @Size(min=13, max=13) String isbn,
         @NotBlank String author,
+        int publishingYear,
         @NotBlank String field,
         @Min(1) int numberOfPages,
         @Min(1) int version

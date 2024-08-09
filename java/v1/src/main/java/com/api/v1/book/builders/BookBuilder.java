@@ -12,6 +12,7 @@ public class BookBuilder {
     private final String title;
     private final String subtitle;
     private final String isbn;
+    private final int publishingYear;
     private final String author;
     private final String field;
     private final int numberOfPages;
@@ -22,6 +23,7 @@ public class BookBuilder {
         this.title = dto.title();
         this.subtitle = dto.subtitle();
         this.isbn = dto.isbn();
+        this.publishingYear = dto.publishingYear();
         this.author = dto.author();
         this.field = dto.field();
         this.numberOfPages = dto.numberOfPages();
@@ -34,15 +36,16 @@ public class BookBuilder {
     
     public Book build() {
         return new Book(
-                this.id,
-                this.title,
-                this.subtitle,
-                this.isbn,
-                this.author,
-                this.field,
-                this.numberOfPages,
-                this.version,
-                this.addedAt
+                id,
+                title,
+                subtitle,
+                isbn,
+                publishingYear,
+                author,
+                field,
+                numberOfPages,
+                version,
+                addedAt
         );
     }
     

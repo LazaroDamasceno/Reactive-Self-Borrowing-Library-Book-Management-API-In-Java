@@ -24,6 +24,9 @@ public class Book {
     private String isbn;
 
     @Field
+    private int publishingYear;
+
+    @Field
     private String author;
 
     @Field
@@ -41,13 +44,14 @@ public class Book {
     @Field
     private String updatedAt;
 
-    public Book() {}
+    protected Book() {}
 
     public Book(
             UUID id,
             String title,
             String subtitle,
             String isbn,
+            int publishingYear,
             String author,
             String field,
             int numberOfPages,
@@ -58,6 +62,7 @@ public class Book {
         this.title = title;
         this.subtitle = subtitle;
         this.isbn = isbn;
+        this.publishingYear = publishingYear;
         this.author = author;
         this.field = field;
         this.numberOfPages = numberOfPages;
@@ -118,6 +123,10 @@ public class Book {
 
     public String getUpdatedAt() {
         return updatedAt;
+    }
+
+    public int getPublishingYear() {
+        return publishingYear;
     }
 
 }
