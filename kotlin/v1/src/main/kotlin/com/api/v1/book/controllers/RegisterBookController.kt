@@ -18,7 +18,7 @@ class RegisterBookController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    fun register(@Valid @PathVariable request: NewBookRequestDto): Mono<BookResponseDto> {
+    fun register(@Valid @RequestBody request: NewBookRequestDto): Mono<BookResponseDto> {
         return service.register(request)
     }
 

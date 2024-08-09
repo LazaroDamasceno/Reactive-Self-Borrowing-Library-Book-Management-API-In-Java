@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/java/v1/pom.xml" />
         <option value="$PROJECT_DIR$/koltlin/v1/pom.xml" />
+        <option value="$PROJECT_DIR$/kotlin/v1/pom.xml" />
       </list>
     </option>
   </component>
