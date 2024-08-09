@@ -1,7 +1,7 @@
 package com.api.v1.borrower.controllers;
 
 import com.api.v1.borrower.domain.Borrower;
-import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto;
+import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto;
 import com.api.v1.borrower.services.UpdateBorrowerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

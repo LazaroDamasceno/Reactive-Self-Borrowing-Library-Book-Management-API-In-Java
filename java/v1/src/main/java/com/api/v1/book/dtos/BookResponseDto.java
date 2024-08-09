@@ -1,4 +1,4 @@
-package com.api.v1.book.helpers;
+package com.api.v1.book.dtos;
 
 public record BookResponseDto(
         String fullTitle,

@@ -1,6 +1,7 @@
-package com.api.v1.borrower.helpers;
+package com.api.v1.borrower.mappers;
 
 import com.api.v1.borrower.domain.Borrower;
+import com.api.v1.borrower.dtos.BorrowerResponseDto;
 
 public class BorrowerDtoResponseMapper {
 

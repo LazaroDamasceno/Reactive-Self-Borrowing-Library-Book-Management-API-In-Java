@@ -1,7 +1,7 @@
 package com.api.v1.book.controllers;
 
-import com.api.v1.book.helpers.BookRequestDto;
-import com.api.v1.book.helpers.BookResponseDto;
+import com.api.v1.book.dtos.BookRequestDto;
+import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.services.RegisterBookService;
 
 import jakarta.validation.Valid;

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.borrower.domain.BorrowerRepository;
-import com.api.v1.borrower.helpers.BorrowerDtoResponseMapper;
-import com.api.v1.borrower.helpers.BorrowerResponseDto;
+import com.api.v1.borrower.mappers.BorrowerDtoResponseMapper;
+import com.api.v1.borrower.dtos.BorrowerResponseDto;
 
 import reactor.core.publisher.Flux;
 

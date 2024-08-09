@@ -1,4 +1,4 @@
-package com.api.v1.borrower.helpers;
+package com.api.v1.borrower.utils;
 
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;

@@ -1,7 +1,7 @@
 package com.api.v1.book.builders;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.helpers.BookRequestDto;
+import com.api.v1.book.dtos.BookRequestDto;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;

@@ -2,7 +2,7 @@ package com.api.v1.borrower.services;
 
 import com.api.v1.borrower.domain.BorrowerRepository;
 
-import com.api.v1.borrower.helpers.BorrowerFinderUtil;
+import com.api.v1.borrower.utils.BorrowerFinderUtil;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 

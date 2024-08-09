@@ -4,8 +4,7 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto;
-import org.springframework.cglib.core.Local;
+import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;

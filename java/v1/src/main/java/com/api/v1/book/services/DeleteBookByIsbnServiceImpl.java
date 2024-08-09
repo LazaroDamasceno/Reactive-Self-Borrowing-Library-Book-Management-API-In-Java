@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.book.domain.BookRepository;
-import com.api.v1.book.helpers.BookFinderUtil;
+import com.api.v1.book.utils.BookFinderUtil;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

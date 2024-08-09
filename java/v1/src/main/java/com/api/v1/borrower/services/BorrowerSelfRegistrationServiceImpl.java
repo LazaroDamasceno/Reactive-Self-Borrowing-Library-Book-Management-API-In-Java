@@ -4,9 +4,9 @@ import com.api.v1.borrower.builders.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.exceptions.DuplicatedSsnException;
-import com.api.v1.borrower.helpers.NewBorrowerRequestDto;
-import com.api.v1.borrower.helpers.BorrowerResponseDto;
-import com.api.v1.borrower.helpers.BorrowerDtoResponseMapper;
+import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
+import com.api.v1.borrower.dtos.BorrowerResponseDto;
+import com.api.v1.borrower.mappers.BorrowerDtoResponseMapper;
 
 import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;

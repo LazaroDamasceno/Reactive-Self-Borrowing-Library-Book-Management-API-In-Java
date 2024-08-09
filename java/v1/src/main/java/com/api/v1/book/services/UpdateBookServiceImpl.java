@@ -2,8 +2,8 @@ package com.api.v1.book.services;
 
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
-import com.api.v1.book.helpers.BookRequestDto;
-import com.api.v1.book.helpers.BookFinderUtil;
+import com.api.v1.book.dtos.BookRequestDto;
+import com.api.v1.book.utils.BookFinderUtil;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

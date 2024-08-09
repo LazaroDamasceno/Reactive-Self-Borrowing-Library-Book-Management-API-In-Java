@@ -1,6 +1,6 @@
 package com.api.v1.book.domain;
 
-import com.api.v1.book.helpers.BookRequestDto;
+import com.api.v1.book.dtos.BookRequestDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;

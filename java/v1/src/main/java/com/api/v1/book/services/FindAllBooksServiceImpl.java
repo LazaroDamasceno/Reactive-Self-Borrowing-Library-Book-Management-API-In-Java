@@ -1,8 +1,8 @@
 package com.api.v1.book.services;
 
 import com.api.v1.book.domain.BookRepository;
-import com.api.v1.book.helpers.BookResponseDto;
-import com.api.v1.book.helpers.BookDtoResponseMapper;
+import com.api.v1.book.dtos.BookResponseDto;
+import com.api.v1.book.mappers.BookDtoResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
