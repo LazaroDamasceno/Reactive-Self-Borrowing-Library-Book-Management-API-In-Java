@@ -4,7 +4,7 @@ data class BookResponseDto(
     val fullTitle: String,
     val isbn: String,
     val publisher: String,
-    val publishingYear: String,
+    val publishingYear: Int,
     val version: Int,
     val numberOfPages: Int,
     val author: String,

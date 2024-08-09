@@ -11,6 +11,7 @@ class BookResponseMapper {
                 book.getFullTitle(),
                 book.isbn,
                 book.publisher,
+                book.publishingYear,
                 book.version,
                 book.numberOfPages,
                 book.author,
