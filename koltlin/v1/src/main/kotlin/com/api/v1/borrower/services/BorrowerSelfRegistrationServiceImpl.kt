@@ -6,8 +6,7 @@ import com.api.v1.borrower.domain.BorrowerRepository
 import com.api.v1.borrower.dtos.BorrowerResponseDto
 import com.api.v1.borrower.dtos.NewBorrowerRequestDto
 import com.api.v1.borrower.mappers.BorrowerResponseMapper
-import com.api.v1.borrower.mappers.DuplicatedSsnException
-import jakarta.validation.Valid
+import com.api.v1.borrower.exceptions.DuplicatedSsnException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
