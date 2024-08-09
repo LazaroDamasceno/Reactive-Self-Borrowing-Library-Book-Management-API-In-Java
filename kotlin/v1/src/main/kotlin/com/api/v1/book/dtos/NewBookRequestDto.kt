@@ -7,7 +7,7 @@ data class NewBookRequestDto(
     val subtitle: String,
     @NotNull @Size(min=13, max=13) val isbn: String,
     @NotBlank val publisher: String,
-    @NotEmpty val publishingYear: Int,
+    val publishingYear: Int,
     @Min(1) val version: Int,
     @NotEmpty val numberOfPages: Int,
     @NotBlank val author: String,
