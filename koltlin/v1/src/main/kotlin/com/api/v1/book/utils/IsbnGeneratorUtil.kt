@@ -1,4 +1,4 @@
-package com.api.v1.book.helpers
+package com.api.v1.book.utils
 
 import java.security.SecureRandom
 
