@@ -1,6 +1,6 @@
 package com.api.v1.borrower.domain
 
-import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto
+import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field

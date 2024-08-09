@@ -1,6 +1,6 @@
 package com.api.v1.borrower.controllers
 
-import com.api.v1.borrower.helpers.BorrowerResponseDto
+import com.api.v1.borrower.dtos.BorrowerResponseDto
 import com.api.v1.borrower.services.FindAllBorrowersService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
