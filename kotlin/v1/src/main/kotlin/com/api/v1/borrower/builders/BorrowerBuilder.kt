@@ -7,6 +7,7 @@ import java.time.ZonedDateTime
 import java.util.*
 
 class BorrowerBuilder {
+
     private val id: UUID = UUID.randomUUID()
     private lateinit var firstName: String
     private lateinit var middleName: String
@@ -19,19 +20,22 @@ class BorrowerBuilder {
     private lateinit var phoneNumber: String
     private val createdAt: String = ZonedDateTime.now().toString()
 
+    private constructor(dto: NewBorrowerRequestDto) {
+        this.firstName = dto.firstName
+        this.middleName = dto.middleName
+        this.lastName = dto.lastName
+        this.ssn = dto.ssn
+        this.birthDate = dto.birthDate
+        this.email = dto.email
+        this.address = dto.address
+        this.gender = dto.gender
+        this.phoneNumber = dto.phoneNumber
+    }
+
+
     companion object {
         fun fromDto(dto: NewBorrowerRequestDto): BorrowerBuilder {
-            val builder = BorrowerBuilder()
-            builder.firstName = dto.firstName
-            builder.middleName = dto.middleName
-            builder.lastName = dto.lastName
-            builder.ssn = dto.ssn
-            builder.birthDate = dto.birthDate
-            builder.email = dto.email
-            builder.address = dto.address
-            builder.gender = dto.gender
-            builder.phoneNumber = dto.phoneNumber
-            return builder
+            return BorrowerBuilder(dto)
         }
     }
 
