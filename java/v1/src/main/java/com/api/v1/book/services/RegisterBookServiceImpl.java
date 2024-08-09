@@ -1,8 +1,9 @@
 package com.api.v1.book.services;
 
-import com.api.v1.book.builder.BookBuilder;
+import com.api.v1.book.builders.BookBuilder;
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
+import com.api.v1.book.exceptions.DuplicatedIsbnException;
 import com.api.v1.book.helpers.BookRequestDto;
 import com.api.v1.book.helpers.BookResponseDto;
 import com.api.v1.book.helpers.BookDtoResponseMapper;
@@ -19,9 +20,26 @@ class RegisterBookServiceImpl implements RegisterBookService {
 
     @Override
     public Mono<BookResponseDto> register(@Valid BookRequestDto request) {
-        Book book = BookBuilder.fromDto(request).build();
-        Mono<Book> savedBook = repository.save(book);
-        return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
+        return repository
+                .getByIsbn(request.isbn())
+                .hasElement()
+                .flatMap(exists -> {
+                    if (exists) return duplicatedSsnError();
+                    else return defer(request);
+                });
+    }
+
+    private Mono<BookResponseDto> duplicatedSsnError() {
+        String message = "Input ISBN is already used.";
+        return Mono.error(new DuplicatedIsbnException(message));
+    }
+
+    private Mono<BookResponseDto> defer(BookRequestDto request) {
+        return Mono.defer(() -> {
+            Book book = BookBuilder.fromDto(request).build();
+            Mono<Book> savedBook = repository.save(book);
+            return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
+        });
     }
 
 }
