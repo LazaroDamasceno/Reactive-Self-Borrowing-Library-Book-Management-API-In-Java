@@ -7,6 +7,7 @@ public class BorrowerDtoResponseMapper {
     public static BorrowerResponseDto map(Borrower borrower) {
         return new BorrowerResponseDto(
                 borrower.getFullName(),
+                borrower.getBirthDate(),
                 borrower.getSsn(),
                 borrower.getEmail(),
                 borrower.getAddress(),
