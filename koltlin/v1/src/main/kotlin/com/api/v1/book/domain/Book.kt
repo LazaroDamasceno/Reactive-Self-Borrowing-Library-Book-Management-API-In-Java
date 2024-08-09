@@ -40,7 +40,7 @@ class Book {
     val addedAt: String
 
     @Field
-    val updatedAt: String = ""
+    var updatedAt: String = ""
 
     constructor(
         id: UUID,
@@ -64,6 +64,11 @@ class Book {
         this.author = author
         this.field = field
         this.addedAt = addedAt
+    }
+
+    fun getFullTitle(): String {
+        if (subtitle.isEmpty()) return title
+        return "$title $subtitle"
     }
 
 }

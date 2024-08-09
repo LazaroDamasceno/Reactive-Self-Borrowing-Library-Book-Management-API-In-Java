@@ -7,5 +7,7 @@ data class BookResponseDto(
     val version: Int,
     val numberOfPages: Int,
     val author: String,
-    val field: String
+    val field: String,
+    val addedAt: String,
+    val updatedAt: String
 )
