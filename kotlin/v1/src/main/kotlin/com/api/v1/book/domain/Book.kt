@@ -21,6 +21,9 @@ class Book {
     var subtitle: String
 
     @Field
+    var publishingYear: Int
+
+    @Field
     var isbn: String
 
     @Field
@@ -50,6 +53,7 @@ class Book {
         subtitle: String,
         isbn: String,
         publisher: String,
+        publishingYear: Int,
         version: Int,
         numberOfPages: Int,
         author: String,
@@ -62,6 +66,7 @@ class Book {
         this.isbn = isbn
         this.publisher = publisher
         this.version = version
+        this.publishingYear = publishingYear
         this.numberOfPages = numberOfPages
         this.author = author
         this.field = field
