@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-class DeleteBorrowerBySsnController {
+internal class DeleteBorrowerBySsnController {
 
     @Autowired
     private lateinit var service: DeleteBorrowerBySsnService

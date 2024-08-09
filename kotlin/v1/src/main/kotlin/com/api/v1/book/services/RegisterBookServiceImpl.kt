@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Service
-class RegisterBookServiceImpl: RegisterBookService {
+internal class RegisterBookServiceImpl: RegisterBookService {
 
     @Autowired
     private lateinit var repository: BookRepository

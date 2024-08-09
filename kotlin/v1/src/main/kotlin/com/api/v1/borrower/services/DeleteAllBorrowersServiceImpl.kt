@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Service
-class DeleteAllBorrowersServiceImpl: DeleteAllBorrowersService {
+internal class DeleteAllBorrowersServiceImpl: DeleteAllBorrowersService {
 
     @Autowired
     private lateinit var repository: BorrowerRepository

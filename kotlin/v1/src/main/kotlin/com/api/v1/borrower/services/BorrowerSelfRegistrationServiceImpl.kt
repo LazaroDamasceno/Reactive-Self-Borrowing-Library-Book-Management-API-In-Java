@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 
 
 @Service
-class BorrowerSelfRegistrationServiceImpl: BorrowerSelfRegistrationService {
+internal class BorrowerSelfRegistrationServiceImpl: BorrowerSelfRegistrationService {
 
     @Autowired
     private lateinit var repository: BorrowerRepository

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Service
-class DeleteAllBooksServiceImpl: DeleteAllBooksService {
+internal class DeleteAllBooksServiceImpl: DeleteAllBooksService {
 
     @Autowired
     private lateinit var repository: BookRepository

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 
 @Component
-class FindAllBorrowersServiceImpl: FindAllBorrowersService {
+internal class FindAllBorrowersServiceImpl: FindAllBorrowersService {
 
     @Autowired
     private lateinit var repository: BorrowerRepository

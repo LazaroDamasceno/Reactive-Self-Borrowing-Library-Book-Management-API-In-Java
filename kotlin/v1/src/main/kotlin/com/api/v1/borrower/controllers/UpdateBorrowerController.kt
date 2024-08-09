@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-class UpdateBorrowerController {
+internal class UpdateBorrowerController {
 
     @Autowired
     private lateinit var service: UpdateBorrowerService

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Service
-class DeleteBorrowerBySsnServiceImpl: DeleteBorrowerBySsnService {
+internal class DeleteBorrowerBySsnServiceImpl: DeleteBorrowerBySsnService {
 
     @Autowired
     private lateinit var repository: BorrowerRepository

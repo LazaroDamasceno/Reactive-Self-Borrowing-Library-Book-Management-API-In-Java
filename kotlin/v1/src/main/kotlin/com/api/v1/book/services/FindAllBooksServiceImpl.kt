@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 
 @Service
-class FindAllBooksServiceImpl: FindAllBooksService {
+internal class FindAllBooksServiceImpl: FindAllBooksService {
 
     @Autowired
     private lateinit var repository: BookRepository
