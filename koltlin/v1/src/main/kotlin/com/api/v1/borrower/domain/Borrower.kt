@@ -1,9 +1,9 @@
 package com.api.v1.borrower.domain
 
 import com.api.v1.borrower.helpers.UpdateBorrowerRequestDto
-import lombok.Getter
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
 import java.time.LocalDate
 import java.time.ZonedDateTime
 import java.util.*
@@ -12,17 +12,39 @@ import java.util.*
 class Borrower {
 
     @Id
-    var id: UUID
+    val id: UUID
+
+    @Field
     var firstName: String
+
+    @Field
     var middleName: String
+
+    @Field
     var lastName: String
+
+    @Field
     var ssn: String
+
+    @Field
     var birthDate: LocalDate
+
+    @Field
     var email: String
+
+    @Field
     var address: String
+
+    @Field
     var gender: String
+
+    @Field
     var phoneNumber: String
-    var createdAt: String
+
+    @Field
+    val createdAt: String
+
+    @Field
     var updatedAt: String = ""
 
     constructor(
