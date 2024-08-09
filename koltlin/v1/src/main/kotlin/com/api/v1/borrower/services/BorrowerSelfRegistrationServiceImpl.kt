@@ -1,6 +1,6 @@
 package com.api.v1.borrower.services
 
-import com.api.v1.borrower.builder.BorrowerBuilder
+import com.api.v1.borrower.builders.BorrowerBuilder
 import com.api.v1.borrower.domain.Borrower
 import com.api.v1.borrower.domain.BorrowerRepository
 import com.api.v1.borrower.helpers.BorrowerResponseDto

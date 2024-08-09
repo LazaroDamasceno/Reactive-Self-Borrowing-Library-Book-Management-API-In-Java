@@ -1,4 +1,4 @@
-package com.api.v1.borrower.builder
+package com.api.v1.borrower.builders
 
 import com.api.v1.borrower.domain.Borrower
 import com.api.v1.borrower.helpers.NewBorrowerRequestDto

@@ -1,11 +1,10 @@
-package com.api.v1.borrower.builder;
+package com.api.v1.borrower.builders;
 
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.helpers.NewBorrowerRequestDto;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 public class BorrowerBuilder {

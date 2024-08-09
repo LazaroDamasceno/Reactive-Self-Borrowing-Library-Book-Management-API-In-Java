@@ -1,6 +1,5 @@
 package com.api.v1.borrower.controllers;
 
-import com.api.v1.borrower.domain.Borrower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +24,7 @@ class BorrowerSelfRegistrationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Borrower> selfRegister(@Valid @RequestBody NewBorrowerRequestDto request) {
+    public Mono<BorrowerResponseDto> selfRegister(@Valid @RequestBody NewBorrowerRequestDto request) {
         return service.selfRegister(request);
     }
 
