@@ -3,6 +3,7 @@ package com.api.v1.borrower.services;
 import com.api.v1.borrower.builders.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
+import com.api.v1.borrower.exceptions.DuplicatedSsnException;
 import com.api.v1.borrower.helpers.NewBorrowerRequestDto;
 import com.api.v1.borrower.helpers.BorrowerResponseDto;
 import com.api.v1.borrower.helpers.BorrowerDtoResponseMapper;
@@ -32,7 +33,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
 
     private Mono<BorrowerResponseDto> duplicateSsnException() {
         String message = "Input SSN is already used.";
-        return Mono.error(new IllegalArgumentException(message));
+        return Mono.error(new DuplicatedSsnException(message));
     }
 
     private Mono<BorrowerResponseDto> defer(NewBorrowerRequestDto request) {
