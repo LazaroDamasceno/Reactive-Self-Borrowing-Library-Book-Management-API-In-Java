@@ -21,46 +21,4 @@ class FindAllBooksController {
         return service.findAll();
     }
 
-    @GetMapping("by-author/{author}")
-    @ResponseStatus(value = HttpStatus.OK)
-    Flux<BookResponseDto> findByAuthor(@NotBlank @PathVariable String author) {
-        return service.findByAuthor(author);
-    }
-
-    @GetMapping("by-field/{field}")
-    @ResponseStatus(value = HttpStatus.OK)
-    Flux<BookResponseDto> findByField(@NotBlank @PathVariable String field) {
-        return service.findByField(field);
-    }
-
-    @GetMapping("by-year/{year}")
-    @ResponseStatus(value = HttpStatus.OK)
-    Flux<BookResponseDto> findByYear(@PathVariable int year) {
-        return service.findByYear(year);
-    }
-
-    @GetMapping("by-author/{author}/and/by-field/{field}")
-    @ResponseStatus(value = HttpStatus.OK)
-    Flux<BookResponseDto> findByAuthorAndField(
-            @NotBlank @PathVariable String author,
-            @NotBlank @PathVariable String field
-    ) {
-        return service.findByAuthorAndField(author, field);
-    }
-
-    @GetMapping("by-author/{author}/and/by-year/{year}")
-    @ResponseStatus(value = HttpStatus.OK)
-    Flux<BookResponseDto> findByAuthorAndYear(@NotBlank @PathVariable String author, @PathVariable int year) {
-        return service.findByAuthorAndYear(author, year);
-    }
-
-    @GetMapping("by-field/{field}/and/by-year/{year}")
-    @ResponseStatus(value = HttpStatus.OK)
-    Flux<BookResponseDto> findByFieldAndYear(
-            @NotBlank @PathVariable String field,
-            @PathVariable int year
-    ) {
-        return service.findByFieldAndYear(field, year);
-    }
-
 }
