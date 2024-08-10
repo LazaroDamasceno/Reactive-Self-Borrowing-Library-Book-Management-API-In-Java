@@ -3,6 +3,7 @@ package com.api.v1.book.services
 import com.api.v1.book.domain.BookRepository
 import com.api.v1.book.dtos.BetweenYearsDto
 import com.api.v1.book.dtos.BookResponseDto
+import com.api.v1.book.exceptions.ChronologicalDifferenceException
 import com.api.v1.book.mappers.BookResponseMapper
 import jakarta.validation.constraints.NotBlank
 import org.springframework.beans.factory.annotation.Autowired
@@ -45,6 +46,9 @@ internal class FindAllBooksServiceImpl: FindAllBooksService {
     }
 
     override fun findBetweenYears(firstYear: Int, lastYear: Int): Flux<BookResponseDto> {
+        if (firstYear.compareTo(lastYear) == 1 || lastYear.compareTo(firstYear) == -1) {
+            return error()
+        }
         return repository
             .findAll()
             .filter {e ->
@@ -80,6 +84,9 @@ internal class FindAllBooksServiceImpl: FindAllBooksService {
     }
 
     override fun findByAuthorBetweenYears(author: String, dto: BetweenYearsDto): Flux<BookResponseDto> {
+        if (dto.firstYear.compareTo(dto.lastYear) == 1 || dto.lastYear.compareTo(dto.firstYear) == -1) {
+            return error()
+        }
         return repository
             .findAll()
             .filter { e ->
@@ -122,6 +129,9 @@ internal class FindAllBooksServiceImpl: FindAllBooksService {
         field: String,
         dto: BetweenYearsDto
     ): Flux<BookResponseDto> {
+        if (dto.firstYear.compareTo(dto.lastYear) == 1 || dto.lastYear.compareTo(dto.firstYear) == -1) {
+            return error()
+        }
         return repository
             .findAll()
             .filter { e ->
@@ -142,6 +152,11 @@ internal class FindAllBooksServiceImpl: FindAllBooksService {
                             dto.firstYear.compareTo(dto.lastYear) == -1
                         ))}
             .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
+    }
+
+    private fun error(): Flux<BookResponseDto> {
+        val message = "The first year must equal or less than the last year"
+        return Flux.error(ChronologicalDifferenceException(message))
     }
 
 }
