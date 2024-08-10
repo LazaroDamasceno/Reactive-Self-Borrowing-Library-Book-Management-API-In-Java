@@ -1,5 +1,6 @@
 package com.api.v1.book.controllers
 
+import com.api.v1.book.dtos.BetweenYearsDto
 import com.api.v1.book.dtos.BookResponseDto
 import com.api.v1.book.services.FindAllBooksService
 import jakarta.validation.constraints.NotBlank
@@ -15,51 +16,16 @@ internal class FindAllBooksController {
     @Autowired
     private lateinit var service: FindAllBooksService
 
-    @GetMapping
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findAll(): Flux<BookResponseDto> {
-        return service.findAll()
-    }
+    fun findAll(): Flux<BookResponseDto>
+    fun findByAuthor(author: String): Flux<BookResponseDto>
+    fun findByField(field: String): Flux<BookResponseDto>
+    fun findByYear(year: Int): Flux<BookResponseDto>
+    fun findBetweenYears(firstYear: Int, lastYear: Int): Flux<BookResponseDto>
+    fun findByAuthorAndField(author: String, field: String): Flux<BookResponseDto>
+    fun findByAuthorAndYear(author: String, year: Int): Flux<BookResponseDto>
+    fun findByAuthorBetweenYears(author: String, dto: BetweenYearsDto): Flux<BookResponseDto>
+    fun findByFieldAndYear(field: String, year: Int): Flux<BookResponseDto>
+    fun findByAuthorAndYearAndField(author: String, field: String, year: Int): Flux<BookResponseDto>
+    fun findByAuthorAndFieldBetweenYears(author:String, field:String, dto: BetweenYearsDto): Flux<BookResponseDto>
 
-    @GetMapping("by-author/{author}")
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findByAuthor(@PathVariable author: @NotBlank String): Flux<BookResponseDto> {
-        return service.findByAuthor(author)
-    }
-
-    @GetMapping("by-field/{field}")
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findByField(@PathVariable field: @NotBlank String): Flux<BookResponseDto> {
-        return service.findByField(field)
-    }
-
-    @GetMapping("by-year/{year}")
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findByYear(@PathVariable year: Int): Flux<BookResponseDto> {
-        return service.findByYear(year)
-    }
-
-    @GetMapping("by-author/{author}/and/by-field/{field}")
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findByAuthorAndField(
-        @PathVariable author: @NotBlank String,
-        @PathVariable field: @NotBlank String
-    ): Flux<BookResponseDto> {
-        return service.findByAuthorAndField(author, field)
-    }
-
-    @GetMapping("by-author/{author}/and/by-year/{year}")
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findByAuthorAndYear(@PathVariable author: @NotBlank String, @PathVariable year: Int): Flux<BookResponseDto> {
-        return service.findByAuthorAndYear(author, year)
-    }
-
-    @GetMapping("by-field/{field}/and/by-year/{year}")
-    @ResponseStatus(value = HttpStatus.OK)
-    fun findByFieldAndYear(
-        @PathVariable field: @NotBlank String,
-        @PathVariable year: Int
-    ): Flux<BookResponseDto> {
-        return service.findByFieldAndYear(field, year)
-    }
 }
