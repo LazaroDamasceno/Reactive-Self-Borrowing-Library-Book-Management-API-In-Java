@@ -1,6 +1,7 @@
 package com.api.v1.book.services
 
 import com.api.v1.book.domain.BookRepository
+import com.api.v1.book.dtos.BetweenYearsDto
 import com.api.v1.book.dtos.BookResponseDto
 import com.api.v1.book.mappers.BookResponseMapper
 import jakarta.validation.constraints.NotBlank
@@ -43,6 +44,27 @@ internal class FindAllBooksServiceImpl: FindAllBooksService {
             .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
     }
 
+    override fun findBetweenYears(firstYear: Int, lastYear: Int): Flux<BookResponseDto> {
+        return repository
+            .findAll()
+            .filter {e ->
+                        (
+                            e.publishingYear.compareTo(firstYear) == 0
+                                    ||
+                            e.publishingYear.compareTo(firstYear) == 1
+                        ) && (
+                            e.publishingYear.compareTo(lastYear) == 0
+                                    ||
+                            e.publishingYear.compareTo(lastYear) == -1
+                        ) && (
+                            firstYear.compareTo(lastYear) == 0
+                                    ||
+                            firstYear.compareTo(lastYear) == -1
+                        )
+            }
+            .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
+    }
+
     override fun findByAuthorAndField(@NotBlank author: String, @NotBlank field: String): Flux<BookResponseDto> {
         return repository
             .findAll()
@@ -57,10 +79,68 @@ internal class FindAllBooksServiceImpl: FindAllBooksService {
             .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
     }
 
+    override fun findByAuthorBetweenYears(author: String, dto: BetweenYearsDto): Flux<BookResponseDto> {
+        return repository
+            .findAll()
+            .filter { e ->
+                    e.author == author
+                    &&  ((
+                                e.publishingYear.compareTo(dto.firstYear) == 0
+                                        ||
+                                e.publishingYear.compareTo(dto.firstYear) == 1
+
+                        ) && (
+                                e.publishingYear.compareTo(dto.lastYear) == 0
+                                        ||
+                                e.publishingYear.compareTo(dto.lastYear) == -1
+                        ) && (
+                                dto.firstYear.compareTo(dto.lastYear) == 0
+                                        ||
+                                dto.firstYear.compareTo(dto.lastYear) == -1
+            ))}
+            .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
+    }
+
     override fun findByFieldAndYear(@NotBlank field: String, year: Int): Flux<BookResponseDto> {
         return repository
             .findAll()
             .filter { e -> e.field == field && e.publishingYear == year }
+            .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
+    }
+
+    override fun findByAuthorAndYearAndField(author: String, field: String, year: Int): Flux<BookResponseDto> {
+        return repository
+            .findAll()
+            .filter {
+                e -> e.author == author && e.field == field && e.publishingYear == year
+            }
+            .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
+    }
+
+    override fun findByAuthorAndFieldBetweenYears(
+        author: String,
+        field: String,
+        dto: BetweenYearsDto
+    ): Flux<BookResponseDto> {
+        return repository
+            .findAll()
+            .filter { e ->
+                        e.author == author
+                        &&
+                        e.field == field
+                        &&  ((
+                            e.publishingYear.compareTo(dto.firstYear) == 0
+                                ||
+                            e.publishingYear.compareTo(dto.firstYear) == 1
+                        ) && (
+                            e.publishingYear.compareTo(dto.lastYear) == 0
+                                    ||
+                            e.publishingYear.compareTo(dto.lastYear) == -1
+                        ) && (
+                            dto.firstYear.compareTo(dto.lastYear) == 0
+                                ||
+                            dto.firstYear.compareTo(dto.lastYear) == -1
+                        ))}
             .flatMap { b -> Flux.just(BookResponseMapper.map(b)) }
     }
 
