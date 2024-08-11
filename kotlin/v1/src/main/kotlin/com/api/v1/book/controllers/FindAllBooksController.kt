@@ -21,5 +21,51 @@ internal class FindAllBooksController {
         return service.findAll()
     }
 
+    @GetMapping("by-author/{author}")
+    @ResponseStatus(value = HttpStatus.OK)
+    fun findByAuthor(@PathVariable @NotBlank author: String): Flux<BookResponseDto> {
+        return service.findByAuthor(author)
+    }
+
+    @GetMapping("by-filed/{field}")
+    @ResponseStatus(value = HttpStatus.OK)
+    fun findByField(@PathVariable @NotBlank field: String): Flux<BookResponseDto> {
+        return service.findByField(field)
+    }
+
+    @GetMapping("by-year/{year}")
+    @ResponseStatus(value = HttpStatus.OK)
+    fun findByYear(@PathVariable year: Int): Flux<BookResponseDto> {
+        return service.findByYear(year)
+    }
+
+    @GetMapping("by-filed/{field}/and/by-year/{year}")
+    @ResponseStatus(value = HttpStatus.OK)
+    fun findByFieldAndYear(
+        @PathVariable @NotBlank field: String,
+        @PathVariable year: Int
+    ): Flux<BookResponseDto> {
+        return service.findByFieldAndYear(field, year)
+    }
+
+    @GetMapping("by-author/{author}/and/by-field/{field}")
+    @ResponseStatus(value = HttpStatus.OK)
+    fun findByAuthorAndField(
+        @PathVariable @NotBlank author: String,
+        @PathVariable @NotBlank field: String
+    ): Flux<BookResponseDto> {
+        return service.findByAuthorAndField(author, field)
+    }
+
+    @GetMapping("by-author/{author}/and/by-field/{field}/and/by-year/{year}")
+    @ResponseStatus(value = HttpStatus.OK)
+    fun find(
+        @PathVariable @NotBlank author: String,
+        @PathVariable @NotBlank field: String,
+        @PathVariable @NotBlank year: Int
+    ): Flux<BookResponseDto> {
+        return service.find(author, field, year)
+    }
+
 
 }
