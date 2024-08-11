@@ -16,8 +16,7 @@ public class BorrowerFinderUtil {
     public Mono<Borrower> find(String ssn) {
         return repository
                 .getBySsn(ssn)
-                .switchIfEmpty(Mono.error(BorrowerNotFoundException::new))
-                .cache();
+                .switchIfEmpty(Mono.error(BorrowerNotFoundException::new));
     }
 
 }

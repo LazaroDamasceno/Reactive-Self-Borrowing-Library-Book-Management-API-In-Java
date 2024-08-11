@@ -18,8 +18,69 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
     public Flux<BookResponseDto> findAll() {
         return repository
             .findAll()
-            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)))
-            .cache();
+            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+    }
+
+    @Override
+    public Flux<BookResponseDto> findByAuthor(@NotBlank String author) {
+        return repository
+                .findAll()
+                .filter(e -> e.getAuthor().equals(author))
+                .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+    }
+
+    @Override
+    public Flux<BookResponseDto> findByField(@NotBlank String field) {
+        return repository
+                .findAll()
+                .filter(e -> e.getField().equals(field))
+                .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+    }
+
+    @Override
+    public Flux<BookResponseDto> findByYear(int year) {
+        return repository
+                .findAll()
+                .filter(e -> e.getPublishingYear() == year)
+                .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+    }
+
+    @Override
+    public Flux<BookResponseDto> findByFieldAndYear(@NotBlank String field, int year) {
+        return repository
+                .findAll()
+                .filter(e ->
+                            e.getField().equals(field)
+                            &&
+                            e.getPublishingYear() == year
+                )
+                .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+    }
+
+    @Override
+    public Flux<BookResponseDto> findByAuthorAndField(@NotBlank String author, @NotBlank String field) {
+        return repository
+                .findAll()
+                .filter(e ->
+                            e.getAuthor().equals(author)
+                            &&
+                            e.getField().equals(field)
+                )
+                .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+    }
+
+    @Override
+    public Flux<BookResponseDto> find(@NotBlank String author, @NotBlank String field, int year) {
+        return repository
+                .findAll()
+                .filter(e ->
+                            e.getAuthor().equals(author)
+                            &&
+                            e.getField().equals(field)
+                            &&
+                            e.getPublishingYear() == year
+                )
+                .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
     }
 
 }

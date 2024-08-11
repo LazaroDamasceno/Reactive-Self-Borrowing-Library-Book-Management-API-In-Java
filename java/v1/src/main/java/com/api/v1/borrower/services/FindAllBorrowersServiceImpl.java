@@ -19,8 +19,7 @@ class FindAllBorrowersServiceImpl implements FindAllBorrowersService {
     public Flux<BorrowerResponseDto> findAll() {
         return repository
             .findAll()
-            .flatMap(b -> Flux.just(BorrowerDtoResponseMapper.map(b)))
-            .cache();
+            .flatMap(b -> Flux.just(BorrowerDtoResponseMapper.map(b)));
     }
     
 }

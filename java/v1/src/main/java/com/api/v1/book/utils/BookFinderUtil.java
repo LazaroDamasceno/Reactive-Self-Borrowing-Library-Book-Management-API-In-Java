@@ -18,8 +18,7 @@ public class BookFinderUtil {
     public Mono<Book> find(@NotNull @Size(min=13, max=13) String isbn) {
         return repository
                 .getByIsbn(isbn)
-                .switchIfEmpty(Mono.error(BookNotFoundException::new))
-                .cache();
+                .switchIfEmpty(Mono.error(BookNotFoundException::new));
     }
 
 }
