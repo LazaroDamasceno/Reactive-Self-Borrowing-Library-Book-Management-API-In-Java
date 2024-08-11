@@ -6,6 +6,6 @@ import reactor.core.publisher.Flux;
 
 public interface FindAllBooksService {
     
-    Flux<BookResponseDto> findAll();;
+    Flux<BookResponseDto> findAll();
 
 }
