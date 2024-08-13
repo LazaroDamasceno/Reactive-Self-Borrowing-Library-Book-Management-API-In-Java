@@ -15,12 +15,12 @@ public class BorrowFinderUtil {
     @Autowired
     private BorrowRepository repository;
 
-    public Mono<Borrow> find(Mono<Borrower> borrower, Mono<Book> book) {
+    public Mono<Borrow> find(Borrower borrower, Book book) {
         String message = "Borrow was not found.";
         return repository
                 .findAll()
-                .filter(e -> Mono.just(e.getBorrower()).equals(borrower) &&
-                        Mono.just(e.getBook()).equals(book) &&
+                .filter(e -> e.getBorrower().equals(borrower) &&
+                        e.getBook().equals(book) &&
                         e.getReturnedDate() == null
                 )
                 .singleOrEmpty()

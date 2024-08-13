@@ -32,8 +32,12 @@ class ExtendBorrowServiceImpl implements ExtendBorrowService {
     public Mono<Borrow> extend(@ISBN String isbn, @SSN String ssn) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
-        return borrowFinder
-                .find(borrowerMono, bookMono)
+        return Mono.zip(bookMono, borrowerMono)
+                .flatMap(tuple -> {
+                    Book book = tuple.getT1();
+                    Borrower borrower = tuple.getT2();
+                    return borrowFinder.find(borrower, book);
+                })
                 .flatMap(b -> Mono.defer(() -> {
                     b.extendDueDate();
                     return repository.save(b);
