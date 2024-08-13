@@ -1,4 +1,4 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.controllers;
 
 import com.api.v1.annotations.ISBN;
 import com.api.v1.annotations.SSN;
