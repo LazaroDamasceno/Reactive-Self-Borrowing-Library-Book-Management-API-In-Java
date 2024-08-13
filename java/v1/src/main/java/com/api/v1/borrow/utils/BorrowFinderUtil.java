@@ -5,6 +5,7 @@ import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.domain.BorrowRepository;
 import com.api.v1.borrow.exceptions.BorrowNotFoundException;
 import com.api.v1.borrower.domain.Borrower;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -15,7 +16,7 @@ public class BorrowFinderUtil {
     @Autowired
     private BorrowRepository repository;
 
-    public Mono<Borrow> find(Borrower borrower, Book book) {
+    public Mono<Borrow> find(@NotNull Borrower borrower, @NotNull Book book) {
         String message = "Borrow was not found.";
         return repository
                 .findAll()
