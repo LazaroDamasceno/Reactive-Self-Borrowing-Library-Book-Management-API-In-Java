@@ -1,11 +1,13 @@
 package com.api.v1.borrower.controllers;
 
 import com.api.v1.borrower.services.DeleteBorrowerBySsnService;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import com.api.v1.annotations.SSN;
+
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -17,7 +19,7 @@ class DeleteBorrowerBySsnController {
 
     @DeleteMapping("{ssn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteBySsn(@PathVariable @NotNull @Size(min=9, max=9) String ssn) {
+    public Mono<Void> deleteBySsn(@PathVariable @SSN String ssn) {
         return service.deleteBySsn(ssn);
     }
 

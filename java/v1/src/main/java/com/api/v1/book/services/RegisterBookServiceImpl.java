@@ -4,7 +4,7 @@ import com.api.v1.book.builders.BookBuilder;
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.exceptions.DuplicatedIsbnException;
-import com.api.v1.book.dtos.BookRequestDto;
+import com.api.v1.book.dtos.NewBookRequestDto;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.mappers.BookDtoResponseMapper;
 import jakarta.validation.Valid;
@@ -19,7 +19,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
     private BookRepository repository;
 
     @Override
-    public Mono<BookResponseDto> register(@Valid BookRequestDto request) {
+    public Mono<BookResponseDto> register(@Valid NewBookRequestDto request) {
         return repository
                 .getByIsbn(request.isbn())
                 .hasElement()
@@ -34,7 +34,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
         return Mono.error(new DuplicatedIsbnException(message));
     }
 
-    private Mono<BookResponseDto> defer(BookRequestDto request) {
+    private Mono<BookResponseDto> defer(NewBookRequestDto request) {
         return Mono.defer(() -> {
             Book book = BookBuilder.fromDto(request).build();
             Mono<Book> savedBook = repository.save(book);

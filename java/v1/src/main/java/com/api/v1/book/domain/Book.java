@@ -1,6 +1,6 @@
 package com.api.v1.book.domain;
 
-import com.api.v1.book.dtos.BookRequestDto;
+import com.api.v1.book.dtos.UpdateBookRequestDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -75,7 +75,7 @@ public class Book {
         return "%s: %s".formatted(title, subtitle);
     }
 
-    public void update(BookRequestDto request) {
+    public void update(UpdateBookRequestDto request) {
         this.title = request.title();
         this.subtitle = request.subtitle();
         this.author = request.author();

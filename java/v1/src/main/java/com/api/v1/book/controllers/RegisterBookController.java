@@ -1,6 +1,6 @@
 package com.api.v1.book.controllers;
 
-import com.api.v1.book.dtos.BookRequestDto;
+import com.api.v1.book.dtos.NewBookRequestDto;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.services.RegisterBookService;
 
@@ -21,7 +21,7 @@ class RegisterBookController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Mono<BookResponseDto> register(@Valid @RequestBody BookRequestDto request) {
+    public Mono<BookResponseDto> register(@Valid @RequestBody NewBookRequestDto request) {
         return service.register(request);
     }
 

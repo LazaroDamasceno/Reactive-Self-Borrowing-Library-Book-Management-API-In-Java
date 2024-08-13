@@ -1,14 +1,14 @@
 package com.api.v1.book.dtos;
 
+import com.api.v1.annotations.ISBN;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
-public record BookRequestDto(
+public record NewBookRequestDto(
         @NotBlank String title,
         String subtitle,
-        @NotNull @Size(min=13, max=13) String isbn,
+        @ISBN String isbn,
         @NotBlank String author,
         int publishingYear,
         @NotBlank String field,

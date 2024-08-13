@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.annotations.ISBN;
 import com.api.v1.book.services.DeleteBookByIsbnService;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -23,7 +22,7 @@ class DeleteBookByIsbnController {
 
     @DeleteMapping("{isbn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteByIsbn(@NotNull @Size(min=13, max=13) @PathVariable String isbn) {
+    public Mono<Void> deleteByIsbn(@ISBN @PathVariable String isbn) {
         return service.deleteByIsbn(isbn);
     }
     

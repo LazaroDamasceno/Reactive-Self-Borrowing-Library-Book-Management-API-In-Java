@@ -1,7 +1,7 @@
 package com.api.v1.book.builders;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.book.dtos.BookRequestDto;
+import com.api.v1.book.dtos.NewBookRequestDto;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class BookBuilder {
     private final int version;
     private final String addedAt = ZonedDateTime.now().toString();
 
-    private BookBuilder(BookRequestDto dto) {
+    private BookBuilder(NewBookRequestDto dto) {
         this.title = dto.title();
         this.subtitle = dto.subtitle();
         this.isbn = dto.isbn();
@@ -30,7 +30,7 @@ public class BookBuilder {
         this.version = dto.version();
     }
 
-    public static BookBuilder fromDto(BookRequestDto dto) {
+    public static BookBuilder fromDto(NewBookRequestDto dto) {
         return new BookBuilder(dto);
     }
     

@@ -1,11 +1,7 @@
 package com.api.v1.borrow.utils;
 
-import com.api.v1.book.domain.Book;
-import com.api.v1.book.utils.BookFinderUtil;
 import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.domain.BorrowRepository;
-import com.api.v1.borrower.domain.Borrower;
-import com.api.v1.borrower.utils.BorrowerFinderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
@@ -17,12 +13,6 @@ public class FindAllBorrowsUtil {
     
     @Autowired
     private BorrowRepository repository;
-
-    @Autowired
-    private BookFinderUtil bookFinder;
-
-    @Autowired
-    private BorrowerFinderUtil borrowerFinder;
 
     public Flux<Borrow> findAll() {
         return repository.findAll();

@@ -5,7 +5,6 @@ import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.domain.BorrowRepository;
 import com.api.v1.borrow.exceptions.BorrowNotFoundException;
 import com.api.v1.borrower.domain.Borrower;
-import com.api.v1.borrower.exceptions.BorrowerNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
