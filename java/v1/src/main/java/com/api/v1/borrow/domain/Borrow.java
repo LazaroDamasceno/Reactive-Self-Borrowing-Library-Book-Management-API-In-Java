@@ -48,7 +48,7 @@ public class Borrow {
     }
 
     public void extendDueDate() {
-        this.extendedDueDate = ZonedDateTime.now().toString();
+        this.extendedDueDate = ZonedDateTime.parse(dueDate).plusDays(14).toString();
     }
 
     public void finishBorrow() {
