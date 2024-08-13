@@ -22,7 +22,7 @@ public class BorrowBuilder {
         this.book = dto.book();
         this.borrower = dto.borrower();
         this.borrowedDate = ZonedDateTime.now().toString();
-        this.dueDate = ZonedDateTime.now().toString();
+        this.dueDate = ZonedDateTime.now().plusDays(14).toString();
     }
 
     public static BorrowBuilder fromDto(@Valid NewBorrowRequestDto dto) {
