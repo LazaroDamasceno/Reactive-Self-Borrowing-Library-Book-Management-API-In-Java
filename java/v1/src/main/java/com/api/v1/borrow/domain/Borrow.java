@@ -51,7 +51,7 @@ public class Borrow {
         this.extendedDueDate = ZonedDateTime.now().toString();
     }
 
-    public void markReturnedDate() {
+    public void finishBorrow() {
         this.returnedDate = ZonedDateTime.now().toString();
     }
 
