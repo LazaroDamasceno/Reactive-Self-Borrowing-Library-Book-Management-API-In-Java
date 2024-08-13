@@ -37,13 +37,10 @@ public class FindAllBorrowsUtil {
     public Flux<Borrow> findAllOverdue() {
         return repository
                 .findAll()
-                .filter(e -> (
-                                (
-                                        ZonedDateTime.parse(e.getDueDate()).compareTo(getToday()) > 0
-                                        ||
-                                        ZonedDateTime.parse(e.getExtendedDueDate()).compareTo(getToday()) > 0
-                                ) && e.getReturnedDate() == null
-                ));
+                .filter(e -> (ZonedDateTime.parse(e.getDueDate()).compareTo(getToday()) > 0 ||
+                            ZonedDateTime.parse(e.getExtendedDueDate()).compareTo(getToday()) > 0
+                        ) && e.getReturnedDate() == null
+                );
     }
 
     private ZonedDateTime getToday() {

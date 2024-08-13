@@ -1,35 +1,37 @@
 package com.api.v1.borrow.services;
 
-import com.api.v1.book.domain.Book;
 import com.api.v1.borrow.dtos.BorrowResponseDto;
-import com.api.v1.borrower.domain.Borrower;
 import reactor.core.publisher.Flux;
 
 public interface FindAllBorrowsService {
 
     Flux<BorrowResponseDto> findAll();
-    Flux<BorrowResponseDto> findAll(Book book);
-    Flux<BorrowResponseDto> findAll(Book book, int year);
-    Flux<BorrowResponseDto> findAll(Borrower borrower);
-    Flux<BorrowResponseDto> findAll(Borrower borrower, int year);
-    Flux<BorrowResponseDto> findAll(Book book, Borrower borrower, int year);
+    Flux<BorrowResponseDto> findAll(String isbn);
+    Flux<BorrowResponseDto> findAllByIsbnAndYear(String isbn, int year);
+    Flux<BorrowResponseDto> findAllBySsn(String ssn);
+    Flux<BorrowResponseDto> findAllBySsnAndYear(String ssn, int year);
+    Flux<BorrowResponseDto> findAllByIsbnAndSsnAndYear(String isbn, String ssn, int year);
+    Flux<BorrowResponseDto> findAllByIsbnAndSsn(String isbn, String ssn);
     Flux<BorrowResponseDto> findAllActive();
-    Flux<BorrowResponseDto> findAllActive(Book book);
-    Flux<BorrowResponseDto> findAllActive(Book book, int year);
-    Flux<BorrowResponseDto> findAllActive(Borrower borrower);
-    Flux<BorrowResponseDto> findAllActive(Borrower borrower, int year);
-    Flux<BorrowResponseDto> findAllActive(Book book, Borrower borrower, int year);
+    Flux<BorrowResponseDto> findAllActiveByIsbn(String isbn);
+    Flux<BorrowResponseDto> findAllActiveByIsbnAndYear(String isbn, int year);
+    Flux<BorrowResponseDto> findAllActiveBySsn(String ssn);
+    Flux<BorrowResponseDto> findAllActiveBySsnAndYear(String ssn, int year);
+    Flux<BorrowResponseDto> findAllActiveByIsbnAndSsnAndYear(String isbn, String ssn, int year);
+    Flux<BorrowResponseDto> findAllActiveByIsbnAndSsn(String isbn, String ssn);
     Flux<BorrowResponseDto> findAllOverdue();
-    Flux<BorrowResponseDto> findAllOverdue(Book book);
-    Flux<BorrowResponseDto> findAllOverdue(Book book, int year);
-    Flux<BorrowResponseDto> findAllOverdue(Borrower borrower);
-    Flux<BorrowResponseDto> findAllOverdue(Borrower borrower, int year);
-    Flux<BorrowResponseDto> findAllOverdue(Book book, Borrower borrower, int year);
-    Flux<BorrowResponseDto> findAllReturned();
-    Flux<BorrowResponseDto> findAllReturned(Book book);
-    Flux<BorrowResponseDto> findAllReturned(Book book, int year);
-    Flux<BorrowResponseDto> findAllReturned(Borrower borrower);
-    Flux<BorrowResponseDto> findAllReturned(Borrower borrower, int year);
-    Flux<BorrowResponseDto> findAllReturned(Book book, Borrower borrower, int year);
+    Flux<BorrowResponseDto> findAllOverdueByIsbn(String isbn);
+    Flux<BorrowResponseDto> findAllOverdueByIsbnAndYear(String isbn, int year);
+    Flux<BorrowResponseDto> findAllOverdueBySsn(String ssn);
+    Flux<BorrowResponseDto> findAllOverdueBySsnAndYear(String ssn, int year);
+    Flux<BorrowResponseDto> findAllOverdueByIsbnAndSsnAndYear(String isbn, String ssn, int year);
+    Flux<BorrowResponseDto> findAllOverdueByIsbnAndSsn(String isbn, String ssn);
+    Flux<BorrowResponseDto> findAllFinished();
+    Flux<BorrowResponseDto> findAllFinishedByIsbn(String isbn);
+    Flux<BorrowResponseDto> findAllFinishedByIsbnAndYear(String isbn, int year);
+    Flux<BorrowResponseDto> findAllFinishedBySsn(String ssn);
+    Flux<BorrowResponseDto> findAllFinishedBySsnAndYear(String ssn, int year);
+    Flux<BorrowResponseDto> findAllFinishedByIsbnAndSsnAndYear(String isbn, String ssn, int year);
+    Flux<BorrowResponseDto> findAllFinishedByIsbnAndSsn(String isbn, String ssn);
 
 }
