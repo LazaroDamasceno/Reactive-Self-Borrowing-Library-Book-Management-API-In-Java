@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrows")
-public class FinishBorrowController {
+class FinishBorrowController {
 
     @Autowired
     private FinishBorrowService service;

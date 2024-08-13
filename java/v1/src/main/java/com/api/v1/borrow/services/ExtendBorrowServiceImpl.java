@@ -1,0 +1,43 @@
+package com.api.v1.borrow.services;
+
+import com.api.v1.annotations.ISBN;
+import com.api.v1.annotations.SSN;
+import com.api.v1.book.domain.Book;
+import com.api.v1.book.utils.BookFinderUtil;
+import com.api.v1.borrow.domain.Borrow;
+import com.api.v1.borrow.domain.BorrowRepository;
+import com.api.v1.borrow.utils.BorrowFinderUtil;
+import com.api.v1.borrower.domain.Borrower;
+import com.api.v1.borrower.utils.BorrowerFinderUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+
+@Service
+class ExtendBorrowServiceImpl implements ExtendBorrowService {
+
+    @Autowired
+    private BorrowRepository repository;
+
+    @Autowired
+    private BorrowFinderUtil borrowFinder;
+
+    @Autowired
+    private BookFinderUtil bookFinder;
+
+    @Autowired
+    private BorrowerFinderUtil borrowerFinder;
+
+    @Override
+    public Mono<Borrow> extend(@ISBN String isbn, @SSN String ssn) {
+        Mono<Book> bookMono = bookFinder.find(isbn);
+        Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
+        return borrowFinder
+                .find(borrowerMono, bookMono)
+                .flatMap(b -> Mono.defer(() -> {
+                    b.extendDueDate();
+                    return repository.save(b);
+                }));
+    }
+
+}
