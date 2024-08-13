@@ -19,12 +19,7 @@ public class BorrowFinderUtil {
     public Mono<Borrow> find(@NotNull Borrower borrower, @NotNull Book book) {
         String message = "Borrow was not found.";
         return repository
-                .findAll()
-                .filter(e -> e.getBorrower().equals(borrower) &&
-                        e.getBook().equals(book) &&
-                        e.getReturnedDate() == null
-                )
-                .singleOrEmpty()
+                .get(borrower, book)
                 .switchIfEmpty(Mono.error(new BorrowNotFoundException(message)));
     }
 
