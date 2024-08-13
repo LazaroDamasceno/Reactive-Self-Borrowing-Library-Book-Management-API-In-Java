@@ -31,15 +31,15 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     @Override
     public Flux<BorrowResponseDto> findAll() {
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
 
     @Override
-    public Flux<BorrowResponseDto> findAll(@ISBN String isbn) {
+    public Flux<BorrowResponseDto> findAllByIsbn(@ISBN String isbn) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono))
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
@@ -48,7 +48,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllByIsbnAndYear(@ISBN String isbn, int year) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                     && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -59,7 +59,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllBySsn(@SSN String ssn) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono))
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
@@ -68,7 +68,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllBySsnAndYear(@SSN String ssn, int year) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                     && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -80,7 +80,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && Mono.just(e.getBook()).equals(bookMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
@@ -93,7 +93,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllBorrows()
+                .findAll()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && Mono.just(e.getBook()).equals(bookMono)
                 )
@@ -103,7 +103,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     @Override
     public Flux<BorrowResponseDto> findAllActive() {
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
 
@@ -111,7 +111,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllActiveByIsbn(@ISBN String isbn) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                 )
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
@@ -121,7 +121,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllActiveByIsbnAndYear(@ISBN String isbn, int year) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -132,7 +132,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllActiveBySsn(@SSN String ssn) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                 )
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
@@ -142,7 +142,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllActiveBySsnAndYear(@SSN String ssn, int year) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -154,7 +154,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                         && Mono.just(e.getBorrower()).equals(borrowerMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
@@ -167,7 +167,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllActive()
+                .findActive()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                         && Mono.just(e.getBorrower()).equals(borrowerMono)
                 )
@@ -177,7 +177,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     @Override
     public Flux<BorrowResponseDto> findAllOverdue() {
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
 
@@ -185,7 +185,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllOverdueByIsbn(@ISBN String isbn) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono))
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
@@ -194,7 +194,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllOverdueByIsbnAndYear(@ISBN String isbn, int year) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -205,7 +205,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllOverdueBySsn(@SSN String ssn) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono))
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
@@ -214,7 +214,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllOverdueBySsnAndYear(@SSN String ssn, int year) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                     && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -226,7 +226,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && Mono.just(e.getBook()).equals(bookMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
@@ -239,7 +239,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllOverdue()
+                .findOverdue()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && Mono.just(e.getBook()).equals(bookMono)
                 )
@@ -249,7 +249,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     @Override
     public Flux<BorrowResponseDto> findAllFinished() {
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
 
@@ -257,7 +257,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllFinishedByIsbn(@ISBN String isbn) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono))
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
@@ -266,7 +266,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllFinishedByIsbnAndYear(@ISBN String isbn, int year) {
         Mono<Book> bookMono = bookFinder.find(isbn);
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .filter(e -> Mono.just(e.getBook()).equals(bookMono)
                     && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -277,7 +277,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllFinishedBySsn(@SSN String ssn) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono))
                 .flatMap(e -> Flux.just(BorrowResponseMapper.map(e)));
     }
@@ -286,7 +286,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
     public Flux<BorrowResponseDto> findAllFinishedBySsnAndYear(@SSN String ssn, int year) {
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
                 )
@@ -298,7 +298,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && Mono.just(e.getBook()).equals(bookMono)
                         && ZonedDateTime.parse(e.getBorrowedDate()).getYear() == year
@@ -311,7 +311,7 @@ class FindAllBorrowsServiceImpl implements FindAllBorrowsService {
         Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
         return findAllBorrows
-                .findAllFinished()
+                .findFinished()
                 .filter(e -> Mono.just(e.getBorrower()).equals(borrowerMono)
                         && Mono.just(e.getBook()).equals(bookMono)
                 )

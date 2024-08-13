@@ -24,17 +24,17 @@ public class FindAllBorrowsUtil {
     @Autowired
     private BorrowerFinderUtil borrowerFinder;
 
-    public Flux<Borrow> findAllBorrows() {
+    public Flux<Borrow> findAll() {
         return repository.findAll();
     }
 
-    public Flux<Borrow> findAllActive() {
+    public Flux<Borrow> findActive() {
         return repository
                 .findAll()
                 .filter(e -> e.getReturnedDate() == null);
     }
 
-    public Flux<Borrow> findAllOverdue() {
+    public Flux<Borrow> findOverdue() {
         return repository
                 .findAll()
                 .filter(e -> (ZonedDateTime.parse(e.getDueDate()).compareTo(getToday()) > 0 ||
@@ -51,7 +51,7 @@ public class FindAllBorrowsUtil {
         return ZonedDateTime.of(year, month, day, 0, 0, 0, 0, zone);
     }
 
-    public Flux<Borrow> findAllFinished() {
+    public Flux<Borrow> findFinished() {
         return repository
                 .findAll()
                 .filter(e -> e.getReturnedDate() != null);

@@ -6,7 +6,7 @@ import reactor.core.publisher.Flux;
 public interface FindAllBorrowsService {
 
     Flux<BorrowResponseDto> findAll();
-    Flux<BorrowResponseDto> findAll(String isbn);
+    Flux<BorrowResponseDto> findAllByIsbn(String isbn);
     Flux<BorrowResponseDto> findAllByIsbnAndYear(String isbn, int year);
     Flux<BorrowResponseDto> findAllBySsn(String ssn);
     Flux<BorrowResponseDto> findAllBySsnAndYear(String ssn, int year);
