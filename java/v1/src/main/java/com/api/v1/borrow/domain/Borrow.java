@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Document
+@Document(collection = "v1_borrows")
 public class Borrow {
 
     @Id

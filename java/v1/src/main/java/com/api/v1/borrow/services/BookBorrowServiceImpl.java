@@ -10,7 +10,6 @@ import com.api.v1.borrow.domain.BorrowRepository;
 import com.api.v1.borrow.dtos.BorrowResponseDto;
 import com.api.v1.borrow.dtos.NewBorrowRequestDto;
 import com.api.v1.borrow.mappers.BorrowResponseMapper;
-import com.api.v1.borrow.utils.BorrowFinderUtil;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
