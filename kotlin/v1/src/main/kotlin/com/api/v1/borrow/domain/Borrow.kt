@@ -27,10 +27,10 @@ class Borrow {
     val dueDate: String
 
     @Field
-    lateinit var extendedDueDate: String
+    var extendedDueDate: String = ""
 
     @Field
-    lateinit var returnedDate: String
+    var returnedDate: String = ""
 
     constructor(
         id: UUID,
