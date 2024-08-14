@@ -13,13 +13,13 @@ import java.util.UUID;
 public class Borrow {
 
     @Id
-    private UUID id;
+    private final UUID id;
 
     @Field
-    private Book book;
+    private final Book book;
 
     @Field
-    private Borrower borrower;
+    private final Borrower borrower;
 
     @Field
     private final String borrowedDate;
