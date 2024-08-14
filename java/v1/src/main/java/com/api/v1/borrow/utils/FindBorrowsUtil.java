@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import java.time.ZonedDateTime;
 
 @Component
-public class FindAllBorrowsUtil {
+public class FindBorrowsUtil {
     
     @Autowired
     private BorrowRepository repository;
