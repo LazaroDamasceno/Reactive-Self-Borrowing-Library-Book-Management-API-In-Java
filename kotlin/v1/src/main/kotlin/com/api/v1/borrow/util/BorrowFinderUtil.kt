@@ -19,7 +19,6 @@ class BorrowFinderUtil {
         return repository
             .get(borrower, book)
             .switchIfEmpty(Mono.error(BorrowNotFoundException()))
-
     }
 
 }

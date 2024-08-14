@@ -11,7 +11,8 @@ interface BorrowRepository: ReactiveCrudRepository<Borrow, UUID> {
 
     @Query("""{ 
         'borrower': borrower, 
-        'book': book
+        'book': book,
+        'returnedDate': null
     }""")
     fun get(borrower: Borrower, book: Book): Mono<Borrow>
 
