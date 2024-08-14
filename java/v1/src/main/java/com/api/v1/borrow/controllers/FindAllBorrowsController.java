@@ -16,38 +16,38 @@ class FindAllBorrowsController {
     @Autowired
     private FindAllBorrowsService service;
 
-    @GetMapping
+    @GetMapping("all")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findAll() {
         return service.findAll();
     }
 
-    @GetMapping("by-book/{isbn}")
+    @GetMapping("all/by-book/{isbn}")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findByIsbn(@PathVariable @ISBN String isbn) {
         return service.findAllByIsbn(isbn);
     }
 
-    @GetMapping("by-book/{isbn}/and/by-year/{year}")
+    @GetMapping("all/by-book/{isbn}/and/by-year/{year}")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findAllByIsbnAndYear(@PathVariable @ISBN String isbn, @PathVariable int year) {
         return service.findAllByIsbnAndYear(isbn, year);
     }
     
-    @GetMapping("by-borrower/{ssn}")
+    @GetMapping("all/by-borrower/{ssn}")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findAllBySsn(@PathVariable @SSN String ssn) {
         return service.findAllBySsn(ssn);
     }
 
 
-    @GetMapping("by-borrower/{ssn}/and/by-year/{year}")
+    @GetMapping("all/by-borrower/{ssn}/and/by-year/{year}")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findAllBySsnAndYear(@PathVariable @SSN String ssn, @PathVariable int year) {
         return service.findAllBySsnAndYear(ssn, year);
     }
 
-    @GetMapping("by-borrower/{ssn}/and/by-book/{isbn}/and/by-year/{year}")
+    @GetMapping("all/by-borrower/{ssn}/and/by-book/{isbn}/and/by-year/{year}")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findAllByIsbnAndSsnAndYear(
             @PathVariable @ISBN String isbn, 
@@ -57,7 +57,7 @@ class FindAllBorrowsController {
         return service.findAllByIsbnAndSsnAndYear(isbn, ssn, year);
     }
 
-    @GetMapping("by-borrower/{ssn}/and/by-book/{isbn}")
+    @GetMapping("all/by-borrower/{ssn}/and/by-book/{isbn}")
     @ResponseStatus(value = HttpStatus.OK)
     public Flux<BorrowResponseDto> findAllByIsbnAndSsn(@PathVariable @ISBN String isbn, @PathVariable @SSN String ssn) {
         return service.findAllByIsbnAndSsn(isbn, ssn);
