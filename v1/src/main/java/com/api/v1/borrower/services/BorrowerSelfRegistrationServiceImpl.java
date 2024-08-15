@@ -25,18 +25,17 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
         return repository.getBySsn(request.ssn())
                 .hasElement()
                 .flatMap(exists -> {
-                    if (exists) return duplicateSsnException();
-                    else return defer(request);
+                    if (exists) return handleDuplicatedBorrower();
+                    else return handleSelfRegistration(request);
                 });
     }
 
-
-    private Mono<BorrowerResponseDto> duplicateSsnException() {
+    private Mono<BorrowerResponseDto> handleDuplicatedBorrower() {
         String message = "Input SSN is already used.";
         return Mono.error(new DuplicatedSsnException(message));
     }
 
-    private Mono<BorrowerResponseDto> defer(NewBorrowerRequestDto request) {
+    private Mono<BorrowerResponseDto> handleSelfRegistration(NewBorrowerRequestDto request) {
         return Mono.defer(() -> {
             Borrower borrower = BorrowerBuilder.fromDto(request).build();
             Mono<Borrower> savedBorrower = repository.save(borrower);
