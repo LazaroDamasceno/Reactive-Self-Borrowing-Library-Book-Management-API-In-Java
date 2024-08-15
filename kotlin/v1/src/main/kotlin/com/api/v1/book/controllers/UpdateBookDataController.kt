@@ -21,7 +21,7 @@ class UpdateBookDataController {
     @Autowired
     private lateinit var service: UpdateBookDataService
 
-    @PutMapping("{isbn}")
+    @PutMapping("{isbn}/updatable")
     fun update(
         @NotNull @Size(min=13, max=13) @PathVariable isbn: String,
         @Valid @RequestBody request: UpdateBookRequestDto
