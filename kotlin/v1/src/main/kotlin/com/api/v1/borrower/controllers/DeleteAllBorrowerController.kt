@@ -16,7 +16,7 @@ internal class DeleteAllBorrowerController {
     @Autowired
     private lateinit var service: DeleteAllBorrowersService
 
-    @DeleteMapping("all/deletable")
+    @DeleteMapping("deletion")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public fun deleteAll(): Mono<Void> {
         return service.deleteAll()
