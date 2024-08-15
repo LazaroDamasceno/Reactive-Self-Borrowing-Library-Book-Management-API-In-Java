@@ -1,5 +1,6 @@
 package com.api.v1.borrower.services
 
+import com.api.v1.annotations.SSN
 import com.api.v1.borrower.domain.BorrowerRepository
 import com.api.v1.borrower.utils.BorrowerFinderUtil
 import jakarta.validation.constraints.NotNull
@@ -17,7 +18,7 @@ internal class DeleteBorrowerBySsnServiceImpl: DeleteBorrowerBySsnService {
     @Autowired
     private lateinit var finder: BorrowerFinderUtil
 
-    override fun deleteBySsn(@NotNull @Size(min=9, max=9) ssn: String): Mono<Void> {
+    override fun deleteBySsn(@SSN ssn: String): Mono<Void> {
         return finder.find(ssn).flatMap { b -> Mono.defer { repository.delete(b) } }
     }
 

@@ -1,5 +1,6 @@
 package com.api.v1.borrower.services
 
+import com.api.v1.annotations.SSN
 import com.api.v1.borrower.domain.Borrower
 import com.api.v1.borrower.domain.BorrowerRepository
 import com.api.v1.borrower.utils.BorrowerFinderUtil
@@ -21,8 +22,8 @@ internal class UpdateBorrowerServiceImpl: UpdateBorrowerService {
     private lateinit var finder: BorrowerFinderUtil
 
     override fun update(
-            @NotNull @Size(min=9, max=9) ssn: String,
-            @Valid request: UpdateBorrowerRequestDto
+        @SSN ssn: String,
+        @Valid request: UpdateBorrowerRequestDto
     ): Mono<Borrower> {
         return finder
             .find(ssn)

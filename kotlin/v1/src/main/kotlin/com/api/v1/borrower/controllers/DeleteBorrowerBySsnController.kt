@@ -1,5 +1,6 @@
 package com.api.v1.borrower.controllers
 
+import com.api.v1.annotations.SSN
 import com.api.v1.borrower.services.DeleteBorrowerBySsnService
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
@@ -21,7 +22,7 @@ internal class DeleteBorrowerBySsnController {
 
     @DeleteMapping("{ssn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    fun deleteBySsn(@NotNull @Size(min=9, max=9) @PathVariable ssn: String): Mono<Void> {
+    fun deleteBySsn(@SSN @PathVariable ssn: String): Mono<Void> {
         return service.deleteBySsn(ssn);
     }
 

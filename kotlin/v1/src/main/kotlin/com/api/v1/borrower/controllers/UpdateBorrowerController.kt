@@ -1,5 +1,6 @@
 package com.api.v1.borrower.controllers
 
+import com.api.v1.annotations.SSN
 import com.api.v1.borrower.domain.Borrower
 import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto
 import com.api.v1.borrower.services.UpdateBorrowerService
@@ -26,7 +27,7 @@ internal class UpdateBorrowerController {
     @PutMapping("{ssn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     fun update(
-        @PathVariable @NotNull @Size(min=9, max=9) ssn: String,
+        @PathVariable @SSN ssn: String,
         @RequestBody @Valid request: UpdateBorrowerRequestDto
     ): Mono<Borrower> {
         return service.update(ssn, request);

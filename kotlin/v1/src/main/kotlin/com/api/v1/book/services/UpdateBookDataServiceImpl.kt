@@ -1,5 +1,6 @@
 package com.api.v1.book.services
 
+import com.api.v1.annotations.ISBN
 import com.api.v1.book.domain.Book
 import com.api.v1.book.domain.BookRepository
 import com.api.v1.book.dtos.UpdateBookRequestDto
@@ -21,14 +22,13 @@ internal class UpdateBookDataServiceImpl: UpdateBookDataService {
     private lateinit var finder: BookFinderUtil
 
     override fun update(
-        @NotNull @Size(min=13, max=13) isbn: String,
+        @ISBN isbn: String,
         @Valid request: UpdateBookRequestDto
     ): Mono<Book> {
-        return finder.find(isbn).flatMap {
-            b ->
+        return finder.find(isbn)
+            .flatMap { b ->
                 b.update(request)
                 repository.save(b)
-        }
-    }
+    }}
 
 }

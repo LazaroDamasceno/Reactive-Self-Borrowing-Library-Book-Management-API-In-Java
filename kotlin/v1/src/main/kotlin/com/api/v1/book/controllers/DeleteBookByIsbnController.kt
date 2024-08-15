@@ -1,5 +1,6 @@
 package com.api.v1.book.controllers
 
+import com.api.v1.annotations.ISBN
 import com.api.v1.book.services.DeleteBookByIsbnService
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
@@ -19,9 +20,9 @@ class DeleteBookByIsbnController {
     @Autowired
     private lateinit var service: DeleteBookByIsbnService
 
-    @DeleteMapping("{isbn}/deletable")
+    @DeleteMapping("{isbn}/deletion")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    fun deleteByIsbn(@NotNull @Size(min=13, max=13) @PathVariable isbn: String): Mono<Void> {
+    fun deleteByIsbn(@ISBN @PathVariable isbn: String): Mono<Void> {
         return service.deleteByIsbn(isbn);
     }
 

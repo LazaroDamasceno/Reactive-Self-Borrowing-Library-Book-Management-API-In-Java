@@ -1,5 +1,6 @@
 package com.api.v1.book.utils
 
+import com.api.v1.annotations.ISBN
 import com.api.v1.book.domain.Book
 import com.api.v1.book.domain.BookRepository
 import com.api.v1.book.exceptions.BookNotFoundException
@@ -15,7 +16,7 @@ class BookFinderUtil {
     @Autowired
     private lateinit var repository: BookRepository
 
-    fun find(@NotNull @Size(min=13, max=13) isbn: String): Mono<Book> {
+    fun find(@ISBN isbn: String): Mono<Book> {
         return repository
             .getByIsbn(isbn)
             .switchIfEmpty(Mono.error(BookNotFoundException()))
