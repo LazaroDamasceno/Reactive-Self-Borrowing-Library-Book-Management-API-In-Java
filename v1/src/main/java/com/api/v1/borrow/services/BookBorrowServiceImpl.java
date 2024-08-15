@@ -14,6 +14,7 @@ import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.api.v1.borrow.exceptions.BorrowLimitReachedException;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -28,21 +29,44 @@ class BookBorrowServiceImpl implements BookBorrowService {
     @Autowired
     private BorrowerFinderUtil borrowerFinder;
 
+    private final Long BORROW_LIMIT = 3L;
+
     @Override
     public Mono<BorrowResponseDto> borrowBook(@ISBN String isbn, @SSN String ssn) {
-        var bookMono = bookFinder.find(isbn);
+        Mono<Book> bookMono = bookFinder.find(isbn);
         Mono<Borrower> borrowerMono = borrowerFinder.find(ssn);
-        return Mono
-                .zip(bookMono, borrowerMono)
-                .flatMap(tuple -> {
-                    Book book = tuple.getT1();
-                    Borrower borrower = tuple.getT2();
-                    NewBorrowRequestDto request = new NewBorrowRequestDto(book, borrower);
-                    Borrow borrow = BorrowBuilder.fromDto(request).build();
-                    return Mono.just(borrow);
-                })
-                .flatMap(repository::save)
-                .flatMap(b -> Mono.just(BorrowResponseMapper.map(b)));
+        return Mono.zip(bookMono, borrowerMono)
+            .flatMap(tuple -> {
+                Book book = tuple.getT1();
+                Borrower borrower = tuple.getT2();
+                return response(book, borrower);
+            });
+    }
+
+    private Mono<BorrowResponseDto> response(Book book, Borrower borrower) {
+        return repository
+            .countHowManyActiveBorrowsByBorrower(borrower)
+            .flatMap(count -> {
+                if (count.equals(BORROW_LIMIT)) {
+                    return handleBorrowLimitReached();
+                } 
+                else {
+                    return handleBorrow(book, borrower);
+                }
+            });         
+    }
+
+    private Mono<BorrowResponseDto> handleBorrowLimitReached() {
+        return Mono.error(new BorrowLimitReachedException());
+    }
+
+    private Mono<BorrowResponseDto> handleBorrow(Book book, Borrower borrower) {
+        return Mono.defer(() -> {
+            NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
+            Borrow borrow = BorrowBuilder.fromDto(dto).build();
+            Mono<Borrow> savedBorrow = repository.save(borrow);
+            return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
+        });
     }
 
 }
