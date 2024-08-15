@@ -35,7 +35,7 @@ internal class FinishBorrowServiceImpl: FinishBorrowService {
             .flatMap { tuple ->
                 val book: Book = tuple.t1
                 val borrower: Borrower = tuple.t2
-                borrowFinder.find(borrower, book)
+                borrowFinder.find(book, borrower)
             }
             .flatMap { borrow ->
                 borrow.finishBorrow()

@@ -6,7 +6,6 @@ import com.api.v1.book.domain.Book
 import com.api.v1.book.utils.BookFinderUtil
 import com.api.v1.borrow.domain.Borrow
 import com.api.v1.borrow.domain.BorrowRepository
-import com.api.v1.borrow.mapper.BorrowResponseMapper
 import com.api.v1.borrow.utils.BorrowFinderUtil
 import com.api.v1.borrower.domain.Borrower
 import com.api.v1.borrower.utils.BorrowerFinderUtil
@@ -36,7 +35,7 @@ internal class ExtendBorrowServiceImpl: ExtendBorrowService {
             .flatMap { tuple ->
                 val borrower: Borrower = tuple.t1
                 val book: Book = tuple.t2
-                borrowFinder.find(borrower, book)
+                borrowFinder.find(book, borrower)
             }
             .flatMap { borrow ->
                 borrow.extendDueDate()
