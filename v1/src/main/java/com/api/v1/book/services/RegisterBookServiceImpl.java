@@ -24,17 +24,17 @@ class RegisterBookServiceImpl implements RegisterBookService {
                 .getByIsbn(request.isbn())
                 .hasElement()
                 .flatMap(exists -> {
-                    if (exists) return duplicatedSsnError();
-                    else return defer(request);
+                    if (exists) return handleDuplicatedIsbn();
+                    else return handleRegistration(request);
                 });
     }
 
-    private Mono<BookResponseDto> duplicatedSsnError() {
+    private Mono<BookResponseDto> handleDuplicatedIsbn() {
         String message = "Input ISBN is already used.";
         return Mono.error(new DuplicatedIsbnException(message));
     }
 
-    private Mono<BookResponseDto> defer(NewBookRequestDto request) {
+    private Mono<BookResponseDto> handleRegistration(NewBookRequestDto request) {
         return Mono.defer(() -> {
             Book book = BookBuilder.fromDto(request).build();
             Mono<Book> savedBook = repository.save(book);
