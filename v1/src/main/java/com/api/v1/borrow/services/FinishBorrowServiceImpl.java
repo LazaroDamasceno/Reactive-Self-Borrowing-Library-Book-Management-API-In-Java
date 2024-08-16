@@ -36,7 +36,7 @@ class FinishBorrowServiceImpl implements FinishBorrowService {
                 .flatMap(tuple -> {
                     Book book = tuple.getT1();
                     Borrower borrower = tuple.getT2();
-                    return borrowFinder.find(borrower, book);
+                    return borrowFinder.findActive(borrower, book);
                 })
                 .flatMap(b -> Mono.defer(() -> {
                     b.finishBorrow();

@@ -13,10 +13,19 @@ public interface BorrowRepository extends ReactiveCrudRepository<Borrow, UUID> {
     @Query("""
             {
                 'borrower': { $eq borrower },
-                'book': { $eq book }
+                'book': { $eq book },
+                'returnedDate': null
             }
     """)
-    Mono<Borrow> get(Borrower borrower, Book book);
+    Mono<Borrow> findActiveBorrow(Borrower borrower, Book book);
+
+    @Query("""
+        {
+            'borrower': { $eq borrower },
+            'book': { $eq book }
+        }
+""")
+Mono<Borrow> findAAnyBorrow(Borrower borrower, Book book);
 
     @Query("""
         {

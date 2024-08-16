@@ -16,10 +16,17 @@ public class BorrowFinderUtil {
     @Autowired
     private BorrowRepository repository;
 
-    public Mono<Borrow> find(@NotNull Borrower borrower, @NotNull Book book) {
+    public Mono<Borrow> findActive(@NotNull Borrower borrower, @NotNull Book book) {
         String message = "Borrow was not found.";
         return repository
-                .get(borrower, book)
+                .findActiveBorrow(borrower, book)
+                .switchIfEmpty(Mono.error(new BorrowNotFoundException(message)));
+    }
+
+    public Mono<Borrow> findAny(@NotNull Borrower borrower, @NotNull Book book) {
+        String message = "Borrow was not found.";
+        return repository
+                .findAAnyBorrow(borrower, book)
                 .switchIfEmpty(Mono.error(new BorrowNotFoundException(message)));
     }
 
