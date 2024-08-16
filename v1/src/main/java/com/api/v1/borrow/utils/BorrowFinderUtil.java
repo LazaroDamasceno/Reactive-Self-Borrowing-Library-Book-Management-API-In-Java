@@ -26,7 +26,7 @@ public class BorrowFinderUtil {
     public Mono<Borrow> findAny(@NotNull Borrower borrower, @NotNull Book book) {
         String message = "Borrow was not found.";
         return repository
-                .findAAnyBorrow(borrower, book)
+                .findAnyBorrow(borrower, book)
                 .switchIfEmpty(Mono.error(new BorrowNotFoundException(message)));
     }
 

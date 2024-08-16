@@ -25,7 +25,7 @@ public interface BorrowRepository extends ReactiveCrudRepository<Borrow, UUID> {
             'book': { $eq book }
         }
 """)
-Mono<Borrow> findAAnyBorrow(Borrower borrower, Book book);
+Mono<Borrow> findAnyBorrow(Borrower borrower, Book book);
 
     @Query("""
         {
