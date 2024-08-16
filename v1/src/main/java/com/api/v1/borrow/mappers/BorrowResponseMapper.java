@@ -1,5 +1,7 @@
 package com.api.v1.borrow.mappers;
 
+import java.util.Objects;
+
 import com.api.v1.book.mappers.BookDtoResponseMapper;
 import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.dtos.BorrowResponseDto;
@@ -9,8 +11,8 @@ public class BorrowResponseMapper {
 
     public static BorrowResponseDto map(Borrow borrow) {
         return new BorrowResponseDto(
-                BookDtoResponseMapper.map(borrow.getBook()),
-                BorrowerDtoResponseMapper.map(borrow.getBorrower()),
+                BookDtoResponseMapper.map(Objects.requireNonNull(borrow.getBook())),
+                BorrowerDtoResponseMapper.map(Objects.requireNonNull(borrow.getBorrower())),
                 borrow.getBorrowedDate(),
                 borrow.getDueDate(),
                 borrow.getExtendedDueDate(),
