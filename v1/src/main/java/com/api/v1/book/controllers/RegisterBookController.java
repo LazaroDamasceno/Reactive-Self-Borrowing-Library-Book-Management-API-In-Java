@@ -19,7 +19,7 @@ class RegisterBookController {
     @Autowired
     private RegisterBookService service;
 
-    @PostMapping
+    @PostMapping("registering")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Mono<BookResponseDto> register(@Valid @RequestBody NewBookRequestDto request) {
         return service.register(request);

@@ -16,7 +16,7 @@ class BookBorrowController {
     @Autowired
     private BookBorrowService service;
 
-    @PostMapping("{isbn}/{ssn}")
+    @PostMapping("{isbn}/{ssn}/borrowing")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Mono<BorrowResponseDto> borrowBook(@ISBN @PathVariable String isbn, @SSN @PathVariable String ssn) {
         return service.borrowBook(isbn, ssn);

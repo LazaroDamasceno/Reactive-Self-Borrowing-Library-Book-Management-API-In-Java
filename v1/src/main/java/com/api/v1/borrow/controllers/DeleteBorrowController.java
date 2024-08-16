@@ -17,7 +17,7 @@ public class DeleteBorrowController {
     @Autowired
     private DeleteBorrowService service;
 
-    @DeleteMapping("by-borrower/{ssn}/and/by-book/{isbn}")    
+    @DeleteMapping("by-borrower/{ssn}/and/by-book/{isbn}/purging")    
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Void> delete(@ISBN @PathVariable String isbn, @SSN @PathVariable String ssn) {
         return service.delete(isbn, ssn);
