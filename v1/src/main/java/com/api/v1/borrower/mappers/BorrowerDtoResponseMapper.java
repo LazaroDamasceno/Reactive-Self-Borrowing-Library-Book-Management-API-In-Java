@@ -14,8 +14,7 @@ public class BorrowerDtoResponseMapper {
                 borrower.getAddress(),
                 borrower.getPhoneNumber(),
                 borrower.getGender(),
-                borrower.getCreatedAt(),
-                borrower.getUpdatedAt()
+                borrower.getCreatedAt()
         );
     }
 

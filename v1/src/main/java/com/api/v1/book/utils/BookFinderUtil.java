@@ -16,7 +16,9 @@ public class BookFinderUtil {
 
     public Mono<Book> find(@ISBN String isbn) {
         return repository
-                .getByIsbn(isbn)
+                .findAll()
+                .filter(e -> e.getIsbn().equals(isbn) && e.getArchivedAt() == null)
+                .singleOrEmpty()
                 .switchIfEmpty(Mono.error(BookNotFoundException::new));
     }
 

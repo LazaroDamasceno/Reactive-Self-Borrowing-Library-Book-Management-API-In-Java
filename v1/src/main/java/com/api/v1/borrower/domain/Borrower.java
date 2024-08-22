@@ -46,7 +46,7 @@ public class Borrower {
     private String createdAt;
 
     @Field
-    private String updatedAt;
+    private String archivedAt;
 
     public Borrower() {}
 
@@ -83,7 +83,8 @@ public class Borrower {
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public void update(UpdateBorrowerRequestDto request) {
+    public Borrower update(UpdateBorrowerRequestDto request) {
+        this.id = UUID.randomUUID();
         this.firstName = request.firstName();
         this.middleName = request.middleName();
         this.lastName = request.lastName();
@@ -91,7 +92,12 @@ public class Borrower {
         this.address = request.address();
         this.phoneNumber = request.phoneNumber();
         this.gender = request.gender();
-        this.updatedAt = ZonedDateTime.now().toString();
+        return this;
+    }
+
+    public Borrower archive() {
+        archivedAt = ZonedDateTime.now().toString();
+        return this;
     }
 
     public UUID getId() {
@@ -134,11 +140,12 @@ public class Borrower {
         return createdAt;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getArchivedAt() {
+        return archivedAt;
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
 }
