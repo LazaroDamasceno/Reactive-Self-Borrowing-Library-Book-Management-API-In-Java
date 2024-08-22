@@ -14,9 +14,8 @@ public class BookDtoResponseMapper {
                 book.getPublishingYear(),
                 book.getNumberOfPages(),
                 book.getVersion(),
-                book.getAddedAt(),
-                book.getUpdatedAt()
-        );
+                book.getAddedAt()
+       );
     }
 
 }

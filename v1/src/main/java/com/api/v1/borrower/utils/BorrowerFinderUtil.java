@@ -15,7 +15,11 @@ public class BorrowerFinderUtil {
 
     public Mono<Borrower> find(String ssn) {
         return repository
-                .getBySsn(ssn)
+                .findAll()
+                .filter(e -> e.getSsn().equals(ssn)
+                    && e.getArchivedAt() == null
+                )
+                .singleOrEmpty()
                 .switchIfEmpty(Mono.error(BorrowerNotFoundException::new));
     }
 

@@ -10,7 +10,6 @@ public record BorrowerResponseDto(
         String address,
         String phoneNumber,
         String gender,
-        String createdAt,
-        String updatedAt
+        String createdAt
 ) {
 }

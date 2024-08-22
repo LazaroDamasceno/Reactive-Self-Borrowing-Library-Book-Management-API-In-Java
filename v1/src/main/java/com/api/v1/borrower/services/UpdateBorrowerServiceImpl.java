@@ -24,11 +24,16 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
 
     @Override
     public Mono<Borrower> update(@SSN String ssn, @Valid UpdateBorrowerRequestDto request) {
-        return finder.find(ssn)
-            .flatMap(b -> Mono.defer(() -> {
-                b.update(request);
-                return repository.save(b);
-        }));
+        return finder
+            .find(ssn)
+            .flatMap(borrower -> {
+                Borrower archivedBorrower = borrower.archive();
+                return repository.save(archivedBorrower);
+            })
+            .flatMap(oldBorrower -> {
+                Borrower updatedBorrower = oldBorrower.update(request);
+                return repository.save(updatedBorrower);
+            });
     }
 
 }

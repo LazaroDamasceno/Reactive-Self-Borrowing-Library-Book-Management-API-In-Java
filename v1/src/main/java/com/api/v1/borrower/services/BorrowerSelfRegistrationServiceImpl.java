@@ -22,8 +22,12 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
 
     @Override
     public Mono<BorrowerResponseDto> selfRegister(@Valid NewBorrowerRequestDto request) {
-        return repository.getBySsn(request.ssn())
-                .hasElement()
+        return repository
+                .findAll()
+                .filter(e -> e.getSsn().equals(request.ssn())
+                    && e.getArchivedAt() == null
+                )
+                .hasElements()
                 .flatMap(exists -> {
                     if (exists) return handleDuplicatedBorrower();
                     else return handleSelfRegistration(request);

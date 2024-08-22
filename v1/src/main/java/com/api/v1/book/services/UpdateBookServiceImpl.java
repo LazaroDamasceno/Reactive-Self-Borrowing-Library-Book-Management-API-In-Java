@@ -25,11 +25,16 @@ class UpdateBookServiceImpl implements UpdateBookService {
 
     @Override
     public Mono<Book> update(@ISBN String isbn, @Valid UpdateBookRequestDto request) {
-        Mono<Book> mono = finder.find(isbn);
-        return mono.flatMap(b -> Mono.defer(() -> {
-            b.update(request);
-            return repository.save(b);
-        }));
+        return finder
+            .find(isbn)
+            .flatMap(book -> {
+                Book archivedBook = book.archive();
+                return repository.save(archivedBook);
+            })
+            .flatMap(oldBook -> {
+                Book updatedBook = oldBook.update(request);
+                return repository.save(updatedBook);
+            });
     }
 
 }

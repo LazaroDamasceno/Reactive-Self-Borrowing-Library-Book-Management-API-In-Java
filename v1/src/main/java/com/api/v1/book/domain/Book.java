@@ -42,7 +42,7 @@ public class Book {
     private String addedAt;
 
     @Field
-    private String updatedAt;
+    private String archivedAt;
 
     protected Book() {}
 
@@ -75,14 +75,20 @@ public class Book {
         return "%s: %s".formatted(title, subtitle);
     }
 
-    public void update(UpdateBookRequestDto request) {
+    public Book update(UpdateBookRequestDto request) {
+        this.id = UUID.randomUUID();
         this.title = request.title();
         this.subtitle = request.subtitle();
         this.author = request.author();
         this.field = request.field();
         this.numberOfPages = request.numberOfPages();
         this.version = request.version();
-        this.updatedAt = ZonedDateTime.now().toString();
+        return this;
+    }
+
+    public Book archive() {
+        archivedAt = ZonedDateTime.now().toString();
+        return this;
     }
 
     public UUID getId() {
@@ -121,8 +127,8 @@ public class Book {
         return addedAt;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getArchivedAt() {
+        return archivedAt;
     }
 
     public int getPublishingYear() {

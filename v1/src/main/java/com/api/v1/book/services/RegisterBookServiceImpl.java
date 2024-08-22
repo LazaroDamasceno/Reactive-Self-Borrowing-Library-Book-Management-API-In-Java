@@ -21,8 +21,9 @@ class RegisterBookServiceImpl implements RegisterBookService {
     @Override
     public Mono<BookResponseDto> register(@Valid NewBookRequestDto request) {
         return repository
-                .getByIsbn(request.isbn())
-                .hasElement()
+                .findAll()
+                .filter(e -> e.getIsbn().equals(request.isbn()) && e.getArchivedAt() == null)
+                .hasElements()
                 .flatMap(exists -> {
                     if (exists) return handleDuplicatedIsbn();
                     else return handleRegistration(request);
