@@ -17,7 +17,7 @@ class DeleteBorrowerBySsnController {
     @Autowired
     private DeleteBorrowerBySsnService service;
 
-    @DeleteMapping("{ssn}/purging")
+    @DeleteMapping("{ssn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Void> deleteBySsn(@PathVariable @SSN String ssn) {
         return service.deleteBySsn(ssn);

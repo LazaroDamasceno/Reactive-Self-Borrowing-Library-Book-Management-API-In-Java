@@ -21,7 +21,7 @@ class UpdateBorrowerController {
     @Autowired
     private UpdateBorrowerService service;
 
-    @PutMapping("{ssn}/updating")
+    @PutMapping("{ssn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Borrower> update(@SSN @PathVariable String ssn,
                              @Valid @RequestBody UpdateBorrowerRequestDto request

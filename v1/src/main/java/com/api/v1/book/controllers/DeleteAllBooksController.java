@@ -16,7 +16,7 @@ public class DeleteAllBooksController {
     @Autowired
     private DeleteAllBooksService service;
 
-    @DeleteMapping("purging")
+    @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Void> deleteAll() {
         return service.deleteAll();

@@ -22,7 +22,7 @@ class BorrowerSelfRegistrationController {
     @Autowired
     private BorrowerSelfRegistrationService service;
 
-    @PostMapping("registration")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<BorrowerResponseDto> selfRegister(@Valid @RequestBody NewBorrowerRequestDto request) {
         return service.selfRegister(request);

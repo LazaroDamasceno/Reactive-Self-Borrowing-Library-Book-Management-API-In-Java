@@ -21,7 +21,7 @@ class UpdateBookController {
     @Autowired
     private UpdateBookService service;
 
-    @PutMapping("{isbn}/updating")
+    @PutMapping("{isbn}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Book> update(
             @ISBN @PathVariable String isbn,
