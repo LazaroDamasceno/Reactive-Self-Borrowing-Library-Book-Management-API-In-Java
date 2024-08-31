@@ -1,12 +1,13 @@
 package com.api.v1.borrower.services;
 
 import com.api.v1.borrower.domain.Borrower;
-import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto;
 
+import com.api.v1.borrower.dtos.BorrowerResponseDto;
+import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
 import reactor.core.publisher.Mono;
 
 public interface UpdateBorrowerService {
 
-    Mono<Borrower> update(String ssn, UpdateBorrowerRequestDto request);
+    Mono<BorrowerResponseDto> update(NewBorrowerRequestDto request);
 
 }

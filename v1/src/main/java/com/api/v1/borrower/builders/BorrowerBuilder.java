@@ -10,16 +10,18 @@ import java.util.UUID;
 public class BorrowerBuilder {
 
     private final UUID id = UUID.randomUUID();
-    private final String firstName;
-    private final String middleName;
-    private final String lastName;
-    private final LocalDate birthDate;
-    private final String ssn;
-    private final String email;
-    private final String address;
-    private final String phoneNumber;
-    private final String gender;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private LocalDate birthDate;
+    private String ssn;
+    private String email;
+    private String address;
+    private String phoneNumber;
+    private String gender;
     private final String createdAt = ZonedDateTime.now().toString();
+
+    protected BorrowerBuilder() {}
 
     public BorrowerBuilder(NewBorrowerRequestDto dto) {
         this.firstName = dto.firstName();
@@ -33,7 +35,11 @@ public class BorrowerBuilder {
         this.gender = dto.gender();
     }
 
-    public static BorrowerBuilder fromDto(NewBorrowerRequestDto dto) {
+    public static BorrowerBuilder create() {
+        return new BorrowerBuilder();
+    }
+
+    public BorrowerBuilder fromDto(NewBorrowerRequestDto dto) {
         return new BorrowerBuilder(dto);
     } 
 

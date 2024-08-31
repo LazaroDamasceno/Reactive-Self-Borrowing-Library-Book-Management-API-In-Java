@@ -1,10 +1,13 @@
 package com.api.v1.borrower.services;
 
 import com.api.v1.annotations.SSN;
+import com.api.v1.borrower.builders.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
+import com.api.v1.borrower.dtos.BorrowerResponseDto;
+import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
+import com.api.v1.borrower.mappers.BorrowerDtoResponseMapper;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
-import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto;
 
 import jakarta.validation.Valid;
 
@@ -23,17 +26,17 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
     private BorrowerFinderUtil finder;
 
     @Override
-    public Mono<Borrower> update(@SSN String ssn, @Valid UpdateBorrowerRequestDto request) {
+    public Mono<BorrowerResponseDto> update(@Valid NewBorrowerRequestDto request) {
         return finder
-            .find(ssn)
+            .find(request.ssn())
             .flatMap(borrower -> {
                 Borrower archivedBorrower = borrower.archive();
                 return repository.save(archivedBorrower);
             })
-            .flatMap(oldBorrower -> {
-                Borrower updatedBorrower = oldBorrower.update(request);
-                return repository.save(updatedBorrower);
-            });
+            .then(Mono.defer(() -> {
+                Borrower updatedBorrower = BorrowerBuilder.create().fromDto(request).build();
+                return repository.save(updatedBorrower).flatMap(b -> Mono.just(BorrowerDtoResponseMapper.map(b)));
+            }));
     }
 
 }

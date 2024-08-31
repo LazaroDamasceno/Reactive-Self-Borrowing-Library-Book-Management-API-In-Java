@@ -41,7 +41,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
 
     private Mono<BorrowerResponseDto> handleSelfRegistration(NewBorrowerRequestDto request) {
         return Mono.defer(() -> {
-            Borrower borrower = BorrowerBuilder.fromDto(request).build();
+            Borrower borrower = BorrowerBuilder.create().fromDto(request).build();
             Mono<Borrower> savedBorrower = repository.save(borrower);
             return savedBorrower.flatMap(b -> Mono.just(BorrowerDtoResponseMapper.map(b)));
         });

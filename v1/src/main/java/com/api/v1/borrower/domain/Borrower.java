@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import com.api.v1.borrower.dtos.UpdateBorrowerRequestDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -81,18 +80,6 @@ public class Borrower {
             return "%s %s".formatted(firstName, lastName);
         }
         return "%s %s %s".formatted(firstName, middleName, lastName);
-    }
-
-    public Borrower update(UpdateBorrowerRequestDto request) {
-        this.id = UUID.randomUUID();
-        this.firstName = request.firstName();
-        this.middleName = request.middleName();
-        this.lastName = request.lastName();
-        this.email = request.email();
-        this.address = request.address();
-        this.phoneNumber = request.phoneNumber();
-        this.gender = request.gender();
-        return this;
     }
 
     public Borrower archive() {
