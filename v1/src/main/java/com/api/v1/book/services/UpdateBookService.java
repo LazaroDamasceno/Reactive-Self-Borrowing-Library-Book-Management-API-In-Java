@@ -1,12 +1,12 @@
 package com.api.v1.book.services;
 
-import com.api.v1.book.domain.Book;
-import com.api.v1.book.dtos.UpdateBookRequestDto;
+import com.api.v1.book.dtos.BookResponseDto;
 
+import com.api.v1.book.dtos.NewBookRequestDto;
 import reactor.core.publisher.Mono;
 
 public interface UpdateBookService {
 
-    Mono<Book> update(String isbn, UpdateBookRequestDto request);
+    Mono<BookResponseDto> update(NewBookRequestDto request);
 
 }

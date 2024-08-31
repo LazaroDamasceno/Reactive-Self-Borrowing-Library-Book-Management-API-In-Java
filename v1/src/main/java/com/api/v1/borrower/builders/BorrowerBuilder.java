@@ -23,7 +23,11 @@ public class BorrowerBuilder {
 
     protected BorrowerBuilder() {}
 
-    public BorrowerBuilder(NewBorrowerRequestDto dto) {
+    public static BorrowerBuilder create() {
+        return new BorrowerBuilder();
+    }
+
+    public BorrowerBuilder fromDto(NewBorrowerRequestDto dto) {
         this.firstName = dto.firstName();
         this.middleName = dto.middleName();
         this.lastName = dto.lastName();
@@ -33,15 +37,8 @@ public class BorrowerBuilder {
         this.address = dto.address();
         this.phoneNumber = dto.phoneNumber();
         this.gender = dto.gender();
+        return this;
     }
-
-    public static BorrowerBuilder create() {
-        return new BorrowerBuilder();
-    }
-
-    public BorrowerBuilder fromDto(NewBorrowerRequestDto dto) {
-        return new BorrowerBuilder(dto);
-    } 
 
     public Borrower build() {
         return new Borrower(
