@@ -37,7 +37,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
 
     private Mono<BookResponseDto> handleRegistration(NewBookRequestDto request) {
         return Mono.defer(() -> {
-            Book book = BookBuilder.fromDto(request).build();
+            Book book = BookBuilder.create().fromDto(request).build();
             Mono<Book> savedBook = repository.save(book);
             return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
         });
