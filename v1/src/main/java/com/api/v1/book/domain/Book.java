@@ -1,6 +1,5 @@
 package com.api.v1.book.domain;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -9,9 +8,6 @@ import java.util.UUID;
 
 @Document(collection = "v1_books")
 public class Book {
-
-    @Id
-    private UUID id;
 
     @Field
     private String title;
@@ -46,7 +42,6 @@ public class Book {
     protected Book() {}
 
     public Book(
-            UUID id,
             String title,
             String subtitle,
             String isbn,
@@ -57,7 +52,6 @@ public class Book {
             int version,
             String addedAt
     ) {
-        this.id = id;
         this.title = title;
         this.subtitle = subtitle;
         this.isbn = isbn;
@@ -77,10 +71,6 @@ public class Book {
     public Book archive() {
         archivedAt = ZonedDateTime.now().toString();
         return this;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public String getTitle() {

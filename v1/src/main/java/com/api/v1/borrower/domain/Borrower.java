@@ -10,9 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "v1_borrowers")
 public class Borrower {
-    
-    @Id
-    private UUID id;
 
     @Field
     private String firstName;
@@ -50,7 +47,6 @@ public class Borrower {
     public Borrower() {}
 
     public Borrower(
-            UUID id,
             String firstName,
             String middleName,
             String lastName,
@@ -62,7 +58,6 @@ public class Borrower {
             String gender,
             String createdAt
     ) {
-        this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -85,10 +80,6 @@ public class Borrower {
     public Borrower archive() {
         archivedAt = ZonedDateTime.now().toString();
         return this;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public String getFirstName() {

@@ -12,9 +12,6 @@ import java.util.UUID;
 @Document(collection = "v1_borrows")
 public class Borrow {
 
-    @Id
-    private final UUID id;
-
     @Field
     private final Book book;
 
@@ -34,13 +31,11 @@ public class Borrow {
     private String returnedDate;
 
     public Borrow(
-            UUID id,
             Book book,
             Borrower borrower,
             String borrowedDate,
             String dueDate
     ) {
-        this.id = id;
         this.book = book;
         this.borrower = borrower;
         this.borrowedDate = borrowedDate;
@@ -53,10 +48,6 @@ public class Borrow {
 
     public void finishBorrow() {
         this.returnedDate = ZonedDateTime.now().toString();
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public Book getBook() {
