@@ -9,7 +9,6 @@ import java.util.UUID;
 
 public class BorrowerBuilder {
 
-    private final UUID id = UUID.randomUUID();
     private String firstName;
     private String middleName;
     private String lastName;
@@ -42,7 +41,6 @@ public class BorrowerBuilder {
 
     public Borrower build() {
         return new Borrower(
-            this.id,
             this.firstName,
             this.middleName,
             this.lastName,

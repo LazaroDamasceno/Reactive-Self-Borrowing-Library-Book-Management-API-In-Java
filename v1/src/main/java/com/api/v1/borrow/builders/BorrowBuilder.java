@@ -11,26 +11,27 @@ import java.util.UUID;
 
 public class BorrowBuilder {
 
-    private final UUID id;
-    private final Book book;
-    private final Borrower borrower;
-    private final String borrowedDate;
-    private final String dueDate;
+    private Book book;
+    private Borrower borrower;
+    private String borrowedDate;
+    private String dueDate;
 
-    private BorrowBuilder(NewBorrowRequestDto dto) {
-        this.id = UUID.randomUUID();
+    protected BorrowBuilder() {}
+
+    public static BorrowBuilder create() {
+        return new BorrowBuilder();
+    }
+
+    public BorrowBuilder fromDto(NewBorrowRequestDto dto) {
         this.book = dto.book();
         this.borrower = dto.borrower();
         this.borrowedDate = ZonedDateTime.now().toString();
         this.dueDate = ZonedDateTime.now().plusDays(14).toString();
-    }
-
-    public static BorrowBuilder fromDto(@Valid NewBorrowRequestDto dto) {
-        return new BorrowBuilder(dto);
+        return this;
     }
 
     public Borrow build() {
-        return new Borrow(id, book, borrower, borrowedDate, dueDate);
+        return new Borrow(book, borrower, borrowedDate, dueDate);
     }
 
 }

@@ -8,7 +8,6 @@ import java.util.UUID;
 
 public class BookBuilder {
 
-    private final UUID id = UUID.randomUUID();
     private String title;
     private String subtitle;
     private String isbn;
@@ -39,7 +38,6 @@ public class BookBuilder {
 
     public Book build() {
         return new Book(
-                id,
                 title,
                 subtitle,
                 isbn,
