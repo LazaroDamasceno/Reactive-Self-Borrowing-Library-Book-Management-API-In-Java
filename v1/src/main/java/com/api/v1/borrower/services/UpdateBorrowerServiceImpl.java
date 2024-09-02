@@ -1,6 +1,5 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.annotations.SSN;
 import com.api.v1.borrower.builders.BorrowerBuilder;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
@@ -8,7 +7,6 @@ import com.api.v1.borrower.dtos.BorrowerResponseDto;
 import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
 import com.api.v1.borrower.mappers.BorrowerDtoResponseMapper;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
-
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
