@@ -17,9 +17,8 @@ class UpdateBorrowerController {
     private UpdateBorrowerService service;
 
     @PutMapping
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public Mono<BorrowerResponseDto> update(@Valid @RequestBody NewBorrowerRequestDto request
-    ) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public Mono<BorrowerResponseDto> update(@Valid @RequestBody NewBorrowerRequestDto request) {
         return service.update(request);
     }
 

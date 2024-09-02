@@ -18,7 +18,7 @@ class UpdateBookController {
     private UpdateBookService service;
 
     @PutMapping
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @ResponseStatus(value = HttpStatus.OK)
     public Mono<BookResponseDto> update(@Valid @RequestBody NewBookRequestDto request) {
         return service.update(request);
     }
