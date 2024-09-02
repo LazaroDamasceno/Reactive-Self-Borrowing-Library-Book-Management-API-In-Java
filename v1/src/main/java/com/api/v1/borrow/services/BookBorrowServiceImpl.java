@@ -63,7 +63,7 @@ class BookBorrowServiceImpl implements BookBorrowService {
     private Mono<BorrowResponseDto> handleBorrow(Book book, Borrower borrower) {
         return Mono.defer(() -> {
             NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
-            Borrow borrow = BorrowBuilder.fromDto(dto).build();
+            Borrow borrow = BorrowBuilder.create().fromDto(dto).build();
             Mono<Borrow> savedBorrow = repository.save(borrow);
             return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
         });
