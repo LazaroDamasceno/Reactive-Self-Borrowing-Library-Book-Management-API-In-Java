@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/books")
-class RegisterBookController {
+public class RegisterBookController {
 
     @Autowired
     private RegisterBookService service;

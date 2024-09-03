@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/books")
-class UpdateBookController {
+public class UpdateBookController {
 
     @Autowired
     private UpdateBookService service;

@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/books")
-class DeleteBookByIsbnController {
+public class DeleteBookByIsbnController {
 
     @Autowired
     private DeleteBookByIsbnService service;

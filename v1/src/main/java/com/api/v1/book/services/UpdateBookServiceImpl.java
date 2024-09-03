@@ -30,13 +30,13 @@ class UpdateBookServiceImpl implements UpdateBookService {
             .find(request.isbn())
             .flatMap(book -> {
                 Book archivedBook = book.archive();
-                return repository.save(archivedBook);
-            })
-            .then(Mono.defer(() -> {
-                Book updatedBook = BookBuilder.create().fromDto(request).build();
-                return repository.save(updatedBook)
-                        .flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
-            }));
+                return repository.save(archivedBook)
+                        .then(Mono.defer(() -> {
+                            Book updatedBook = BookBuilder.create().fromDto(request).build();
+                            return repository.save(updatedBook)
+                                    .flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
+                        }));
+            });
     }
 
 }
