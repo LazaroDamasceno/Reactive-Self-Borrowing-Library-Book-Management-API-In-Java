@@ -1,5 +1,6 @@
 package com.api.v1.book.services;
 
+import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.exceptions.BookEntityNotExistException;
@@ -34,8 +35,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new BookEntityNotExistException());
-                    return repository
-                            .findAll()
+                    return allBooks()
                             .filter(e -> e.getAuthor().equals(author))
                             .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
                 });
@@ -48,8 +48,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new BookEntityNotExistException());
-                    return repository
-                            .findAll()
+                    return allBooks()
                             .filter(e -> e.getField().equals(field))
                             .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
                 });
@@ -62,8 +61,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new BookEntityNotExistException());
-                    return repository
-                            .findAll()
+                    return allBooks()
                             .filter(e -> e.getPublishingYear() == year)
                             .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
                 });
@@ -76,8 +74,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new BookEntityNotExistException());
-                    return repository
-                            .findAll()
+                    return allBooks()
                             .filter(e -> e.getField().equals(field) && e.getPublishingYear() == year)
                             .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
                 });
@@ -90,8 +87,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new BookEntityNotExistException());
-                    return repository
-                            .findAll()
+                    return allBooks()
                             .filter(e -> e.getAuthor().equals(author) && e.getField().equals(field))
                             .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
                 });
@@ -104,13 +100,16 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new BookEntityNotExistException());
-                    return repository
-                            .findAll()
+                    return allBooks()
                             .filter(e -> e.getAuthor().equals(author)
                                         && e.getField().equals(field)
                                         && e.getPublishingYear() == year
                             ).flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
                 });
+    }
+
+    private Flux<Book> allBooks() {
+        return repository.findAll();
     }
 
 }
