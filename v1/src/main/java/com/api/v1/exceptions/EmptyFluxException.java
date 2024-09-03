@@ -1,4 +1,4 @@
-package com.api.v1.book.exceptions;
+package com.api.v1.exceptions;
 
 public class EmptyFluxException extends RuntimeException {
 
