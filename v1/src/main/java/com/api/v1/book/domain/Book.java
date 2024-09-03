@@ -1,5 +1,8 @@
 package com.api.v1.book.domain;
 
+import com.api.v1.book.dtos.NewBookRequestDto;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -8,6 +11,9 @@ import java.util.UUID;
 
 @Document(collection = "v1_books")
 public class Book {
+
+    @Id
+    private ObjectId id = new ObjectId();
 
     @Field
     private String title;
@@ -63,14 +69,26 @@ public class Book {
         this.addedAt = addedAt;
     }
 
+    public Book update(NewBookRequestDto request) {
+        this.id = new ObjectId();
+        this.title = request.title();
+        this.subtitle = request.subtitle();
+        this.publishingYear = request.publishingYear();
+        this.author = request.author();
+        this.field = request.field();
+        this.numberOfPages = request.numberOfPages();
+        this.version = request.version();
+        this.archivedAt = null;
+        return this;
+    }
+
     public String getFullTitle() {
         if (subtitle.isEmpty()) return title;
         return "%s: %s".formatted(title, subtitle);
     }
 
-    public Book archive() {
-        archivedAt = ZonedDateTime.now().toString();
-        return this;
+    public void inactive() {
+        this.archivedAt = ZonedDateTime.now().toString();
     }
 
     public String getTitle() {
@@ -111,6 +129,10 @@ public class Book {
 
     public int getPublishingYear() {
         return publishingYear;
+    }
+
+    public ObjectId getId() {
+        return id;
     }
 
 }
