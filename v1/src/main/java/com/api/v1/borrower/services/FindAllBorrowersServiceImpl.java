@@ -1,5 +1,7 @@
 package com.api.v1.borrower.services;
 
+import com.api.v1.borrower.domain.Borrower;
+import com.api.v1.exceptions.EmptyFluxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,15 @@ class FindAllBorrowersServiceImpl implements FindAllBorrowersService {
     @Override
     public Flux<BorrowerResponseDto> findAll() {
         return repository
-            .findAll()
-            .flatMap(b -> Flux.just(BorrowerResponseMapper.map(b)));
+                .findAll().hasElements().flatMapMany(exists -> {
+                    if (!exists) return Flux.error(new EmptyFluxException());
+                    return allBorrowers().flatMap(b -> Flux.just(BorrowerResponseMapper.map(b)));
+                });
+
+    }
+
+    private Flux<Borrower> allBorrowers() {
+        return repository.findAll();
     }
     
 }
