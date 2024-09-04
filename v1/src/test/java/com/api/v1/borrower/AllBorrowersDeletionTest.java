@@ -12,7 +12,7 @@ public class AllBorrowersDeletionTest {
     private WebTestClient webTestClient;
 
     @Test
-    void testSuccessfulAllBorrowerDeletion() {
+    void testSuccessfulAllBorrowersDeletion() {
         webTestClient
                 .delete()
                 .uri("api/v1/borrowers")
@@ -22,7 +22,7 @@ public class AllBorrowersDeletionTest {
     }
 
     @Test
-    void testUnsuccessfulAllBorrowerDeletion() {
+    void testUnsuccessfulAllBorrowersDeletion() {
         webTestClient
                 .delete()
                 .uri("api/v1/borrowers")
