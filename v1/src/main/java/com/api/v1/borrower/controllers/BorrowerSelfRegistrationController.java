@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrowers")
-class BorrowerSelfRegistrationController {
+public class BorrowerSelfRegistrationController {
 
     @Autowired
     private BorrowerSelfRegistrationService service;
