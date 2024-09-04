@@ -6,7 +6,7 @@ import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.exceptions.DuplicatedSsnException;
 import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
 import com.api.v1.borrower.dtos.BorrowerResponseDto;
-import com.api.v1.borrower.mappers.BorrowerDtoResponseMapper;
+import com.api.v1.borrower.mappers.BorrowerResponseMapper;
 
 import jakarta.validation.Valid;
 import reactor.core.publisher.Mono;
@@ -43,7 +43,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
         return Mono.defer(() -> {
             Borrower borrower = BorrowerBuilder.create().fromDto(request).build();
             Mono<Borrower> savedBorrower = repository.save(borrower);
-            return savedBorrower.flatMap(b -> Mono.just(BorrowerDtoResponseMapper.map(b)));
+            return savedBorrower.flatMap(b -> Mono.just(BorrowerResponseMapper.map(b)));
         });
     }
 

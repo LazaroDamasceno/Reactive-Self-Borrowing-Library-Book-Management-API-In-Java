@@ -2,14 +2,17 @@ package com.api.v1.borrower.domain;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.UUID;
-
+import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "v1_borrowers")
 public class Borrower {
+
+    @Id
+    private ObjectId id = new ObjectId();
 
     @Field
     private String firstName;
@@ -70,6 +73,21 @@ public class Borrower {
         this.createdAt = createdAt;
     }
 
+    public Borrower update(NewBorrowerRequestDto request) {
+        this.id = new ObjectId();
+        this.firstName = request.firstName();
+        this.middleName = request.middleName();
+        this.lastName = request.lastName();
+        this.birthDate = request.birthDate();
+        this.ssn = request.ssn();
+        this.email = request.email();
+        this.address = request.address();
+        this.phoneNumber = request.phoneNumber();
+        this.gender = request.gender();
+        this.archivedAt = null;
+        return this;
+    }
+
     public String getFullName() {
         if (middleName.isEmpty()) {
             return "%s %s".formatted(firstName, lastName);
@@ -77,9 +95,8 @@ public class Borrower {
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public Borrower archive() {
+    public void inactive() {
         archivedAt = ZonedDateTime.now().toString();
-        return this;
     }
 
     public String getFirstName() {
@@ -124,6 +141,10 @@ public class Borrower {
 
     public LocalDate getBirthDate() {
         return birthDate;
+    }
+
+    public ObjectId getId() {
+        return id;
     }
 
 }
