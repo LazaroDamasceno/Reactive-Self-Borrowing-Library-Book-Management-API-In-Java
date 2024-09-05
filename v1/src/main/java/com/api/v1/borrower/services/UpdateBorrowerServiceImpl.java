@@ -27,10 +27,10 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
             .find(request.ssn())
             .flatMap(existingBorrower -> {
                 existingBorrower.update(request);
-                return repository
-                        .save(existingBorrower)
-                        .flatMap(updateBorrower -> Mono.just(BorrowerResponseMapper.map(updateBorrower)));
-            });
+                return repository.save(existingBorrower);
+            })
+            .flatMap(updateBorrower -> Mono.just(BorrowerResponseMapper.map(updateBorrower)));
+
     }
 
 }
