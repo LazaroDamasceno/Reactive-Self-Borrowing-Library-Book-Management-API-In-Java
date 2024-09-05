@@ -16,7 +16,7 @@ public class FinishBorrowController {
     @Autowired
     private FinishBorrowService service;
 
-    @PatchMapping("by-book/{isbn}/and/by-borrower{ssn}")
+    @PatchMapping("{isbn}/{ssn}/finishing")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Borrow> finish(@ISBN @PathVariable String isbn, @SSN @PathVariable String ssn) {
         return service.finish(isbn, ssn);

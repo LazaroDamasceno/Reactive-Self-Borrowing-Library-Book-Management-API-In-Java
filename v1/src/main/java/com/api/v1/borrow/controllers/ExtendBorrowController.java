@@ -19,7 +19,7 @@ public class ExtendBorrowController {
     @Autowired
     private ExtendBorrowService service;
 
-    @PatchMapping("by-book/{isbn}/and/by-borrower/{ssn}")
+    @PatchMapping("{isbn}/{ssn}/extension")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Mono<Borrow> extend(@ISBN String isbn, @SSN String ssn) {
         return service.extend(isbn, ssn);
