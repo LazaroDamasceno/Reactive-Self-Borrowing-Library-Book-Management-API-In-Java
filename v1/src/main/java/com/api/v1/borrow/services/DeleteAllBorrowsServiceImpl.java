@@ -1,5 +1,6 @@
 package com.api.v1.borrow.services;
 
+import com.api.v1.borrow.exceptions.BorrowEntityNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,13 @@ class DeleteAllBorrowsServiceImpl implements DeleteAllBorrowsService {
 
     @Override
     public Mono<Void> deleteAll() {
-        return repository.deleteAll();
+        return repository
+                .findAll()
+                .hasElements()
+                .flatMap(exists -> {
+                    if (!exists) return Mono.error(new BorrowEntityNotExistException());
+                    return repository.deleteAll();
+                });
     }
     
 }
