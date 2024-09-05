@@ -1,6 +1,5 @@
 package com.api.v1.borrower.services;
 
-import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.domain.BorrowerRepository;
 import com.api.v1.borrower.dtos.BorrowerResponseDto;
 import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
@@ -27,10 +26,11 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
         return finder
             .find(request.ssn())
             .flatMap(existingBorrower -> {
-                existingBorrower.inactive();
-                return repository.save(existingBorrower);
-            })
-            .flatMap(updateBorrower -> Mono.just(BorrowerResponseMapper.map(updateBorrower)));
+                existingBorrower.update(request);
+                return repository
+                        .save(existingBorrower)
+                        .flatMap(updateBorrower -> Mono.just(BorrowerResponseMapper.map(updateBorrower)));
+            });
     }
 
 }

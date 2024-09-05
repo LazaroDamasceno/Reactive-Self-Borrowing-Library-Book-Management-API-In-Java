@@ -11,6 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "v1_borrowers")
 public class Borrower {
 
+    @Id
+    private ObjectId id = new ObjectId();
+
     @Field
     private String firstName;
 
@@ -90,8 +93,8 @@ public class Borrower {
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public void inactive() {
-        updatedAt = ZonedDateTime.now().toString();
+    public ObjectId getId() {
+        return id;
     }
 
     public String getFirstName() {

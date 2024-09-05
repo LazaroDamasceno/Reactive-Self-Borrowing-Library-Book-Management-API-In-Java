@@ -1,6 +1,5 @@
 package com.api.v1.book.services;
 
-import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.dtos.NewBookRequestDto;
@@ -29,9 +28,10 @@ class UpdateBookServiceImpl implements UpdateBookService {
                 .find(request.isbn())
                 .flatMap(existingBook -> {
                     existingBook.update(request);
-                    return repository.save(existingBook);
-                })
-                .flatMap(updateBook -> Mono.just(BookDtoResponseMapper.map(updateBook)));
+                    return repository
+                            .save(existingBook)
+                            .flatMap(updateBook -> Mono.just(BookDtoResponseMapper.map(updateBook)));
+                });
     }
 
 }
