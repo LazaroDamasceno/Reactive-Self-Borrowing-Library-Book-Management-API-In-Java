@@ -4,10 +4,7 @@ import com.api.v1.book.domain.Book;
 import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.dtos.NewBorrowRequestDto;
 import com.api.v1.borrower.domain.Borrower;
-import jakarta.validation.Valid;
-
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 public class BorrowBuilder {
 

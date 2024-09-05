@@ -2,12 +2,9 @@ package com.api.v1.borrow.domain;
 
 import com.api.v1.book.domain.Book;
 import com.api.v1.borrower.domain.Borrower;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Document(collection = "v1_borrows")
 public class Borrow {

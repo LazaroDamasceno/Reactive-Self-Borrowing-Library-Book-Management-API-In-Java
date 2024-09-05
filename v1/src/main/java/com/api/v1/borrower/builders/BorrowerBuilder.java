@@ -2,10 +2,8 @@ package com.api.v1.borrower.builders;
 
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
-
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 public class BorrowerBuilder {
 

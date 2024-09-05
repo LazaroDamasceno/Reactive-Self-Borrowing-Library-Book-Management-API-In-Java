@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import com.api.v1.borrow.exceptions.BorrowLimitReachedException;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Service
 class BookBorrowServiceImpl implements BookBorrowService {
 
@@ -44,7 +46,7 @@ class BookBorrowServiceImpl implements BookBorrowService {
                         .filter(e -> e.getBorrower().equals(borrower))
                         .count()
                         .flatMap(count -> {
-                            if (count.equals(BORROW_LIMIT)) {
+                            if (Objects.equals(count, BORROW_LIMIT)) {
                                 return Mono.error(new BorrowLimitReachedException());
                             }
                             return Mono.defer(() -> {

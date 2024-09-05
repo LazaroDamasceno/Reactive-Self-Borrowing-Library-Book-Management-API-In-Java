@@ -27,9 +27,24 @@ public class BorrowBookTest {
     }
 
     @Test
-    public void testUnsuccessfulBookBorrow() {
+    public void testUnsuccessfulBookBorrow1() {
 
         String isbn = "123456789011";
+        String ssn = "123456789";
+        String uri = String.format("api/v1/borrows/%s/%s", isbn, ssn);
+
+        webTestClient
+                .post()
+                .uri(uri)
+                .exchange()
+                .expectStatus()
+                .is5xxServerError();
+    }
+
+    @Test
+    public void testUnsuccessfulBookBorrow2() {
+
+        String isbn = "123456789012";
         String ssn = "123456788";
         String uri = String.format("api/v1/borrows/%s/%s", isbn, ssn);
 
@@ -39,6 +54,21 @@ public class BorrowBookTest {
                 .exchange()
                 .expectStatus()
                 .is5xxServerError();
+    }
+
+    @Test
+    public void testUnsuccessfulBookBorrow3() {
+
+        String isbn = "123456789012";
+        String ssn = "123456789";
+        String uri = String.format("api/v1/borrows/%s/%s", isbn, ssn);
+
+        webTestClient
+                .put()
+                .uri(uri)
+                .exchange()
+                .expectStatus()
+                .is4xxClientError();
     }
 
 }

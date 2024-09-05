@@ -4,7 +4,6 @@ import com.api.v1.book.domain.Book;
 import com.api.v1.book.dtos.NewBookRequestDto;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 public class BookBuilder {
 
