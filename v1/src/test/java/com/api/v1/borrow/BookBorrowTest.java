@@ -29,8 +29,8 @@ public class BookBorrowTest {
     @Test
     public void testUnsuccessfulBookBorrow() {
 
-        String isbn = "123456789012";
-        String ssn = "123456789";
+        String isbn = "123456789011";
+        String ssn = "123456788";
         String uri = String.format("api/v1/borrows/%s/%s", isbn, ssn);
 
         webTestClient
@@ -38,7 +38,7 @@ public class BookBorrowTest {
                 .uri(uri)
                 .exchange()
                 .expectStatus()
-                .is2xxSuccessful();
+                .is5xxServerError();
     }
 
 }
