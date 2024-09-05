@@ -17,7 +17,7 @@ public class BookRegistrationTest {
 
         var request = new NewBookRequestDto(
                 "Harry Potter",
-                "And the Magical Stone",
+                "The First Book",
                 "123456789012",
                 "J.K. Rowling",
                 1997,
@@ -41,7 +41,7 @@ public class BookRegistrationTest {
 
         var request = new NewBookRequestDto(
                 "Harry Potter",
-                "And the Magical Stone",
+                "The first book",
                 "123456789012",
                 "J.K. Rowling",
                 1997,

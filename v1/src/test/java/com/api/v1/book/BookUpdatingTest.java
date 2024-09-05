@@ -20,9 +20,9 @@ public class BookUpdatingTest {
                 "And the Magical Stone",
                 "123456789012",
                 "J.K. Rowling",
-                1997,
+                2002,
                 "juvenile fantasy",
-                300,
+                336,
                 1
         );
 
@@ -44,9 +44,9 @@ public class BookUpdatingTest {
                 "And the Magical Stone",
                 "123456789011",
                 "J.K. Rowling",
-                1997,
+                2002,
                 "juvenile fantasy",
-                300,
+                336,
                 1
         );
 
