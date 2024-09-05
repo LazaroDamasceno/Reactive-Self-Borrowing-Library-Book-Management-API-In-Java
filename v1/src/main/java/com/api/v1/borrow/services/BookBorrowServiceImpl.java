@@ -39,10 +39,10 @@ class BookBorrowServiceImpl implements BookBorrowService {
                 Book book = tuple.getT1();
                 Borrower borrower = tuple.getT2();
                 return Mono.defer(() -> {
-                                NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
-                                Borrow borrow = BorrowBuilder.create().fromDto(dto).build();
-                                Mono<Borrow> savedBorrow = repository.save(borrow);
-                                return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
+                    NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
+                    Borrow borrow = BorrowBuilder.create().fromDto(dto).build();
+                    Mono<Borrow> savedBorrow = repository.save(borrow);
+                    return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
                 });
             });
     }
