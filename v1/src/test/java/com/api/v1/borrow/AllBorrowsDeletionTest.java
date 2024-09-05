@@ -16,11 +16,10 @@ public class AllBorrowsDeletionTest {
 
         String isbn = "123456789012";
         String ssn = "123456789";
-        String uri = "api/v1/borrows/%s/%s".formatted(isbn, ssn);
 
         webTestClient
                 .delete()
-                .uri(uri)
+                .uri("api/v1/borrows")
                 .exchange()
                 .expectStatus()
                 .is2xxSuccessful();
@@ -36,7 +35,7 @@ public class AllBorrowsDeletionTest {
 
         webTestClient
                 .delete()
-                .uri(uri)
+                .uri("api/v1/borrows")
                 .exchange()
                 .expectStatus()
                 .is5xxServerError();
