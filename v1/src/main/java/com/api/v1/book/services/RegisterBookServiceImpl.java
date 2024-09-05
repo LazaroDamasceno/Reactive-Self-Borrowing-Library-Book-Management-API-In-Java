@@ -22,7 +22,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
     public Mono<BookResponseDto> register(@Valid NewBookRequestDto request) {
         return repository
                 .findAll()
-                .filter(e -> e.getIsbn().equals(request.isbn()) && e.getArchivedAt() == null)
+                .filter(e -> e.getIsbn().equals(request.isbn()))
                 .hasElements()
                 .flatMap(exists -> {
                     if (exists) return handleDuplicatedIsbn();

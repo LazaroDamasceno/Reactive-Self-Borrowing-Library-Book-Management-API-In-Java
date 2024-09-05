@@ -17,7 +17,7 @@ public class BorrowerFinderUtil {
         return repository
                 .findAll()
                 .filter(e -> e.getSsn().equals(ssn)
-                    && e.getArchivedAt() == null
+                    && e.getUpdatedAt() == null
                 )
                 .singleOrEmpty()
                 .switchIfEmpty(Mono.error(BorrowerNotFoundException::new));

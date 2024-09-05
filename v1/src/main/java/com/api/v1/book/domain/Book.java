@@ -2,7 +2,6 @@ package com.api.v1.book.domain;
 
 import com.api.v1.book.dtos.NewBookRequestDto;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -10,9 +9,6 @@ import java.time.ZonedDateTime;
 
 @Document(collection = "v1_books")
 public class Book {
-
-    @Id
-    private ObjectId id = new ObjectId();
 
     @Field
     private String title;
@@ -42,7 +38,7 @@ public class Book {
     private String addedAt;
 
     @Field
-    private String archivedAt;
+    private String updatedAt;
 
     protected Book() {}
 
@@ -68,8 +64,7 @@ public class Book {
         this.addedAt = addedAt;
     }
 
-    public Book update(NewBookRequestDto request) {
-        this.id = new ObjectId();
+    public void update(NewBookRequestDto request) {
         this.title = request.title();
         this.subtitle = request.subtitle();
         this.publishingYear = request.publishingYear();
@@ -77,17 +72,12 @@ public class Book {
         this.field = request.field();
         this.numberOfPages = request.numberOfPages();
         this.version = request.version();
-        this.archivedAt = null;
-        return this;
+        this.updatedAt = ZonedDateTime.now().toString();
     }
 
     public String getFullTitle() {
         if (subtitle.isEmpty()) return title;
         return "%s: %s".formatted(title, subtitle);
-    }
-
-    public void inactive() {
-        this.archivedAt = ZonedDateTime.now().toString();
     }
 
     public String getTitle() {
@@ -122,16 +112,12 @@ public class Book {
         return addedAt;
     }
 
-    public String getArchivedAt() {
-        return archivedAt;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
     public int getPublishingYear() {
         return publishingYear;
-    }
-
-    public ObjectId getId() {
-        return id;
     }
 
 }

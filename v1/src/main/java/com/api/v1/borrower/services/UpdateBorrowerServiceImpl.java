@@ -29,10 +29,8 @@ class UpdateBorrowerServiceImpl implements UpdateBorrowerService {
             .flatMap(existingBorrower -> {
                 existingBorrower.inactive();
                 return repository.save(existingBorrower);
-            }).flatMap(inactivedBorrower -> {
-                Borrower updatedBorrower = inactivedBorrower.update(request);
-                return repository.save(updatedBorrower);
-            }).flatMap(updateBorrower -> Mono.just(BorrowerResponseMapper.map(updateBorrower)));
+            })
+            .flatMap(updateBorrower -> Mono.just(BorrowerResponseMapper.map(updateBorrower)));
     }
 
 }

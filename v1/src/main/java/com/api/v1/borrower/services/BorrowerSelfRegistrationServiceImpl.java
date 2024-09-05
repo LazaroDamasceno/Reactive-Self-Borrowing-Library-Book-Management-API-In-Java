@@ -25,7 +25,7 @@ class BorrowerSelfRegistrationServiceImpl implements BorrowerSelfRegistrationSer
         return repository
                 .findAll()
                 .filter(e -> e.getSsn().equals(request.ssn())
-                    && e.getArchivedAt() == null
+                    && e.getUpdatedAt() == null
                 )
                 .hasElements()
                 .flatMap(exists -> {

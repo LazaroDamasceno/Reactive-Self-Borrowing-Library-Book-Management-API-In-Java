@@ -11,9 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "v1_borrowers")
 public class Borrower {
 
-    @Id
-    private ObjectId id = new ObjectId();
-
     @Field
     private String firstName;
 
@@ -45,7 +42,7 @@ public class Borrower {
     private String createdAt;
 
     @Field
-    private String archivedAt;
+    private String updatedAt;
 
     public Borrower() {}
 
@@ -73,8 +70,7 @@ public class Borrower {
         this.createdAt = createdAt;
     }
 
-    public Borrower update(NewBorrowerRequestDto request) {
-        this.id = new ObjectId();
+    public void update(NewBorrowerRequestDto request) {
         this.firstName = request.firstName();
         this.middleName = request.middleName();
         this.lastName = request.lastName();
@@ -84,8 +80,7 @@ public class Borrower {
         this.address = request.address();
         this.phoneNumber = request.phoneNumber();
         this.gender = request.gender();
-        this.archivedAt = null;
-        return this;
+        this.updatedAt = ZonedDateTime.now().toString();
     }
 
     public String getFullName() {
@@ -96,7 +91,7 @@ public class Borrower {
     }
 
     public void inactive() {
-        archivedAt = ZonedDateTime.now().toString();
+        updatedAt = ZonedDateTime.now().toString();
     }
 
     public String getFirstName() {
@@ -135,16 +130,12 @@ public class Borrower {
         return createdAt;
     }
 
-    public String getArchivedAt() {
-        return archivedAt;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
-    }
-
-    public ObjectId getId() {
-        return id;
     }
 
 }
