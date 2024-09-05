@@ -39,34 +39,22 @@ class BookBorrowServiceImpl implements BookBorrowService {
             .flatMap(tuple -> {
                 Book book = tuple.getT1();
                 Borrower borrower = tuple.getT2();
-                return response(book, borrower);
+                return repository
+                        .findAll()
+                        .filter(e -> e.getBorrower().equals(borrower))
+                        .count()
+                        .flatMap(count -> {
+                            if (count.equals(BORROW_LIMIT)) {
+                                return Mono.error(new BorrowLimitReachedException());
+                            }
+                            return Mono.defer(() -> {
+                                NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
+                                Borrow borrow = BorrowBuilder.create().fromDto(dto).build();
+                                Mono<Borrow> savedBorrow = repository.save(borrow);
+                                return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
+                            });
+                        });
             });
-    }
-
-    private Mono<BorrowResponseDto> response(Book book, Borrower borrower) {
-        return repository
-            .countHowManyActiveBorrowsByBorrower(borrower)
-            .flatMap(count -> {
-                if (count.equals(BORROW_LIMIT)) {
-                    return handleBorrowLimitReached();
-                } 
-                else {
-                    return handleBorrow(book, borrower);
-                }
-            });         
-    }
-
-    private Mono<BorrowResponseDto> handleBorrowLimitReached() {
-        return Mono.error(new BorrowLimitReachedException());
-    }
-
-    private Mono<BorrowResponseDto> handleBorrow(Book book, Borrower borrower) {
-        return Mono.defer(() -> {
-            NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
-            Borrow borrow = BorrowBuilder.create().fromDto(dto).build();
-            Mono<Borrow> savedBorrow = repository.save(borrow);
-            return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
-        });
     }
 
 }

@@ -19,14 +19,23 @@ public class BorrowFinderUtil {
     public Mono<Borrow> findActive(@NotNull Borrower borrower, @NotNull Book book) {
         String message = "Borrow was not found.";
         return repository
-                .findActiveBorrow(borrower, book)
+                .findAll()
+                .filter(e -> e.getBorrower().equals(borrower)
+                            && e.getBook().equals(book)
+                            && e.getReturnedDate() == null
+                )
+                .singleOrEmpty()
                 .switchIfEmpty(Mono.error(new BorrowNotFoundException(message)));
     }
 
     public Mono<Borrow> findAny(@NotNull Borrower borrower, @NotNull Book book) {
         String message = "Borrow was not found.";
         return repository
-                .findAnyBorrow(borrower, book)
+                .findAll()
+                .filter(e -> e.getBorrower().equals(borrower)
+                        && e.getBook().equals(book)
+                )
+                .singleOrEmpty()
                 .switchIfEmpty(Mono.error(new BorrowNotFoundException(message)));
     }
 
