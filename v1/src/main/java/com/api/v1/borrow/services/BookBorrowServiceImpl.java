@@ -41,7 +41,9 @@ class BookBorrowServiceImpl implements BookBorrowService {
                 Borrower borrower = tuple.getT2();
                 return repository
                         .findAll()
-                        .filter(e -> e.getBorrower().equals(borrower))
+                        .filter(e -> e.getBorrower().equals(borrower)
+                                && e.getReturnedDate() == null
+                        )
                         .count()
                         .flatMap(count -> {
                             if (count.equals(BORROW_LIMIT)) return Mono.error(new BorrowLimitReachedException());
