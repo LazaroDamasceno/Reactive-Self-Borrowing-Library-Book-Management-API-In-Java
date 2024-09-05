@@ -14,7 +14,6 @@ import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.api.v1.borrow.exceptions.BorrowLimitReachedException;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -39,21 +38,12 @@ class BookBorrowServiceImpl implements BookBorrowService {
             .flatMap(tuple -> {
                 Book book = tuple.getT1();
                 Borrower borrower = tuple.getT2();
-                return repository
-                        .findAll()
-                        .filter(e -> e.getBorrower().equals(borrower)
-                                && e.getReturnedDate() == null
-                        )
-                        .count()
-                        .flatMap(count -> {
-                            if (count.equals(BORROW_LIMIT)) return Mono.error(new BorrowLimitReachedException());
-                            return Mono.defer(() -> {
+                return Mono.defer(() -> {
                                 NewBorrowRequestDto dto = new NewBorrowRequestDto(book, borrower);
                                 Borrow borrow = BorrowBuilder.create().fromDto(dto).build();
                                 Mono<Borrow> savedBorrow = repository.save(borrow);
                                 return savedBorrow.flatMap(e -> Mono.just(BorrowResponseMapper.map(e)));
-                            });
-                        });
+                });
             });
     }
 
