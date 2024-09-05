@@ -39,9 +39,7 @@ class DeleteBorrowServiceImpl implements DeleteBorrowService {
                 Borrower borrower = tuple.getT2();
                 return borrowFinder.findAny(borrower, book);
             })
-            .flatMap(b -> Mono.defer(() -> {
-                return repository.delete(b);
-            }));
+            .flatMap(b -> repository.delete(b));
     }
     
 }
