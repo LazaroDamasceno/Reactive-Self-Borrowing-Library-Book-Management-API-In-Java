@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/borrows")
-class ExtendBorrowController {
+public class ExtendBorrowController {
 
     @Autowired
     private ExtendBorrowService service;
