@@ -21,7 +21,7 @@ public class Borrow {
     private Book book;
 
     @Field
-    private String BorrowingDate;
+    private String borrowingDate;
 
     @Field
     private String dueDate;
@@ -39,7 +39,7 @@ public class Borrow {
         this.id = id;
         this.borrower = borrower;
         this.book = book;
-        BorrowingDate = borrowingDate;
+        this.borrowingDate = borrowingDate;
         this.dueDate = dueDate;
     }
 
@@ -52,7 +52,7 @@ public class Borrow {
     }
 
     public String getBorrowingDate() {
-        return BorrowingDate;
+        return borrowingDate;
     }
 
     public String getDueDate() {
