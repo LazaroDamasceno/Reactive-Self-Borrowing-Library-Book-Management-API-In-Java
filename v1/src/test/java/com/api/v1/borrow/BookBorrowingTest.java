@@ -63,7 +63,7 @@ public class BookBorrowingTest {
                 .uri(endpoint)
                 .exchange()
                 .expectStatus()
-                .is5xxServerError();
+                .is4xxClientError();
     }
 
 }
