@@ -13,7 +13,7 @@ public class BorrowTerminationTest {
 
     @Test
     void testSuccessfulBorrowTermination() {
-        String id = "2024003";
+        String id = "2024002";
         webTestClient
                 .patch()
                 .uri("api/v1/borrows/%s/termination".formatted(id))
@@ -24,7 +24,7 @@ public class BorrowTerminationTest {
 
     @Test
     void testUnsuccessfulBorrowTermination() {
-        String id = "2024003";
+        String id = "2024002";
         webTestClient
                 .patch()
                 .uri("api/v1/borrows/%s/termination".formatted(id))
