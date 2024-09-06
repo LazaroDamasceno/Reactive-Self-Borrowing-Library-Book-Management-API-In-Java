@@ -6,7 +6,7 @@ import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.utils.BookFinderUtil;
 import com.api.v1.exceptions.EmptyFluxException;
-import com.api.v1.book.mappers.BookDtoResponseMapper;
+import com.api.v1.book.mappers.BookResponseMapper;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
     public Mono<BookResponseDto> findBookByIsbn(@ISBN String isbn) {
         return bookFinderUtil
                 .find(isbn)
-                .flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
+                .flatMap(b -> Mono.just(BookResponseMapper.map(b)));
     }
 
     @Override
@@ -36,7 +36,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                 .hasElements()
                 .flatMapMany(exists -> {
                     if (!exists) return Mono.error(new EmptyFluxException());
-                    return repository.findAll().flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                    return repository.findAll().flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 
@@ -49,7 +49,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                     if (!exists) return Mono.error(new EmptyFluxException());
                     return allBooks()
                             .filter(e -> e.getAuthor().equals(author))
-                            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                            .flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 
@@ -62,7 +62,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                     if (!exists) return Mono.error(new EmptyFluxException());
                     return allBooks()
                             .filter(e -> e.getField().equals(field))
-                            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                            .flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 
@@ -75,7 +75,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                     if (!exists) return Mono.error(new EmptyFluxException());
                     return allBooks()
                             .filter(e -> e.getPublishingYear() == year)
-                            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                            .flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 
@@ -88,7 +88,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                     if (!exists) return Mono.error(new EmptyFluxException());
                     return allBooks()
                             .filter(e -> e.getField().equals(field) && e.getPublishingYear() == year)
-                            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                            .flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 
@@ -101,7 +101,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                     if (!exists) return Mono.error(new EmptyFluxException());
                     return allBooks()
                             .filter(e -> e.getAuthor().equals(author) && e.getField().equals(field))
-                            .flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                            .flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 
@@ -116,7 +116,7 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
                             .filter(e -> e.getAuthor().equals(author)
                                         && e.getField().equals(field)
                                         && e.getPublishingYear() == year
-                            ).flatMap(b -> Flux.just(BookDtoResponseMapper.map(b)));
+                            ).flatMap(b -> Flux.just(BookResponseMapper.map(b)));
                 });
     }
 

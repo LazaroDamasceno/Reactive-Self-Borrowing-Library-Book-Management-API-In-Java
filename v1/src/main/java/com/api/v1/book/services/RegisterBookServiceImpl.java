@@ -6,7 +6,7 @@ import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.exceptions.DuplicatedIsbnException;
 import com.api.v1.book.dtos.NewBookRequestDto;
 import com.api.v1.book.dtos.BookResponseDto;
-import com.api.v1.book.mappers.BookDtoResponseMapper;
+import com.api.v1.book.mappers.BookResponseMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ class RegisterBookServiceImpl implements RegisterBookService {
         return Mono.defer(() -> {
             Book book = BookBuilder.create().fromDto(request).build();
             Mono<Book> savedBook = repository.save(book);
-            return savedBook.flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
+            return savedBook.flatMap(b -> Mono.just(BookResponseMapper.map(b)));
         });
     }
 

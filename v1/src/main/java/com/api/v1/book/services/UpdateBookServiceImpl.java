@@ -3,7 +3,7 @@ package com.api.v1.book.services;
 import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.dtos.NewBookRequestDto;
-import com.api.v1.book.mappers.BookDtoResponseMapper;
+import com.api.v1.book.mappers.BookResponseMapper;
 import com.api.v1.book.utils.BookFinderUtil;
 
 import jakarta.validation.Valid;
@@ -30,7 +30,7 @@ class UpdateBookServiceImpl implements UpdateBookService {
                     existingBook.update(request);
                     return repository.save(existingBook);
                 })
-                .flatMap(updateBook -> Mono.just(BookDtoResponseMapper.map(updateBook)));
+                .flatMap(updateBook -> Mono.just(BookResponseMapper.map(updateBook)));
     }
 
 }
