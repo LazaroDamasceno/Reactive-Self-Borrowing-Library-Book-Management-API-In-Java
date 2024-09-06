@@ -4,6 +4,6 @@ import reactor.core.publisher.Mono;
 
 public interface BorrowingService {
 
-    Mono<BorrowingResponseDto> borrow(String ssn, String isbn);
+    Mono<BorrowResponseDto> borrow(String ssn, String isbn);
 
 }

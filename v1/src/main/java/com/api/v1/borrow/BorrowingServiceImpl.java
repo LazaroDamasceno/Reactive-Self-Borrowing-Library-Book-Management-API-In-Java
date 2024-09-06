@@ -21,7 +21,7 @@ public class BorrowingServiceImpl implements BorrowingService {
     private BorrowRepository borrowRepository;
 
     @Override
-    public Mono<BorrowingResponseDto> borrow(@SSN String ssn, @ISBN String isbn) {
+    public Mono<BorrowResponseDto> borrow(@SSN String ssn, @ISBN String isbn) {
         return borrowerFinderUtil.find(ssn)
                 .zipWith(bookFinderUtil.find(isbn))
                 .flatMap(tuple -> {
