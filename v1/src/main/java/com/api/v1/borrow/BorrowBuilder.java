@@ -3,10 +3,16 @@ package com.api.v1.borrow;
 import com.api.v1.book.domain.Book;
 import com.api.v1.borrower.domain.Borrower;
 
+import java.math.BigInteger;
+import java.time.ZonedDateTime;
+
 public class BorrowBuilder {
 
+    private final BigInteger id = BorrowIdGenerator.generateId();
     private Borrower borrower;
     private Book book;
+    private final String borrowingDate = ZonedDateTime.now().toString();
+    private final String dueDate = ZonedDateTime.now().plusDays(15).toString();
 
     public static BorrowBuilder create() {
         return new BorrowBuilder();
@@ -23,7 +29,7 @@ public class BorrowBuilder {
     }
 
     public Borrow build() {
-        return new Borrow(borrower, book);
+        return new Borrow(id, borrower, book, borrowingDate, dueDate);
     }
 
 }
