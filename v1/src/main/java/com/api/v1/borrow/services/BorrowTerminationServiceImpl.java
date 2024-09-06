@@ -2,7 +2,6 @@ package com.api.v1.borrow.services;
 
 import com.api.v1.borrow.domain.BorrowRepository;
 import com.api.v1.borrow.dtos.BorrowResponseDto;
-import com.api.v1.borrow.exceptions.UnfinishableBorrowException;
 import com.api.v1.borrow.mappers.BorrowResponseMapper;
 import com.api.v1.borrow.utils.BorrowFinderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,6 @@ class BorrowTerminationServiceImpl implements BorrowTerminationService {
         return borrowFinderUtil
                 .find(id)
                 .flatMap(borrow -> {
-                    if (borrow.getReturningDate() != null) {
-                        return Mono.error(new UnfinishableBorrowException(id));
-                    }
                     borrow.terminateBorrow();
                     return repository.save(borrow);
                 })
