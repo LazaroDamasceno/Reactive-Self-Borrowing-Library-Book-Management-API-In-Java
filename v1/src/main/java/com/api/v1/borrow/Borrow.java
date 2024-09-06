@@ -2,13 +2,11 @@ package com.api.v1.borrow;
 
 import com.api.v1.book.domain.Book;
 import com.api.v1.borrower.domain.Borrower;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigInteger;
-import java.time.ZonedDateTime;
 
 @Document(collection = "v1_borrows")
 public class Borrow {
@@ -27,6 +25,9 @@ public class Borrow {
 
     @Field
     private String dueDate;
+
+    @Field
+    private String returningDate;
 
     public Borrow(
             BigInteger id,
@@ -60,6 +61,10 @@ public class Borrow {
 
     public BigInteger getId() {
         return id;
+    }
+
+    public String getReturningDate() {
+        return returningDate;
     }
 
 }
