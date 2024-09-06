@@ -7,12 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigInteger;
+import java.time.ZonedDateTime;
 
 @Document(collection = "v1_borrows")
 public class Borrow {
 
     @Id
-    private BigInteger id;
+    private final BigInteger id;
 
     @Field
     private final Borrower borrower;
@@ -25,6 +26,9 @@ public class Borrow {
 
     @Field
     private final String dueDate;
+
+    @Field
+    private String extendedDueDate;
 
     @Field
     private String returningDate;
@@ -43,6 +47,14 @@ public class Borrow {
         this.dueDate = dueDate;
     }
 
+    public void extendBorrow() {
+        this.extendedDueDate = ZonedDateTime.parse(dueDate).plusDays(15).toString();
+    }
+
+    public void terminateBorrow() {
+        this.returningDate = ZonedDateTime.now().toString();
+    }
+
     public Borrower getBorrower() {
         return borrower;
     }
@@ -59,13 +71,16 @@ public class Borrow {
         return dueDate;
     }
 
-
     public String getReturningDate() {
         return returningDate;
     }
 
     public BigInteger getId() {
         return id;
+    }
+
+    public String getExtendedDueDate() {
+        return extendedDueDate;
     }
 
 }
