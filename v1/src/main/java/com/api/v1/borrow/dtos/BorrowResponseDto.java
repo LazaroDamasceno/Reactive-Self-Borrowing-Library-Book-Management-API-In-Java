@@ -10,6 +10,8 @@ public record BorrowResponseDto(
         BorrowerResponseDto borrower,
         BookResponseDto book,
         String borrowingDate,
-        String dueDate
+        String dueDate,
+        String extendedDueDate,
+        String returningDate
 ) {
 }

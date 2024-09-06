@@ -13,7 +13,9 @@ public class BorrowResponseMapper {
                 BorrowerResponseMapper.map(borrow.getBorrower()),
                 BookResponseMapper.map(borrow.getBook()),
                 borrow.getBorrowingDate(),
-                borrow.getDueDate()
+                borrow.getDueDate(),
+                borrow.getExtendedDueDate(),
+                borrow.getReturningDate()
         );
     }
 
