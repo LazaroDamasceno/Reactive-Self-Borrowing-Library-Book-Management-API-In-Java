@@ -7,6 +7,8 @@ public record BookResponseDto(
         String field,
         int publishingYear,
         int numberOfPages,
-        int version
+        int version,
+        String addedAt,
+        String updatedAt
 ) {
 }

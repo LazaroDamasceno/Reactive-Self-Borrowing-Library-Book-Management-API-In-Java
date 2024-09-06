@@ -13,7 +13,9 @@ public class BookResponseMapper {
                 book.getField(),
                 book.getPublishingYear(),
                 book.getNumberOfPages(),
-                book.getVersion()
+                book.getVersion(),
+                book.getAddedAt(),
+                book.getUpdatedAt()
        );
     }
 
