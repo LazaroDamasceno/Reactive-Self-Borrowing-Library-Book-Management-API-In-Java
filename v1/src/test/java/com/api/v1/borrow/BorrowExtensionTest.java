@@ -16,7 +16,7 @@ public class BorrowExtensionTest {
         String id = "2024001";
         webTestClient
                 .patch()
-                .uri("api/v1/borrows/{id}/extension")
+                .uri("api/v1/borrows/%s/extension".formatted(id))
                 .exchange()
                 .expectStatus()
                 .is2xxSuccessful();
@@ -27,7 +27,7 @@ public class BorrowExtensionTest {
         String id = "2024001";
         webTestClient
                 .patch()
-                .uri("api/v1/borrows/{id}/extension")
+                .uri("api/v1/borrows/%s/extension".formatted(id))
                 .exchange()
                 .expectStatus()
                 .is5xxServerError();

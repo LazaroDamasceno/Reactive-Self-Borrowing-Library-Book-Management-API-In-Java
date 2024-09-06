@@ -22,14 +22,14 @@ class BorrowExtensionServiceImpl implements BorrowExtensionService {
     public Mono<BorrowResponseDto> extend(String id) {
         return borrowFinderUtil
                 .find(id)
-                .flatMap(existingBorrow -> {
-                    if (existingBorrow.getExtendedDueDate() != null || existingBorrow.getReturningDate() != null) {
+                .flatMap(borrow -> {
+                    if (borrow.getExtendedDueDate() != null || borrow.getReturningDate() != null) {
                         return Mono.error(new InextensibleBorrowException(id));
                     }
-                    existingBorrow.extendBorrow();
-                    return repository.save(existingBorrow);
+                    borrow.extendBorrow();
+                    return repository.save(borrow);
                 })
-                .flatMap(extendBorrow -> Mono.just(BorrowResponseMapper.map(extendBorrow)));
+                .flatMap(borrow -> Mono.just(BorrowResponseMapper.map(borrow)));
     }
 
 }

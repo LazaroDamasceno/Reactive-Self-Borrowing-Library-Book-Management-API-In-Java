@@ -18,11 +18,9 @@ public class BorrowFinderUtil {
     public Mono<Borrow> find(String id) {
         return borrowRepository
                 .findAll()
-                .filter(e -> e.getReturningDate() == null
-                    && e.getId().equals(new BigInteger(id))
-                )
+                .filter(e -> e.getReturningDate() == null && e.getId().equals(new BigInteger(id)))
                 .singleOrEmpty()
-                .switchIfEmpty(Mono.error(new BorrowNotFoundException(new BigInteger(id))));
+                .switchIfEmpty(Mono.error(new BorrowNotFoundException(id)));
     }
 
 }

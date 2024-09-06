@@ -1,7 +1,7 @@
 package com.api.v1.borrow.builders;
 
 import com.api.v1.book.domain.Book;
-import com.api.v1.borrow.utils.BorrowSinGeneratorUtil;
+import com.api.v1.borrow.utils.BorrowIdGeneratorUtil;
 import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrower.domain.Borrower;
 
@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 
 public class BorrowBuilder {
 
-    private final BigInteger id = BorrowSinGeneratorUtil.generateSIN();
+    private final BigInteger id = BorrowIdGeneratorUtil.generateSIN();
     private Borrower borrower;
     private Book book;
     private final String borrowingDate = ZonedDateTime.now().toString();
