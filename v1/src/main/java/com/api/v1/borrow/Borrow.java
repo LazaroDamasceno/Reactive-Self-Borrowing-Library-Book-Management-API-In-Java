@@ -2,6 +2,8 @@ package com.api.v1.borrow;
 
 import com.api.v1.book.domain.Book;
 import com.api.v1.borrower.domain.Borrower;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -9,6 +11,9 @@ import java.time.ZonedDateTime;
 
 @Document(collection = "v1_borrows")
 public class Borrow {
+
+    @Id
+    private ObjectId id = new ObjectId();
 
     @Field
     private Borrower borrower;
@@ -41,6 +46,10 @@ public class Borrow {
 
     public String getDueDate() {
         return dueDate;
+    }
+
+    public ObjectId getId() {
+        return id;
     }
 
 }
