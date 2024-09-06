@@ -1,8 +1,13 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.services;
 
 import com.api.v1.annotations.ISBN;
 import com.api.v1.annotations.SSN;
 import com.api.v1.book.utils.BookFinderUtil;
+import com.api.v1.borrow.builders.BorrowBuilder;
+import com.api.v1.borrow.domain.Borrow;
+import com.api.v1.borrow.domain.BorrowRepository;
+import com.api.v1.borrow.dtos.BorrowResponseDto;
+import com.api.v1.borrow.mappers.BorrowResponseMapper;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

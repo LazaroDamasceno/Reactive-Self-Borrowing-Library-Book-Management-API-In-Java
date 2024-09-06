@@ -1,4 +1,4 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.exceptions;
 
 public class BorrowNotFoundException extends RuntimeException {
 

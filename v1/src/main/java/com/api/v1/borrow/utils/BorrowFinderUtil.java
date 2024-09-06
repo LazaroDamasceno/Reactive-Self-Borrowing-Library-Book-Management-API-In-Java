@@ -1,5 +1,8 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.utils;
 
+import com.api.v1.borrow.domain.Borrow;
+import com.api.v1.borrow.domain.BorrowRepository;
+import com.api.v1.borrow.exceptions.BorrowNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;

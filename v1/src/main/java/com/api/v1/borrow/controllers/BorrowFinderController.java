@@ -1,5 +1,7 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.controllers;
 
+import com.api.v1.borrow.dtos.BorrowResponseDto;
+import com.api.v1.borrow.services.BorrowFinderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

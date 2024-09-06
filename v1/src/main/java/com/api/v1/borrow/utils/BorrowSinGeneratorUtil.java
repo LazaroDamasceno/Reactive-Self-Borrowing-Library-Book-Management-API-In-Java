@@ -1,4 +1,4 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.utils;
 
 import java.math.BigInteger;
 import java.time.LocalDate;

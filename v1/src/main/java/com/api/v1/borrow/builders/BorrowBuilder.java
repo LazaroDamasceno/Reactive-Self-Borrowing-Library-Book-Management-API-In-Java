@@ -1,6 +1,8 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.builders;
 
 import com.api.v1.book.domain.Book;
+import com.api.v1.borrow.utils.BorrowSinGeneratorUtil;
+import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrower.domain.Borrower;
 
 import java.math.BigInteger;

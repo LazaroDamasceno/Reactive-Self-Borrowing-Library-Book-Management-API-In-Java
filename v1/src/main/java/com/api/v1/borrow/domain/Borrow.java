@@ -1,4 +1,4 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.domain;
 
 import com.api.v1.book.domain.Book;
 import com.api.v1.borrower.domain.Borrower;

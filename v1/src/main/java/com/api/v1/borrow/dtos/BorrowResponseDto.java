@@ -1,4 +1,4 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.dtos;
 
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.borrower.dtos.BorrowerResponseDto;

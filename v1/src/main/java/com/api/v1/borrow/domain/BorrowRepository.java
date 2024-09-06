@@ -1,6 +1,5 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.domain;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import java.math.BigInteger;

@@ -1,6 +1,8 @@
-package com.api.v1.borrow;
+package com.api.v1.borrow.mappers;
 
 import com.api.v1.book.mappers.BookResponseMapper;
+import com.api.v1.borrow.dtos.BorrowResponseDto;
+import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrower.mappers.BorrowerResponseMapper;
 
 public class BorrowResponseMapper {
