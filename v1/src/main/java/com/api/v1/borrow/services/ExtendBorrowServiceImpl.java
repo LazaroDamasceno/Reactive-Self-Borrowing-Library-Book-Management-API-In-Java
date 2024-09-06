@@ -40,7 +40,9 @@ class ExtendBorrowServiceImpl implements ExtendBorrowService {
                     return borrowFinder.findActive(borrower, book);
                 })
                 .flatMap(b -> {
-                    if (b.getReturnedDate() != null) return Mono.error(BorrowExtensionException::new);
+                    if (b.getReturnedDate() != null || b.getExtendedDueDate() != null) {
+                        return Mono.error(BorrowExtensionException::new);
+                    }
                     b.extendDueDate();
                     return repository.save(b);
                 });
