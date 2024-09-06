@@ -28,7 +28,13 @@ public class Borrow {
     @Field
     private String dueDate;
 
-    public Borrow(BigInteger id, Borrower borrower, Book book, String borrowingDate, String dueDate) {
+    public Borrow(
+            BigInteger id,
+            Borrower borrower,
+            Book book,
+            String borrowingDate,
+            String dueDate
+    ) {
         this.id = id;
         this.borrower = borrower;
         this.book = book;

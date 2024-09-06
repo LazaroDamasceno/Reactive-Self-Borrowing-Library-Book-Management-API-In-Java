@@ -5,7 +5,7 @@ import com.api.v1.borrower.domain.Borrower;
 
 import java.math.BigInteger;
 
-public record BookBorrowingResponseDto(
+public record BorrowingResponseDto(
         BigInteger id,
         Borrower borrower,
         Book book,
