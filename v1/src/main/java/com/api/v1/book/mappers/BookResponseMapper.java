@@ -3,7 +3,7 @@ package com.api.v1.book.mappers;
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.dtos.BookResponseDto;
 
-public class BookDtoResponseMapper {
+public class BookResponseMapper {
 
     public static BookResponseDto map(Book book) {
         return new BookResponseDto(
@@ -13,8 +13,7 @@ public class BookDtoResponseMapper {
                 book.getField(),
                 book.getPublishingYear(),
                 book.getNumberOfPages(),
-                book.getVersion(),
-                book.getAddedAt()
+                book.getVersion()
        );
     }
 
