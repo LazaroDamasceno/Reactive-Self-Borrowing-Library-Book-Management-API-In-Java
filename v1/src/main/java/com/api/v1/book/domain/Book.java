@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Book {
 
     @Id
-    private ObjectId id = new ObjectId();
+    private UUID id = UUID.randomUUID();
 
     @Field
     private String title;
@@ -125,7 +125,7 @@ public class Book {
         return publishingYear;
     }
 
-    public ObjectId getId() {
+    public UUID getId() {
         return id;
     }
 

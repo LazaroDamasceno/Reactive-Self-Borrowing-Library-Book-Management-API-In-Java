@@ -2,6 +2,8 @@ package com.api.v1.borrower.domain;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.UUID;
+
 import com.api.v1.borrower.dtos.NewBorrowerRequestDto;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -12,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Borrower {
 
     @Id
-    private ObjectId id = new ObjectId();
+    private UUID id = UUID.randomUUID();
 
     @Field
     private String firstName;
@@ -93,7 +95,7 @@ public class Borrower {
         return "%s %s %s".formatted(firstName, middleName, lastName);
     }
 
-    public ObjectId getId() {
+    public UUID getId() {
         return id;
     }
 
