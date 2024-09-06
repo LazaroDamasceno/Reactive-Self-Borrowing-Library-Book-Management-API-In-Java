@@ -1,6 +1,6 @@
 package com.api.v1.borrow;
 
-public class BorrowingMapper {
+public class BorrowMapper {
 
     public static BorrowingResponseDto map(Borrow borrow) {
         return new BorrowingResponseDto(
