@@ -6,6 +6,7 @@ import com.api.v1.book.domain.Book;
 import com.api.v1.book.utils.BookFinderUtil;
 import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.domain.BorrowRepository;
+import com.api.v1.borrow.exceptions.BorrowExtensionException;
 import com.api.v1.borrow.utils.BorrowFinderUtil;
 import com.api.v1.borrower.domain.Borrower;
 import com.api.v1.borrower.utils.BorrowerFinderUtil;
@@ -38,10 +39,11 @@ class ExtendBorrowServiceImpl implements ExtendBorrowService {
                     Borrower borrower = tuple.getT2();
                     return borrowFinder.findActive(borrower, book);
                 })
-                .flatMap(b -> Mono.defer(() -> {
+                .flatMap(b -> {
+                    if (b.getReturnedDate() != null) return Mono.error(BorrowExtensionException::new);
                     b.extendDueDate();
                     return repository.save(b);
-                }));
+                });
     }
 
 }
