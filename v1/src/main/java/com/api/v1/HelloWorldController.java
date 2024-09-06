@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("hello-world")
-class HelloWorld {
+public class HelloWorldController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    String thrownHelloWorld() {
+    public String thrownHelloWorld() {
         return "Hello World";
     }
 
