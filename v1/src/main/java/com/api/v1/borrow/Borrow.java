@@ -7,36 +7,42 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigInteger;
+import java.util.UUID;
 
 @Document(collection = "v1_borrows")
 public class Borrow {
 
     @Id
-    private BigInteger id;
+    private final UUID id;
 
     @Field
-    private Borrower borrower;
+    private BigInteger sin;
 
     @Field
-    private Book book;
+    private final Borrower borrower;
 
     @Field
-    private String borrowingDate;
+    private final Book book;
 
     @Field
-    private String dueDate;
+    private final String borrowingDate;
+
+    @Field
+    private final String dueDate;
 
     @Field
     private String returningDate;
 
     public Borrow(
-            BigInteger id,
+            UUID id,
+            BigInteger sin,
             Borrower borrower,
             Book book,
             String borrowingDate,
             String dueDate
     ) {
         this.id = id;
+        this.sin = sin;
         this.borrower = borrower;
         this.book = book;
         this.borrowingDate = borrowingDate;
@@ -59,12 +65,16 @@ public class Borrow {
         return dueDate;
     }
 
-    public BigInteger getId() {
+    public UUID getId() {
         return id;
     }
 
     public String getReturningDate() {
         return returningDate;
+    }
+
+    public BigInteger getSin() {
+        return sin;
     }
 
 }
