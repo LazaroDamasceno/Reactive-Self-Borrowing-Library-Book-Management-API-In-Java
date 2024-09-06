@@ -2,8 +2,8 @@ package com.api.v1.borrow;
 
 public class BorrowMapper {
 
-    public static BorrowingResponseDto map(Borrow borrow) {
-        return new BorrowingResponseDto(
+    public static BorrowResponseDto map(Borrow borrow) {
+        return new BorrowResponseDto(
                 borrow.getId(),
                 borrow.getBorrower(),
                 borrow.getBook(),
