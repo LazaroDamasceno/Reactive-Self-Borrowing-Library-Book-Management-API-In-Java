@@ -6,7 +6,7 @@ import com.api.v1.borrower.dtos.BorrowerResponseDto;
 import java.math.BigInteger;
 
 public record BorrowResponseDto(
-        BigInteger sin,
+        BigInteger id,
         BorrowerResponseDto borrower,
         BookResponseDto book,
         String borrowingDate,

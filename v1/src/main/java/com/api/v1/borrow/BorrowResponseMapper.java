@@ -7,7 +7,7 @@ public class BorrowResponseMapper {
 
     public static BorrowResponseDto map(Borrow borrow) {
         return new BorrowResponseDto(
-                borrow.getSin(),
+                borrow.getId(),
                 BorrowerResponseMapper.map(borrow.getBorrower()),
                 BookResponseMapper.map(borrow.getBook()),
                 borrow.getBorrowingDate(),

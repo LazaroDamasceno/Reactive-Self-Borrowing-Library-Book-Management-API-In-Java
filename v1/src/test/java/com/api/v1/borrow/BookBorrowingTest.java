@@ -14,16 +14,24 @@ public class BookBorrowingTest {
     @Test
     void testSuccessfulBookBorrowing() {
 
-        String ssn = "123456789";
-        String isbn = "123456789012";
-        String endpoint = "api/v1/borrows/%s/%s".formatted(ssn, isbn);
+        int testcases = 10;
 
-        webTestClient
-                .post()
-                .uri(endpoint)
-                .exchange()
-                .expectStatus()
-                .is2xxSuccessful();
+        while(testcases > 0) {
+            String ssn = "123456789";
+            String isbn = "123456789012";
+            String endpoint = "api/v1/borrows/%s/%s".formatted(ssn, isbn);
+
+            webTestClient
+                    .post()
+                    .uri(endpoint)
+                    .exchange()
+                    .expectStatus()
+                    .is2xxSuccessful();
+
+            testcases--;
+        }
+
+
     }
 
     @Test

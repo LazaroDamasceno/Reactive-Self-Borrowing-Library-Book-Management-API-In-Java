@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 
 public class BorrowBuilder {
 
-    private final BigInteger id = BorrowIdGeneratorUtil.generateId();
+    private final BigInteger id = BorrowSinGeneratorUtil.generateSIN();
     private Borrower borrower;
     private Book book;
     private final String borrowingDate = ZonedDateTime.now().toString();
