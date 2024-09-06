@@ -1,5 +1,6 @@
 package com.api.v1.book.controllers;
 
+import com.api.v1.annotations.ISBN;
 import com.api.v1.book.dtos.BookResponseDto;
 import com.api.v1.book.services.FindAllBooksService;
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("api/v1/books")
@@ -14,6 +16,12 @@ public class FindAllBooksController {
 
     @Autowired
     private FindAllBooksService service;
+
+    @GetMapping("by-isbn/{isbn}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public Mono<BookResponseDto> findBookByIsbn(@ISBN @PathVariable String isbn) {
+        return service.findBookByIsbn(isbn);
+    }
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)

@@ -3,9 +3,11 @@ package com.api.v1.book.services;
 import com.api.v1.book.dtos.BookResponseDto;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface FindAllBooksService {
-    
+
+    Mono<BookResponseDto> findBookByIsbn(String isbn);
     Flux<BookResponseDto> findAll();
     Flux<BookResponseDto> findByAuthor(String author);
     Flux<BookResponseDto> findByField(String field);

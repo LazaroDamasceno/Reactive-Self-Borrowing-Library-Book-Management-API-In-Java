@@ -1,8 +1,10 @@
 package com.api.v1.book.services;
 
+import com.api.v1.annotations.ISBN;
 import com.api.v1.book.domain.Book;
 import com.api.v1.book.domain.BookRepository;
 import com.api.v1.book.dtos.BookResponseDto;
+import com.api.v1.book.utils.BookFinderUtil;
 import com.api.v1.exceptions.EmptyFluxException;
 import com.api.v1.book.mappers.BookDtoResponseMapper;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +18,16 @@ class FindAllBooksServiceImpl implements FindAllBooksService {
 
     @Autowired
     private BookRepository repository;
+
+    @Autowired
+    private BookFinderUtil bookFinderUtil;
+
+    @Override
+    public Mono<BookResponseDto> findBookByIsbn(@ISBN String isbn) {
+        return bookFinderUtil
+                .find(isbn)
+                .flatMap(b -> Mono.just(BookDtoResponseMapper.map(b)));
+    }
 
     @Override
     public Flux<BookResponseDto> findAll() {
