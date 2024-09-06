@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class BorrowingServiceImpl implements BorrowingService {
+class BorrowingServiceImpl implements BorrowingService {
 
     @Autowired
     private BorrowerFinderUtil borrowerFinderUtil;
@@ -32,7 +32,7 @@ public class BorrowingServiceImpl implements BorrowingService {
                             .build();
                     return borrowRepository.save(borrow);
                 })
-                .flatMap(savedBorrow -> Mono.just(BorrowMapper.map(savedBorrow)));
+                .flatMap(savedBorrow -> Mono.just(BorrowResponseMapper.map(savedBorrow)));
     }
 
 
