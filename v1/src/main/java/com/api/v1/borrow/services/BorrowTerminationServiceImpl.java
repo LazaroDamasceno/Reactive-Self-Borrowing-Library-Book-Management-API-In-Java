@@ -18,14 +18,13 @@ class BorrowTerminationServiceImpl implements BorrowTerminationService {
     private BorrowFinderUtil borrowFinderUtil;
 
     @Override
-    public Mono<BorrowResponseDto> terminate(String id) {
+    public Mono<Void> terminate(String id) {
         return borrowFinderUtil
                 .find(id)
                 .flatMap(borrow -> {
                     borrow.terminateBorrow();
-                    return repository.save(borrow);
-                })
-                .flatMap(borrow -> Mono.just(BorrowResponseMapper.map(borrow)));
+                    return repository.save(borrow).then();
+                });
     }
 
 }

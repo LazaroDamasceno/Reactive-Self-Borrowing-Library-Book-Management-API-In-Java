@@ -1,6 +1,5 @@
 package com.api.v1.borrow.controllers;
 
-import com.api.v1.borrow.dtos.BorrowResponseDto;
 import com.api.v1.borrow.services.BorrowTerminationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,8 @@ public class BorrowTerminationController {
     private BorrowTerminationService service;
 
     @PatchMapping("{id}/termination")
-    @ResponseStatus(value = HttpStatus.OK)
-    public Mono<BorrowResponseDto> terminate(@PathVariable String id) {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public Mono<Void> terminate(@PathVariable String id) {
         return service.terminate(id);
     }
 
