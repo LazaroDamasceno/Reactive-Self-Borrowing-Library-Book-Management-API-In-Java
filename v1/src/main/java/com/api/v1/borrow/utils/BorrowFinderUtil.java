@@ -15,10 +15,10 @@ public class BorrowFinderUtil {
     @Autowired
     private BorrowRepository borrowRepository;
 
-    public Mono<Borrow> findActiveBorrow(String id) {
+    public Mono<Borrow> find(String id) {
         return borrowRepository
                 .findAll()
-                .filter(e -> e.getReturningDate() == null && e.getId().equals(new BigInteger(id)))
+                .filter(e -> e.getId().equals(new BigInteger(id)))
                 .singleOrEmpty()
                 .switchIfEmpty(Mono.error(new BorrowNotFoundException(id)));
     }
