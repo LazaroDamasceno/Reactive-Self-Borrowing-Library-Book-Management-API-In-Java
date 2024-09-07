@@ -23,8 +23,8 @@ class BorrowTerminationServiceImpl implements BorrowTerminationService {
         return borrowFinderUtil
                 .find(id)
                 .flatMap(borrow -> {
-                    if (borrow.getExtendedDueDate() != null) {
-                        System.out.println("HAHAHA");
+                    if (borrow.getReturningDate() != null) {
+                        return Mono.error(new UnfinishableBorrowException(id));
                     }
                     borrow.terminateBorrow();
                     return repository.save(borrow);
