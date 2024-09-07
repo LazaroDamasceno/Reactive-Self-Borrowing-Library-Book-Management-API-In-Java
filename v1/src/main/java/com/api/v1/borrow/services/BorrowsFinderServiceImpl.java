@@ -198,8 +198,8 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
         return repository
                 .findAll()
                 .filter(e -> e.getReturningDate() == null
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear
+                        && (ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
+                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear)
                 );
     }
 
@@ -211,8 +211,8 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
                                 ZonedDateTime.parse(e.getDueDate()).isBefore(ZonedDateTime.now())
                                 || ZonedDateTime.parse(e.getExtendedDueDate()).isBefore(ZonedDateTime.now())
                         )
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear
+                        && (ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
+                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear)
                 );
     }
 
@@ -220,8 +220,8 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
         return repository
                 .findAll()
                 .filter(e -> e.getReturningDate() != null
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear
+                        && (ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
+                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear)
                 );
     }
     
