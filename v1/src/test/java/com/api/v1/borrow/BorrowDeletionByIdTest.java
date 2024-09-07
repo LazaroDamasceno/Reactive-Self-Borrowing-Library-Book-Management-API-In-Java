@@ -12,7 +12,7 @@ public class BorrowDeletionByIdTest {
     private WebTestClient webTestClient;
 
     @Test
-    void testSuccessfulBorrowsDeletion() {
+    void testSuccessfulBorrowDeletion() {
         webTestClient
                 .delete()
                 .uri("api/v1/borrows/%s".formatted("2024001"))
@@ -22,7 +22,7 @@ public class BorrowDeletionByIdTest {
     }
 
     @Test
-    void testUnsuccessfulBorrowsDeletion() {
+    void testUnsuccessfulBorrowDeletion() {
         webTestClient
                 .delete()
                 .uri("api/v1/borrows/%s".formatted("2024001"))
