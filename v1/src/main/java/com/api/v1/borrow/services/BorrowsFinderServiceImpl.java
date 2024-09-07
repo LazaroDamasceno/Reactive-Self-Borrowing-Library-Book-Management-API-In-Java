@@ -199,7 +199,9 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
                 .findAll()
                 .filter(e -> e.getReturningDate() == null
                         && (ZonedDateTime.parse(e.getBorrowingDate()).getYear() >= firstYear
-                        && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear)
+                            && ZonedDateTime.parse(e.getBorrowingDate()).getYear() <= lastYear
+
+                        )
                 );
     }
 
