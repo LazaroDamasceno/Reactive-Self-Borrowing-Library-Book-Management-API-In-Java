@@ -23,7 +23,7 @@ class BorrowExtensionServiceImpl implements BorrowExtensionService {
         return borrowFinderUtil
                 .find(id)
                 .flatMap(borrow -> {
-                    if (borrow.getExtendedDueDate() != null || borrow.getReturningDate() != null) {
+                    if (borrow.getExtendedDueDate() != null) {
                         return Mono.error(new InextensibleBorrowException(id));
                     }
                     borrow.extendBorrow();
