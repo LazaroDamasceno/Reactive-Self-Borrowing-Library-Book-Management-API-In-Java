@@ -6,13 +6,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BorrowingTest {
+public class ManyBorrowsTest {
 
     @Autowired
     private WebTestClient webTestClient;
 
     @Test
-    void testSuccessfulBookBorrowing() {
+    void testSuccessfulManyBookBorrowings() {
 
         int testcases = 10;
 
