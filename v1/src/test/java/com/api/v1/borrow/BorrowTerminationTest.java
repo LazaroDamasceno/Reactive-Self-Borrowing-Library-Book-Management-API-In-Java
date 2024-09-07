@@ -14,9 +14,10 @@ public class BorrowTerminationTest {
     @Test
     void testSuccessfulBorrowTermination() {
         String id = "2024001";
+        String endpoint = "api/v1/borrows/%s/termination".formatted(id);
         webTestClient
                 .patch()
-                .uri("api/v1/borrows/%s/termination".formatted(id))
+                .uri(endpoint)
                 .exchange()
                 .expectStatus()
                 .is2xxSuccessful();
@@ -25,9 +26,10 @@ public class BorrowTerminationTest {
     @Test
     void testUnsuccessfulBorrowTermination() {
         String id = "2024001";
+        String endpoint = "api/v1/borrows/%s/termination".formatted(id);
         webTestClient
                 .patch()
-                .uri("api/v1/borrows/%s/termination".formatted(id))
+                .uri(endpoint)
                 .exchange()
                 .expectStatus()
                 .is5xxServerError();
