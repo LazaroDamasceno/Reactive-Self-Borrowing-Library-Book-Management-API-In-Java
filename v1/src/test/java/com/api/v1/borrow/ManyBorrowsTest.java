@@ -1,10 +1,14 @@
 package com.api.v1.borrow;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ManyBorrowsTest {
 
@@ -12,6 +16,7 @@ public class ManyBorrowsTest {
     private WebTestClient webTestClient;
 
     @Test
+    @Order(1)
     void testSuccessfulManyBookBorrowings() {
 
         int testcases = 10;
@@ -35,6 +40,7 @@ public class ManyBorrowsTest {
     }
 
     @Test
+    @Order(2)
     void testUnsuccessfulBookBorrowing1() {
 
         String ssn = "123456788";
