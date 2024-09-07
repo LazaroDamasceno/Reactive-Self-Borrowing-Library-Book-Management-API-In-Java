@@ -15,7 +15,7 @@ public class BorrowFinderUtil {
     @Autowired
     private BorrowRepository borrowRepository;
 
-    public Mono<Borrow> find(String id) {
+    public Mono<Borrow> findActiveBorrow(String id) {
         return borrowRepository
                 .findAll()
                 .filter(e -> e.getReturningDate() == null && e.getId().equals(new BigInteger(id)))

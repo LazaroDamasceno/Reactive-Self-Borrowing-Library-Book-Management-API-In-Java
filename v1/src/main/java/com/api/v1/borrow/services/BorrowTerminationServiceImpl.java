@@ -20,7 +20,7 @@ class BorrowTerminationServiceImpl implements BorrowTerminationService {
     @Override
     public Mono<BorrowResponseDto> terminate(String id) {
         return borrowFinderUtil
-                .find(id)
+                .findActiveBorrow(id)
                 .flatMap(borrow -> {
                     borrow.terminateBorrow();
                     return repository.save(borrow);

@@ -16,7 +16,7 @@ class BorrowFinderServiceImpl implements BorrowFinderService {
     @Override
     public Mono<BorrowResponseDto> find(String id) {
         return borrowFinderUtil
-                .find(id)
+                .findActiveBorrow(id)
                 .flatMap(b -> Mono.just(BorrowResponseMapper.map(b)));
     }
 
