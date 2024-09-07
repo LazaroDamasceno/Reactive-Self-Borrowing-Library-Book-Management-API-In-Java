@@ -1,5 +1,7 @@
 package com.api.v1.borrow.services;
 
+import com.api.v1.annotations.ISBN;
+import com.api.v1.annotations.SSN;
 import com.api.v1.book.utils.BookFinderUtil;
 import com.api.v1.borrow.domain.Borrow;
 import com.api.v1.borrow.domain.BorrowRepository;
@@ -52,7 +54,7 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
     }
 
     @Override
-    public Flux<BorrowResponseDto> findActiveByBook(String isbn, int firstYear, int lastYear) {
+    public Flux<BorrowResponseDto> findActiveByBook(@ISBN String isbn, int firstYear, int lastYear) {
         return bookFinderUtil
                 .find(isbn)
                 .flatMapMany(book -> repository
@@ -67,7 +69,7 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
     }
 
     @Override
-    public Flux<BorrowResponseDto> findActiveByBorrower(String ssn, int firstYear, int lastYear) {
+    public Flux<BorrowResponseDto> findActiveByBorrower(@SSN String ssn, int firstYear, int lastYear) {
         return borrowerFinderUtil
                 .find(ssn)
                 .flatMapMany(borrower -> repository
@@ -107,7 +109,7 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
     }
 
     @Override
-    public Flux<BorrowResponseDto> findOverdueByBook(String isbn, int firstYear, int lastYear) {
+    public Flux<BorrowResponseDto> findOverdueByBook(@ISBN String isbn, int firstYear, int lastYear) {
         return bookFinderUtil
                 .find(isbn)
                 .flatMapMany(book -> repository
@@ -123,7 +125,7 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
     }
 
     @Override
-    public Flux<BorrowResponseDto> findOverdueByBorrower(String ssn, int firstYear, int lastYear) {
+    public Flux<BorrowResponseDto> findOverdueByBorrower(@SSN String ssn, int firstYear, int lastYear) {
         return borrowerFinderUtil
                 .find(ssn)
                 .flatMapMany(borrower -> repository
@@ -163,7 +165,7 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
     }
 
     @Override
-    public Flux<BorrowResponseDto> findTerminatedByBook(String isbn, int firstYear, int lastYear) {
+    public Flux<BorrowResponseDto> findTerminatedByBook(@ISBN String isbn, int firstYear, int lastYear) {
         return bookFinderUtil
                 .find(isbn)
                 .flatMapMany(book -> repository
@@ -178,7 +180,7 @@ class BorrowsFinderServiceImpl implements BorrowsFinderService {
     }
 
     @Override
-    public Flux<BorrowResponseDto> findTerminatedByBorrower(String ssn, int firstYear, int lastYear) {
+    public Flux<BorrowResponseDto> findTerminatedByBorrower(@SSN String ssn, int firstYear, int lastYear) {
         return borrowerFinderUtil
                 .find(ssn)
                 .flatMapMany(borrower -> repository
