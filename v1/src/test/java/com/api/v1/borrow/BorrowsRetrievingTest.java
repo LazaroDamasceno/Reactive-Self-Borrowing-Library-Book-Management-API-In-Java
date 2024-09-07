@@ -10,7 +10,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BooksFinderTest {
+public class BorrowsRetrievingTest {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -30,7 +30,7 @@ public class BooksFinderTest {
     @Test
     @Order(2)
     void testUnsuccessfulBooksFinding() {
-        String endpoint = "api/v1/borrows/active/%04d/%04d".formatted(2024, 2024);
+        String endpoint = "api/v1/borrows/active/%04d/%04d".formatted(2023, 2023);
         webTestClient
                 .get()
                 .uri(endpoint)
